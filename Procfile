@@ -1,0 +1,1 @@
+web: java $JAVA_OPTS -jar parlator/target/dependency/jetty-runner.jar --port $PORT parlator/target/*.war
