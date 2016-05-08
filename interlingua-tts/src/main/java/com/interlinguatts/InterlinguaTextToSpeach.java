@@ -225,7 +225,7 @@ public class InterlinguaTextToSpeach implements TextToSpeach {
                 continue;
             }
 
-            String ipa = provider.toIpa(word);
+            String ipa = provider.toIpa(word, words.length == 1);
 
             System.out.println(padRight(word,30)  + padRight(ipa, 30));
             graphemePhonemeMap.put(word, ipa);

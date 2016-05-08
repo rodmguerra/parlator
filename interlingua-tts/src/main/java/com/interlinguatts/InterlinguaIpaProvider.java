@@ -17,7 +17,7 @@ public class InterlinguaIpaProvider {
         this.numberWriter = numberWriter;
     }
 
-    public String toIpa(String wordText) {
+    public String toIpa(String wordText, boolean singleWord) {
         //wordText = treatNumbers(wordText);
 
         Word myWord = wordRepository.findByWord(wordText);
@@ -30,7 +30,7 @@ public class InterlinguaIpaProvider {
             if (wordStrings.length > 1) {
                 String ipa = "";
                 for (String currentWord : wordStrings) {
-                    ipa += " " + toIpa(currentWord);
+                    ipa += " " + toIpa(currentWord, false);
                 }
                 return ipa;
             }
@@ -45,7 +45,7 @@ public class InterlinguaIpaProvider {
         }
 
         String phoneticInvariant = toPhoneticInvariant(wordRespell);
-        return phoneticInvariantToIPA(phoneticInvariant);
+        return phoneticInvariantToIPA(phoneticInvariant, singleWord);
     }
 
     private String treatNumbers(String wordText) {
@@ -167,7 +167,7 @@ public class InterlinguaIpaProvider {
         word = word.replaceAll("ÿ", "i");
 
         //s between vowels => z
-        //word = word.replaceAll("([aeiouāēīōū])[s]([aeiouāēīōū])","$1z$2");
+        word = word.replaceAll("([aeiouāēīōū])[s]([aeiouāēīōū])","$1z$2");
 
         //double c => kc
         word = word.replaceAll("cc", "kc");
@@ -269,7 +269,7 @@ public class InterlinguaIpaProvider {
         return s;
     }
 
-    private static String phoneticInvariantToIPA(String word) {
+    private static String phoneticInvariantToIPA(String word, boolean singleWord) {
         word = superscoreToSingleQuoute(word);
         word = word.replaceAll("'y", "'i");
 
@@ -317,8 +317,10 @@ public class InterlinguaIpaProvider {
         //soft transition vowels
         //word = word.replaceAll("([aeiou])([aeiou])", "$1‿$2");
 
-        //only one vowel, no stress
-        word = word.replaceAll("^([^aeiou]*)ˈ([aeiou])([^aeiou]*)$", "$1$2$3");
+        if(!singleWord) {
+            //only one vowel, no stress
+            word = word.replaceAll("^([^aeiou]*)ˈ([aeiou])([^aeiou]*)$", "$1$2$3");
+        }
 
         //only one vowel (the first letter), no stress
         //word = word.replaceAll("^ˈ([aeiou])([^aeiou]*)$", "$1$2");
