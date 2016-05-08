@@ -1,9 +1,11 @@
 <html ng-app="parlatorApp" ng-csp>
 <head>
+    <title>Parlator de Interlingua</title>
     <script src="script/angular.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="script/parlator.js"></script>
     <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/sticky-footer.css">
     <script>
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
             (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -16,8 +18,7 @@
 </head>
 <body  ng-controller="parlatorController" ng-init="initVoices()">
     <div class="container">
-        <h1>Parlator de textos in interlingua <small>(Interlingua text-to-speech)</small></h1>
-        <div class="container">
+        <h1>Parlator de textos in interlingua <small>(Interlingua text&#8209;to&#8209;speech)</small></h1>
             <form>
                 <div class="form-group" ng-if="myError">
                     <div class="alert alert-warning">
@@ -26,7 +27,7 @@
                 </div>
                 <div class="form-group">
                     <label for="text">Texto</label>
-                    <input type="text" id="text" size="100" class="form-control" ng-keydown="hideError()" ng-model="text" required autofocus placeholder="Scribe in interlingua">
+                    <input type="text" id="text" size="100" class="form-control" ng-keydown="hideError()" ng-model="text" required autofocus placeholder="Per favor, scribe hic un parola o qualque phrases in interlingua">
                 </div>
                 <div class="form-group">
                     <label for="voiceSelect">Voce</label>
@@ -35,7 +36,10 @@
                 </div>
                 <input class="btn btn-default" name="talk" type="submit" value="Parla!" ng-click="talk()">
             </form>
-        </div>
     </div>
+    <footer class="footer">
+        <p class="text-muted">Esque alicun parola es parlate incorrectemente? Ha iste sito alicun defecto? Vole vos commentar o dar suggestiones? Per favor, invia un e-posta a <b><a href="mailto:parlator.interlingua@gmail.com">parlator.interlingua@gmail.com</a></b>.</p>
+    </footer>
 </body>
+
 </html>
