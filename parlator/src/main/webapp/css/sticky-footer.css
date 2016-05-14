@@ -1,16 +1,36 @@
 
-#footer {
-    position: fixed;
-    left:0px;
-    bottom:0px;
-    width: 100%;
-    /* Set the fixed height of the footer here */
-    background-color: #f8f8f8;
+
+
+
+
+html, body {height: 100%;}
+
+#wrap {min-height: 100%;}
+
+#main {overflow:auto;
+    padding-bottom: 105px;}  /* must be same height as the footer */
+
+#footer {position: relative;
+    margin-top: -105px; /* negative value of footer height */
+    height: 105px;
+    clear:both;
     text-align: center;
+    padding-top: 3px;
+
 }
 
-/* IE 6 */
-* html #footer {
-    position:absolute;
-    top:expression((0-(footer.offsetHeight)+(document.documentElement.clientHeight ? document.documentElement.clientHeight : document.body.clientHeight)+(ignoreMe = document.documentElement.scrollTop ? document.documentElement.scrollTop : document.body.scrollTop))+'px');
+#innerfooter {
+    position: absolute; bottom: 0; padding-top: 5px; background-color: #f7f7f7; width: 100%;
 }
+
+/*Opera Fix*/
+body:before {
+    content:"";
+    height:100%;
+    float:left;
+    width:0;
+    margin-top:-32767px;/
+}
+
+
+

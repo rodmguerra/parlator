@@ -2,7 +2,7 @@
 <head>
     <title>Parlator de Interlingua</title>
     <script src="script/angular.min.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <script src="script/parlator.js"></script>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/sticky-footer.css">
@@ -17,7 +17,8 @@
     </script>
 </head>
 <body  ng-controller="parlatorController" ng-init="initVoices()">
-    <div class="container">
+    <div id="wrap">
+    <div class="container" id="main">
         <h1>Parlator de textos in interlingua <small>(Interlingua text&#8209;to&#8209;speech)</small></h1>
             <form>
                 <div class="form-group" ng-if="myError">
@@ -36,11 +37,13 @@
                 </div>
                 <input class="btn btn-default" name="talk" type="submit" value="Parla!" ng-click="talk()">
             </form>
+        </div>
     </div>
-    <footer id="footer">
-        <p></p>
-        <p class="text-muted">Esque alicun parola es parlate incorrectemente? Ha iste sito alicun defecto? Vole vos commentar o dar suggestiones? Per favor, invia un e-posta a <b><a href="mailto:parlator.interlingua@gmail.com">parlator.interlingua@gmail.com</a></b>.</p>
-    </footer>
+    <div id="footer">
+        <div id="innerfooter">
+            <p class="text-muted">Esque alicun parola es parlate incorrectemente? Ha iste sito alicun defecto? Vole vos commentar o dar suggestiones? Per favor, invia un e-posta a <b><a href="mailto:parlator.interlingua@gmail.com">parlator.interlingua@gmail.com</a></b>.</p>
+        </div>
+    </div>
 </body>
 
 </html>
