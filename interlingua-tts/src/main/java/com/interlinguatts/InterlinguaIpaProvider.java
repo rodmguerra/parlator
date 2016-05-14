@@ -117,17 +117,70 @@ public class InterlinguaIpaProvider {
             wordRespell = respellChangingSuffixKeepStress(wordText, "", "es");
         if (wordRespell == null && wordText.endsWith("s"))
             wordRespell = respellChangingSuffixKeepStress(wordText, "", "s");
+
+        //issime
+        if(wordRespell == null && wordText.endsWith("issime")) {
+            wordRespell = respellChangingSuffix(wordText, "a", "īssime");
+        }
+        if(wordRespell == null && wordText.endsWith("issime")) {
+            wordRespell = respellChangingSuffix(wordText, "e", "īssime");
+        }
+        if(wordRespell == null && wordText.endsWith("issime")) {
+            wordRespell = respellChangingSuffix(wordText, "i", "īssime");
+        }
+        if(wordRespell == null && wordText.endsWith("issime")) {
+            wordRespell = respellChangingSuffix(wordText, "o", "īssime");
+        }
+        if(wordRespell == null && wordText.endsWith("issime")) {
+            wordRespell = respellChangingSuffix(wordText, "u", "īssime");
+        }
+        if(wordRespell == null && wordText.endsWith("issime")) {
+            wordRespell = respellChangingSuffix(wordText, "y", "īssime");
+        }
+        if(wordRespell == null && wordText.endsWith("issime")) {
+            wordRespell = respellChangingSuffixEvenIfNotFound(wordText, "", "īssime");
+        }
+        if(wordRespell == null && wordText.endsWith("issimes")) {
+            wordRespell = respellChangingSuffix(wordText, "a", "īssimes");
+        }
+        if(wordRespell == null && wordText.endsWith("issimes")) {
+            wordRespell = respellChangingSuffix(wordText, "e", "īssimes");
+        }
+        if(wordRespell == null && wordText.endsWith("issimes")) {
+            wordRespell = respellChangingSuffix(wordText, "i", "īssimes");
+        }
+        if(wordRespell == null && wordText.endsWith("issimes")) {
+            wordRespell = respellChangingSuffix(wordText, "o", "īssimes");
+        }
+        if(wordRespell == null && wordText.endsWith("issimes")) {
+            wordRespell = respellChangingSuffix(wordText, "u", "īssimes");
+        }
+        if(wordRespell == null && wordText.endsWith("issimes")) {
+            wordRespell = respellChangingSuffix(wordText, "y", "īssimes");
+        }
+        if(wordRespell == null && wordText.endsWith("issimes")) {
+            wordRespell = respellChangingSuffixEvenIfNotFound(wordText, "", "īssimes");
+        }
+
         return wordRespell;
     }
 
-    private String respellChangingSuffix(String wordRespell, String storedSuffix, String wordSuffix) {
-        Word base = wordRepository.findByWord(wordRespell.substring(0, wordRespell.length() - wordSuffix.length()) + storedSuffix);
+    private String respellChangingSuffix(String word, String storedSuffix, String wordSuffix) {
+        Word base = wordRepository.findByWord(word.substring(0, word.length() - wordSuffix.length()) + storedSuffix);
         if (base == null) {
             return null;
         }
         String baseRespell = base.getRespell();
-        wordRespell = unstress(baseRespell.substring(0, baseRespell.length() - storedSuffix.length())) + wordSuffix;
-        return wordRespell;
+        word = unstress(baseRespell.substring(0, baseRespell.length() - storedSuffix.length())) + wordSuffix;
+        return word;
+    }
+
+    private String respellChangingSuffixEvenIfNotFound(String word, String storedSuffix, String wordSuffix) {
+        String search = word.substring(0, word.length() - wordSuffix.length()) + storedSuffix;
+        Word base = wordRepository.findByWord(search);
+        String baseRespell = (base == null)? search : base.getRespell();
+        word = unstress(baseRespell.substring(0, baseRespell.length() - storedSuffix.length())) + wordSuffix;
+        return word;
     }
 
     private String respellChangingSuffixKeepStress(String wordRespell, String storedSuffix, String wordSuffix) {

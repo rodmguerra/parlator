@@ -267,6 +267,30 @@ public class InterlinguaTextToSpeach implements TextToSpeach {
                 map.remove("Multo");
                 map.put("Multo", "multo");
             }
+
+            ipa = map.get("multe");
+            if(ipa != null) {
+                map.remove("multe");
+                map.put("multe", "multe");
+            }
+
+            ipa = map.get("Multes");
+            if(ipa != null) {
+                map.remove("Multes");
+                map.put("Multes", "multes");
+            }
+
+            ipa = map.get("multes");
+            if(ipa != null) {
+                map.remove("multes");
+                map.put("multes", "multes");
+            }
+
+            ipa = map.get("Multes");
+            if(ipa != null) {
+                map.remove("Multes");
+                map.put("Multes", "multes");
+            }
         }
     }
 
@@ -288,6 +312,8 @@ public class InterlinguaTextToSpeach implements TextToSpeach {
         text = text.replaceAll("sra\\.", "seniora");
         text = text.replaceAll("Sr\\.", "senior");
         text = text.replaceAll("Sra\\.", "seniora");
+        text = text.replaceAll("etc\\.", "etcetera");
+        text = text.replaceAll("Etc\\.", "Etcetera");
         return text;
     }
 
