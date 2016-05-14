@@ -1,13 +1,16 @@
 
-.footer {
-    position: absolute;
-    bottom: 0;
+#footer {
+    position: fixed;
+    left:0px;
+    bottom:0px;
     width: 100%;
     /* Set the fixed height of the footer here */
-    height: 40px;
-    background-color: #f5f5f5;
+    background-color: #f8f8f8;
+    text-align: center;
 }
 
-.text-muted {
-    text-align: center;
+/* IE 6 */
+* html #footer {
+    position:absolute;
+    top:expression((0-(footer.offsetHeight)+(document.documentElement.clientHeight ? document.documentElement.clientHeight : document.body.clientHeight)+(ignoreMe = document.documentElement.scrollTop ? document.documentElement.scrollTop : document.body.scrollTop))+'px');
 }
