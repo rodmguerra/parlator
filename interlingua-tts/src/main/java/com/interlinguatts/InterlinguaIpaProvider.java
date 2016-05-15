@@ -207,20 +207,20 @@ public class InterlinguaIpaProvider {
         word = word.replaceAll("-", "");
         word = singleQuoteToSuperscore(word);
 
-        //y before consonants => semivowel y (temporary using ÿ)
+        //y before vowels => semivowel y (temporary using ÿ)
         word = word.replaceAll("(y)([aeiouāēīōū])", "ÿ$2");
 
-        //y semivowel in diphtongs: ai ei oi ui => ay ey oy uy (temporary using ÿ)
-        word = word.replaceAll("([aeouāēīōū])[iyīȳ]", "$1ÿ");
+        //y after vowels => semivowel y (temporary using ÿ)
+        word = word.replaceAll("([aeiouāēīōū])(y)", "$1ÿ");
 
         //y as vowel => i
         word = word.replaceAll("y", "i");
 
         //removing temporary notation ÿ => y
-        word = word.replaceAll("ÿ", "i");
+        word = word.replaceAll("ÿ", "y");
 
         //s between vowels => z
-        word = word.replaceAll("([aeiouāēīōū])[s]([aeiouāēīōū])","$1z$2");
+        word = word.replaceAll("([aeiouyāēīōūȳ])[s]([aeiouyāēīōūȳ])","$1z$2");
 
         //double c => kc
         word = word.replaceAll("cc", "kc");
@@ -287,6 +287,11 @@ public class InterlinguaIpaProvider {
         //tye (except tyer/tyer (fructiera))
         word = word.replaceAll("(?<![sx])ty([eē])(?!r[aeiouāēīōū])", "cy$1");
 
+
+        //stress vowel + i/y = diphtongs: ai ei oi ui => ay ey oy uy (temporary using ÿ)   (aī aȳ is not diphtong)
+        word = word.replaceAll("([āēīōū])[iy]", "$1y");
+
+
         //word = word.replaceAll("[^\\p{InIPA_EXTENSIONS}a-zA-Z]", "");
 
         return word;
@@ -340,6 +345,8 @@ public class InterlinguaIpaProvider {
 
         //j
         word = word.replaceAll("J", "ʒ");
+        word = word.replaceAll("dʒ", "d͡ʒ");
+
         //y
         word = word.replaceAll("Y", "j");
 
@@ -367,6 +374,8 @@ public class InterlinguaIpaProvider {
         //x
         word = word.replaceAll("x", "ks");
 
+
+
         //soft transition vowels
         //word = word.replaceAll("([aeiou])([aeiou])", "$1‿$2");
 
@@ -382,7 +391,7 @@ public class InterlinguaIpaProvider {
         //word = word.replaceAll("^([^aeiou]+)ˈ([aeiou][^aeiou]*)$", "$1$2");
 
         //move accent to before preceding consonant
-        word = word.replaceAll("([^aeiou]*)ˈ([aeiou])", "ˈ$1$2");
+        word = word.replaceAll("([^aeioujw]*)([^aeiou])ˈ([aeiou])", "ˈ$1$2$3");
 
         //when word starts with vowel - add . to break syllabe
         word = word.replaceAll("^([ˈ]?[aeiou]+)", ".$1");
