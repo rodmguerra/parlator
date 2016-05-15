@@ -22,7 +22,7 @@ public class VoicesServlet extends HttpServlet {
         response.setContentType("application/json");
         String recomendedString = request.getParameter("recommended");
         boolean recommended = recomendedString == null? true : Boolean.valueOf(recomendedString);
-        List<String> recommendedVoiceNames = Arrays.asList("Carla", "Giorgio", "Jacek");
+        List<String> recommendedVoiceNames = Arrays.asList("Carla", "Giorgio");
 
         List<Voice> voices;
         List<Voice> allVoices = ivonaFacade.getVoices();
