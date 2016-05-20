@@ -171,7 +171,7 @@ public class InterlinguaNumberWriter {
 
     public String write(BigInteger value) {
         if(value.compareTo(THOUSAND) == -1) { // value < 1000
-            return writeHundreds(value.intValueExact());
+            return writeHundreds(value.intValue());
         }
 
         BigInteger remainder = value;
@@ -240,7 +240,7 @@ public class InterlinguaNumberWriter {
 
     public String writeOrdinal(BigInteger value) {
         if(value.compareTo(THOUSAND) == -1) { // value < 1000
-            return writeOrdinalHundreds(value.intValueExact());
+            return writeOrdinalHundreds(value.intValue());
         }
 
         BigInteger remainder = value;

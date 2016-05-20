@@ -264,7 +264,13 @@ public class InterlinguaIpaProvider {
 
         //vowel before last consonant (ignore last c and s as a consonant) => marking accent as '
         if (!haveStress(word)) {
-            word = word.replaceAll("([aeiou][^aeiou\\s]+[aeiou]*[cs]*\\b)", "'$1");
+            if(word.endsWith("ic")) {
+                word = word.replaceAll("([aeiou][^aeiou\\s]*ic\\b)", "'$1");
+            } else if(word.endsWith("s")) {
+                word = word.replaceAll("([aeiou][^aeiou\\s]+[aeiou]*s\\b)", "'$1");
+            } else {
+                word = word.replaceAll("([aeiou][^aeiou\\s]+[aeiou]*\\b)", "'$1");
+            }
             word = singleQuoteToSuperscore(word);
         }
 

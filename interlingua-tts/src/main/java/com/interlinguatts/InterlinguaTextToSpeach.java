@@ -211,7 +211,7 @@ public class InterlinguaTextToSpeach implements TextToSpeach {
     }
 
 
-    public Map<String,String> graphemePhonemeMap(String text) {
+    public Map<String,String> graphemePhonemeMap(String text, Voice voice) {
         Map<String, String> graphemePhonemeMap = new HashMap<String, String>();
 
         String intermediateText = text.replaceAll("[.,;:?!“”\"'\\-–\\)]+ ", " ");  //special + space
@@ -219,14 +219,14 @@ public class InterlinguaTextToSpeach implements TextToSpeach {
         intermediateText = intermediateText.replaceAll(" [“”\"'\\-–\\(]+", " ");  //space + quotes
         intermediateText = intermediateText.replaceAll("^[“”\"'\\-–\\(]+", " ");  //start + quotes
 
-        String[] words = intermediateText.split(" ");
+        String[] words = intermediateText.split("[ &]");
         for(String word : words) {
             if(word.isEmpty()) {
                 continue;
             }
 
-            String ipa = provider.toIpa(word, words.length == 1);
-
+            String bugFix = fixVoiceBugs(voice, word, words.length);
+            String ipa = (bugFix==null)? provider.toIpa(word, words.length == 1) : bugFix;
             System.out.println(padRight(word,30)  + padRight(ipa, 30));
             graphemePhonemeMap.put(word, ipa);
         }
@@ -242,68 +242,38 @@ public class InterlinguaTextToSpeach implements TextToSpeach {
         }
     }
 
-    private void fixVoiceBugs(Voice voice, Map<String, String> map) {
-        if(map.size() > 1 && voice.getName().equals("Carla")) {
-            String ipa = map.get("Cata");
-            if(ipa != null) {
-                map.remove("Cata");
-                map.put("Cata", "kata");
-            }
-
-            ipa = map.get("cata");
-            if(ipa != null) {
-                map.remove("cata");
-                map.put("cata", "kata");
-            }
-
-            ipa = map.get("multo");
-            if(ipa != null) {
-                map.remove("multo");
-                map.put("multo", "multo");
-            }
-
-            ipa = map.get("Multo");
-            if(ipa != null) {
-                map.remove("Multo");
-                map.put("Multo", "multo");
-            }
-
-            ipa = map.get("multe");
-            if(ipa != null) {
-                map.remove("multe");
-                map.put("multe", "multe");
-            }
-
-            ipa = map.get("Multes");
-            if(ipa != null) {
-                map.remove("Multes");
-                map.put("Multes", "multes");
-            }
-
-            ipa = map.get("multes");
-            if(ipa != null) {
-                map.remove("multes");
-                map.put("multes", "multes");
-            }
-
-            ipa = map.get("Multes");
-            if(ipa != null) {
-                map.remove("Multes");
-                map.put("Multes", "multes");
+    private String fixVoiceBugs(Voice voice, String word, int length) {
+        if(voice.getName().equals("Carla") && length > 1) {
+            String [] bugWords = {"cata", "multo", "multo", "multe", "multes"};
+            for (String bugWord : bugWords) {
+                if(word.equalsIgnoreCase(bugWord)) {
+                    return bugWord;
+                }
             }
         }
+        return null;
     }
 
     public void textToSpeech(String text, OutputStream outputStream, Voice voice) {
+
         text = text.replaceAll("[ ]+[\\-–][ ]+", ", ");
+
+        //apostrophe e hifen in word boundary (TODO: replace parenteses by , ,)
+        String lastText = "";
+        while (!lastText.equals(text)) {
+            lastText = text;
+            text = text.replaceAll("\\b[']+", "");
+            text = text.replaceAll("[']+\\b", "");
+            text = text.replaceAll("\\b[\\-–]+", ", ");
+            text = text.replaceAll("[\\-–]+\\b", "");
+        }
 
         text = replaceNumbers(text);
         text = replaceAbbreviations(text);
 
-        Map<String, String> graphemePhonemeMap = graphemePhonemeMap(text);
+        Map<String, String> graphemePhonemeMap = graphemePhonemeMap(text, voice);
 
-        //refactor
-        fixVoiceBugs(voice, graphemePhonemeMap);
+
         textToSpeechSynchronizedPart(text, graphemePhonemeMap, voice, outputStream);
     }
 
