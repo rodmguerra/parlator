@@ -257,15 +257,14 @@ public class InterlinguaTextToSpeach implements TextToSpeach {
     public void textToSpeech(String text, OutputStream outputStream, Voice voice) {
 
         text = text.replaceAll("[ ]+[\\-–][ ]+", ", ");
-
-        //apostrophe e hifen in word boundary (TODO: replace parenteses by , ,)
         String lastText = "";
         while (!lastText.equals(text)) {
             lastText = text;
             text = text.replaceAll("\\b[']+", "");
             text = text.replaceAll("[']+\\b", "");
-            text = text.replaceAll("\\b[\\-–]+", ", ");
-            text = text.replaceAll("[\\-–]+\\b", "");
+            text = text.replaceAll("(?<!^)\\b[\\-–]+\\B", ", ");
+            text = text.replaceAll("\\B[\\-–]+\\b", "");
+            text = text.replaceAll("(?<!^)[ ]*\\(([^\\(]+)\\)", ", $1, ");
         }
 
         text = replaceNumbers(text);
