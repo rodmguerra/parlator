@@ -1,5 +1,19 @@
 var parlatorApp = angular.module('parlatorApp', []);
 
+parlatorApp.directive('ngEnter', function () {
+    return function (scope, element, attrs) {
+        element.bind("keydown", function (event) {
+            if ((event.keyCode == 10 || event.keyCode == 13) && event.ctrlKey) {
+                scope.$apply(function (){
+                    scope.$eval(attrs.ngEnter);
+                });
+
+                event.preventDefault();
+            }
+        });
+    };
+});
+
 parlatorApp.factory('audio', function ($document, $http) {
     var audioElement = $document[0].createElement('audio'); // <-- Magic trick here
     return {

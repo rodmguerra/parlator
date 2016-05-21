@@ -32,5 +32,9 @@ body:before {
     margin-top:-32767px;/
 }
 
+textarea {
+    resize: vertical;
+}
+
 
 

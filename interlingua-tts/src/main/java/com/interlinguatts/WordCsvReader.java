@@ -25,12 +25,13 @@ public class WordCsvReader {
     public List<Word> readWords() {
         BufferedReader reader = null;
 
+        String[] lineSplit = null;
         try {
             String line;
             reader = new BufferedReader(new InputStreamReader(stream));
             List<Word> words = new ArrayList<Word>();
             while ((line = reader.readLine()) != null) {
-                String[] lineSplit = line.split(";",-1);
+                lineSplit = line.split(";",-1);
                 Word word = new Word(lineSplit[0], lineSplit[1], lineSplit[2]);
                 words.add(word);
             }

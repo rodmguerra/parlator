@@ -29,7 +29,7 @@
                 </div>
                 <div class="form-group">
                     <label for="text">Texto</label>
-                    <input type="text" id="text" size="100" class="form-control" ng-keydown="hideError()" ng-model="text" required autofocus placeholder="Per favor, scribe hic un parola o qualque phrases in interlingua">
+                    <textarea id="text" ng-enter="talk()" rows="6" class="form-control" ng-keydown="hideError()" ng-model="text" required autofocus placeholder="Per favor, scribe hic un parola o qualque phrases in interlingua"></textarea>
                 </div>
                 <div class="form-group">
                     <label for="voiceSelect">Voce</label>
