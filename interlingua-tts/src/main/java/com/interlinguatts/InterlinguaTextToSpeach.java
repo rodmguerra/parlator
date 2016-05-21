@@ -267,8 +267,15 @@ public class InterlinguaTextToSpeach implements TextToSpeach {
             text = text.replaceAll("(?<!^)[ ]*\\(([^\\(]+)\\)", ", $1, ");
         }
 
+        text = text.replaceAll("\\b@\\b", ", ad, ");
+        text = text.replaceAll("\\b@\\B", ", ad");
+        text = text.replaceAll("\\B@\\b", "ad, ");
+        text = text.replaceAll("\\B@\\B", "ad");
+
         text = replaceNumbers(text);
         text = replaceAbbreviations(text);
+
+        text = text.replaceAll("\\b\\.\\b", ", puncto, ");
 
         Map<String, String> graphemePhonemeMap = graphemePhonemeMap(text, voice);
 
