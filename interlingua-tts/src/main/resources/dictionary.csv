@@ -1476,7 +1476,11 @@ alismataceas;alismatāceas;sb pl
 alizari;alizari;sb
 alizarina;alizarina;sb
 alkylation;alkylation;sb
-all right;all rayt;adj
+all right;allrāyt;adj
+all;al;part
+right;rāyt;part
+all-right;allrāyt;adj
+allright;allrāyt;adj
 allactamento;allactamento;sb
 allactar;allactar;vb
 Allah;āllah;sb npr
@@ -1536,7 +1540,7 @@ alliato;alliato;sb
 alligabile;alligābile;adj
 alligar;alligar;vb
 alligato;alligato;sb
-alligator;alligator;sb
+alligator;aligēytor;sb
 allio;allio;sb
 alliterar;alliterar;vb
 alliteration;alliteration;sb
@@ -4852,9 +4856,9 @@ babirussa;babirussa;sb
 babordo;babordo;sb
 babucha;babuśha;sb
 babuino;babuino;sb
-baby;baby;adj 
-baby;baby;sb
-baby-doll;baby-doll;sb
+baby;bēybi;adj
+baby;bēybi;sb
+baby-doll;bēybidoll;sb
 Babylon;Bābylon;sb npr
 Babylonia;Babylonia;sb npr
 babylonian;babylonian;adj
@@ -5180,8 +5184,9 @@ bascular;bascular;adj
 bascular;bascular;vb
 basculation;basculation;sb
 base;base;sb
-baseball;baseball;sb
-baseballista;baseballista;sb
+baseball;beysbol;sb
+baseballero;beysbolero;sb
+baseballista;beysbolista;sb
 Basedow;Basedow;sb npr
 basedowian;basedowian;adj
 basedowiano;basedowiano;sb
@@ -5207,7 +5212,9 @@ basio;basio;sb
 basipetal;basipetal;adj
 basipete;basīpete;adj
 basiphile;basiphile;adj
-basketball;bāsketball;sb
+basketball;basketbol;sb
+basketballero;basketbolero;sb
+basketballista;basketbolista;sb
 basophile;basōphile;adj
 basophilia;basophilia;sb
 bassa;bassa;sb
@@ -5316,7 +5323,7 @@ bechic;bēchic;adj
 becquerel;becquerel;sb
 bedello;bedello;sb
 beduin;beduin;sb
-beefsteak;bēēfsteak;sb
+beefsteak;bifsteyk;sb
 begonia;begonia;sb
 begoniaceas;begoniāceas;sb pl
 beguina;beguina;sb
@@ -6031,9 +6038,9 @@ blonde;blonde;adj
 blondessa;blondessa;sb
 blondo;blondo;sb
 blue-jeans;bludjīns;sb
-bluff;bluff;sb
-bluffar;bluffar;vb
-bluffator;bluffator;sb
+bluff;blaf;sb
+bluffar;blafar;vb
+bluffator;blafator;sb
 blusa;blusa;sb
 boa;bōa;sb
 boatpeople;bōātpeople;sb
@@ -6042,7 +6049,7 @@ bobinage;bobinaje;sb
 bobinar;bobinar;vb
 bobinator;bobinator;sb
 bobinatorio;bobinatorio;sb
-bobsleigh;bōbsleigh;sb
+bobsleigh;bobsley;sb
 bocal;bocal;sb
 bock;bock;sb
 bodemeria;bodemerīa;sb
@@ -6129,11 +6136,12 @@ bonus;bōnus;sb
 bonus-malus;bōnus-mālus;sb
 bonze;bonze;sb
 booby trap;booby trap;sb
-boogie-woogie;boogie-woogie;sb
-bookmaker;bookmaker;sb
-boom;boom;sb
-boomerang;boomerang;sb
-booster;booster;sb
+boogie-woogie;būgi wūgi;sb
+bookmaker;būkmeyker;sb
+book-maker;būkmeyker;sb
+boom;bum;sb
+boomerang;būmerang;sb
+booster;buster;sb
 Booz;Booz;sb npr
 bora;bora;sb
 borace;borace;sb
@@ -6228,7 +6236,9 @@ boxa;boxa;sb
 boxar;boxar;vb
 boxator;boxator;sb
 boxer;bōxer;sb
-boy scout;bōy scout;sb
+boy scout;bōy scawt;sb
+boy;bōy;part
+scout;scawt;part
 boycott;bōycott;sb
 boycottage;boycottaje;sb
 boycottar;boycottar;vb
@@ -6356,8 +6366,8 @@ brick;brick;sb
 bricolage;bricolaje;sb
 brida;brida;sb
 bridar;bridar;vb
-bridge;bridge;sb
-bridgedrive;brīdgedrive;sb
+bridge;bridj;sb
+bridgedrive;bridjedrayv;sb
 bridon;bridon;sb
 brie;brīe;sb
 briefing;briefing;sb
@@ -6441,9 +6451,9 @@ brossar;brossar;vb
 brosseria;brosserīa;sb
 brossero;brossero;sb
 brossetta;brossetta;sb
-brougham;brōūgham;sb
-brownian;brownian;adj
-browning;brōwning;sb
+brougham;brūwam;sb
+brownian;brawnian;adj
+browning;brāwnin;sb
 brrr;brrr;interj
 brucina;brucina;sb
 brulot;brulot;sb
@@ -6483,7 +6493,7 @@ bryologic;bryolōgic;adj
 bryologista;bryologista;sb
 bryologo;bryōlogo;sb
 bryonia;bryonia;sb
-bryophyllo;bryophyllo;sb
+bryophyllo;bryōphyllo;sb
 bryophyto;bryōphyto;sb
 bubalo;būbalo;sb
 bubble-gum;būbble-gum;sb
@@ -6524,7 +6534,7 @@ budget;badjet;sb
 budgetar;badjetar;vb
 budgetari;badjetari;adj
 budgetisar;badjetisar;vb
-budgetisation;badgetisation;sb
+budgetisation;badjetisation;sb
 bufalin;bufalin;adj
 bufalo;būfalo;sb
 buffante;buffante;adj
@@ -6554,7 +6564,8 @@ bulimia;bulimīa;sb
 bulimic;bulīmic;adj
 bulla;bulla;sb
 bullario;bullario;sb
-bulldog;būlldog;sb
+bulldog;buldog;sb
+bull-dog;buldog;sb
 bulldozer;būlldozer;sb
 bulletin;bulletin;sb
 bulletinero;bulletinero;sb
@@ -6703,7 +6714,7 @@ cadavere;cadāvere;sb
 cadaveric;cadavēric;adj
 cadaverina;cadaverina;sb
 cadaverose;cadaverose;adj
-caddie;caddie;sb
+caddie;kādi;sb
 cadente;cadente;adj
 cadentia;cadentia;sb
 cadentiar;cadentiar;vb
@@ -7626,7 +7637,7 @@ caryologia;caryologīa;sb
 caryolyse;caryōlyse;sb
 caryolysis;caryōlysis;sb
 caryophyllaceas;caryophyllāceas;sb pl
-caryophyllo;caryophyllo;sb
+caryophyllo;caryōphyllo;sb
 caryoplasma;caryoplasma;sb
 caryopse;caryopse;sb
 caryopsis;caryōpsis;sb
@@ -8045,7 +8056,7 @@ censura;censura;sb
 censurabile;censurābile;adj
 censurar;censurar;vb
 censurator;censurator;sb
-cent;cent;sb
+cent;sent;sb
 centaurea;centaurea;sb
 centauric;centāūric;adj
 centauro;centauro;sb
@@ -8159,7 +8170,7 @@ cerato;cerato;sb
 ceratodo;ceratodo;sb
 ceratophyllaceas;ceratophyllāceas;sb pl
 ceratophylle;ceratophȳlle;adj
-ceratophyllo;ceratophyllo;sb
+ceratophyllo;ceratōphyllo;sb
 cerator;cerator;sb
 Cerbero;Cērbero;sb npr
 cerca;cerca;sb
@@ -8309,7 +8320,7 @@ chamita;chamita;sb
 chamitic;chamītic;adj
 Champagne;śhampāin;sb npr
 champignon;śhampinyon;sb
-champion;ćhampion;sb
+champion;ćhāmpion;sb
 chance;śhance;sb
 chancre;śhancre;sb
 chanfrenar;śhanfrenar;vb
@@ -8390,8 +8401,8 @@ chenille;śhenille;sb
 chenomeles;chenomēles;sb
 chenopodiaceas;chenopodiāceas;sb pl
 chenopodio;chenopodio;sb
-cheque;śheke;sb
-cherophyllo;cherophyllo;sb
+cheque;ćhek;sb
+cherophyllo;cherōphyllo;sb
 cherry brandy;cherry brandy;sb
 chersydro;chersydro;sb
 cherub;cherub;sb
@@ -9046,7 +9057,7 @@ claviforme;claviforme;adj
 clavo;clavo;sb
 claytonia;claytonia;sb
 clearing;clīrin;sb
-clearinghouse;clīrin-haws;sb
+clearinghouse;clīrin haws;sb
 cleistogame;cleistōgame;adj
 cleistogamia;cleistogamīa;sb
 cleistogamic;cleistogāmic;adj
@@ -9122,11 +9133,11 @@ clonation;clonation;sb
 clonic;clōnic;adj
 clonus;clōnus;sb
 close reading;close reading;sb
-clown;clown;sb
-clowneria;clownerīa;sb
-clownesc;clownēsc;adj
-club;club;sb
-clubista;clubista;sb
+clown;clawn;sb
+clowneria;clawnerīa;sb
+clownesc;clawnēsc;adj
+club;clab;sb
+clubista;clabista;sb
 clucca;clucca;sb
 cluccar;cluccar;vb
 cluniacense;cluniacense;adj
@@ -9160,7 +9171,7 @@ coalescentia;coalescentia;sb
 coalescer;coalescer;vb
 coalisar;coalisar;vb
 coalition;coalition;sb
-coaltar;coaltar;sb
+coaltar;kol tar;sb
 coaptation;coaptation;sb
 coarctation;coarctation;sb
 coarde;coarde;adj
@@ -9340,11 +9351,11 @@ cointeressato;cointeressato;sb
 coital;coital;adj
 coitar;coitar;vb
 coito;cōito;sb
-coke;coke;sb
-cokeficabile;cokeficābile;adj
-cokeficar;cokeficar;vb
-cokefication;cokefication;sb
-cokeria;cokerīa;sb
+coke;kowk;sb
+cokeficabile;kowkficābile;adj
+cokeficar;kowkficar;vb
+cokefication;kowkfication;sb
+cokeria;kowkerīa;sb
 colamina;colamina;sb
 colar;colar;vb
 colatorio;colatorio;sb
@@ -9353,7 +9364,7 @@ colback;colback;sb
 colchicina;colśhicina;sb
 colchico;colchico;sb
 colcotar;colcotar;sb
-cold-cream;cold-cream;sb
+cold-cream;cōldcrim;sb
 colegatario;colegatario;sb
 coleoptere;coleoptere;adj
 coleopterologia;coleopterologīa;sb
@@ -9653,7 +9664,7 @@ commissori;commissori;adj
 commissura;commissura;sb
 commissural;commissural;adj
 commissurotomia;commissurotomīa;sb
-committee;commīttee;sb
+committee;comīti;sb
 committente;committente;sb
 committer;committer;vb
 commixtion;commixtion;sb
@@ -9662,7 +9673,7 @@ commodar;commodar;vb
 commodato;commodato;sb
 commode;cōmmode;adj
 commoditate;commoditate;sb
-commodore;commodore;sb
+commodore;commodor;sb
 commotion;commotion;sb
 commover;commover;vb
 commun;commun;adj
@@ -10844,15 +10855,15 @@ convulsionar;convulsionar;vb
 convulsionari;convulsionari;adj
 convulsionario;convulsionario;sb
 convulsive;convulsive;adj
-coolie;coolie;sb
-Cooper;Cooper;sb npr
+coolie;culi;sb
+Cooper;Cuper;sb npr
 cooperar;cooperar;vb
 cooperation;cooperation;sb
 cooperativa;cooperativa;sb
 cooperative;cooperative;adj
 cooperator;cooperator;adj
 cooperator;cooperator;sb
-coopertest;coopertest;sb
+coopertest;cupertest;sb
 cooptar;cooptar;vb
 cooptation;cooptation;sb
 coordinabile;coordinābile;adj
@@ -10949,7 +10960,7 @@ copulation;copulation;sb
 copulative;copulative;adj
 copulator;copulator;adj
 copyright;cōpyrayt;sb
-copy-writer;cōpy-rāyter;sb
+copy-writer;cōpy rāyter;sb
 coquetta;coketta;sb
 coquettar;cokettar;vb
 coquette;cokette;adj
@@ -11476,7 +11487,7 @@ cribro;cribro;sb
 cribrose;cribrose;adj
 cric;cric;interj
 cric;cric;sb
-cricket;cricket;sb
+cricket;krīket;sb
 cricoide;cricōide;adj
 Crimea, Le;Crimēa, Le;sb npr
 criminal;criminal;adj
@@ -11547,7 +11558,7 @@ croissant;croissant;sb
 cromlech;cromlech;sb
 cromorna;cromorna;sb
 Crookes;Crūkes;sb npr
-croquet;croket;sb
+croquet;crokē;sb
 croquetar;croketar;vb
 croquette;crokette;sb
 cross;crōs;sb
@@ -11559,9 +11570,9 @@ crotaloide;crotalōide;adj
 croton;crōton;sb
 crotonaldehyde;crotonaldehyde;sb
 crotonic;crotōnic;adj
-croup;croup;sb
-croupier;croupier;sb
-crown-glass;crōwn-glass;sb
+croup;crup;sb
+croupier;crupie;sb
+crown-glass;crawn glas;sb
 cruce;cruce;sb
 crucia;crucia;sb
 cruciada;cruciada;sb
@@ -11910,7 +11921,7 @@ cuticula;cutīcula;sb
 cuticular;cuticular;adj
 cutina;cutina;sb
 cutireaction;cutireaction;sb
-cutter;cūtter;sb
+cutter;cāter;sb
 cyanamido;cyanamido;sb
 cyanato;cyanato;sb
 cyanhydric;cyanhȳdric;adj
@@ -12217,7 +12228,9 @@ de facto;de facto;adv
 de jure;de jure;adv 
 de profundis;de profūndis;
 dea;dēa;sb
-dead heat;dead heat;sb
+dead heat;ded hit;sb
+dead;ded;part
+heat;hit;part
 deambular;deambular;vb
 deambulation;deambulation;sb
 deambulatori;deambulatori;adj
@@ -12972,7 +12985,7 @@ derapar;derapar;vb
 derapata;derapata;sb
 derattisar;derattisar;vb
 derattisation;derattisation;sb
-Derby;Derby;sb npr
+Derby;dērbi;sb npr
 derecta;derecta;sb
 derecte;derecte;adj
 derecto;derecto;sb
@@ -13150,7 +13163,7 @@ detalio;detalio;sb
 detectabile;detectābile;adj
 detectar;detectar;vb
 detection;detection;sb
-detective;detēctive;sb
+detective;detectīve;sb
 detector;detector;sb
 deteger;deteger;vb
 detener;detener;vb
@@ -13798,7 +13811,7 @@ disbuttonar;disbuttonar;vb
 disbutyrar;disbutyrar;vb
 disbutyrate;disbutyrate;adj
 disbutyration;disbutyration;sb
-disc jockey;dīsc jockey;sb
+disc jockey;dīsc djōkey;sb
 discalceamento;discalceamento;sb
 discalcear;discalcear;vb
 discalceate;discalceate;adj
@@ -14658,7 +14671,7 @@ dolichomorphe;dolichomorphe;adj
 dolichopetale;dolichopetale;adj
 dolichopode;dolichōpode;adj
 dolina;dolina;sb
-dollar;dollar;sb
+dollar;dōlar;sb
 dolman;dolman;sb
 dolmen;dōlmen;sb
 dolo;dolo;sb
@@ -14802,7 +14815,7 @@ drastic;drāstic;adj
 drasticitate;drasticitate;sb
 dravidic;dravīdic;adj
 dravidologia;dravidologīa;sb
-dreadnought;drēādnought;sb
+dreadnought;drēdnowt;sb
 drepanocyto;drepanocyto;sb
 drepanocytose;drepanocytose;sb
 drepanocytosis;drepanocytōsis;sb
@@ -14888,7 +14901,7 @@ dulia;dulīa;sb
 dum;dum;conj
 duma;duma;sb
 dumdum;dumdum;sb
-dumping;dūmping;sb
+dumping;dāmpin;sb
 duna;duna;sb
 Dunkerque;Dunkerke;sb
 dunque;dunke;adv
@@ -17613,8 +17626,8 @@ fascista;fascista;adj
 fascista;fascista;sb
 fascistic;fascīstic;adj
 fascistoide;fascistōide;adj
-fashion;faśhyon;sb
-fashionable;fāśhyonabel;adj
+fashion;fāśhon;sb
+fashionable;fāśhonabol;adj
 fastidiar;fastidiar;vb
 fastidiose;fastidiose;adj
 fastidiositate;fastidiositate;sb
@@ -17819,7 +17832,7 @@ ferroviario;ferroviario;sb
 ferrugine;ferrūgine;sb
 ferruginose;ferruginose;adj
 ferruginositate;ferruginositate;sb
-ferry-boat;ferry-boat;sb
+ferry-boat;fēri bowt;sb
 fertile;fērtile;adj
 fertilisabile;fertilisābile;adj
 fertilisante;fertilisante;adj
@@ -18231,9 +18244,9 @@ flint-glass;flintglās;sb
 flip-flop;flip-flop;sb
 flippar;flippar;vb
 flipper;flipper;sb
-flirt;flirt;sb
-flirtar;flirtar;vb
-flirtation;flirtation;sb
+flirt;flart;sb
+flirtar;flartar;vb
+flirtation;flartation;sb
 floccate;floccate;adj
 flocco;flocco;sb
 floccose;floccose;sb
@@ -18370,7 +18383,7 @@ folic;fōlic;adj
 folio;folio;sb
 foliolo;folīolo;sb
 foliose;foliose;adj
-folklore;folklore;sb
+folklore;folklor;sb
 folkloric;folklōric;adj
 folklorista;folklorista;sb
 folkloristic;folklorīstic;adj
@@ -18398,9 +18411,9 @@ fontanari;fontanari;adj
 fontanella;fontanella;sb
 fontanero;fontanero;sb
 fonte;fonte;sb
-football;futbal;sb
-footballero;futbalero;sb
-footballista;futbalista;sb
+football;futbol;sb
+footballero;futbolero;sb
+footballista;futbolista;sb
 forage;foraje;sb
 foraminate;foraminate;adj
 foramine;forāmine;sb
@@ -18422,7 +18435,7 @@ foreste;foreste;sb
 foresteria;foresterīa;sb
 forestero;forestero;sb
 forfait;forfait;sb
-forfeit;forfeit;sb
+forfeit;fōrfet;sb
 forficula;forfīcula;sb
 forgia;forja;sb
 forgiabile;forjābile;adj
@@ -18526,7 +18539,7 @@ fossor;fossor;sb
 fossori;fossori;adj
 foulard;foulard;sb
 fovea;fovēa;sb
-fox-terrier;fōx-terrier;sb
+fox-terrier;fōx terrier;sb
 foxtrott;fōxtrott;sb
 foyer;foyer;sb
 frac;frac;sb
@@ -19197,7 +19210,7 @@ gangrenose;gangrenose;adj
 gangster;gāngster;sb
 gangsterismo;gangsterismo;sb
 ganiabile;ganiābile;adj
-gania-pan;gania-pan;sb
+gania-pan;gania pan;sb
 ganiar;ganiar;vb
 ganiator;ganiator;sb
 ganio;ganio;sb
@@ -19213,7 +19226,7 @@ garantir;garantir;vb
 garba;garba;sb
 garbo;garbo;sb
 gardenia;gardenia;sb
-garden-party;gārden-party;sb
+garden-party;gārden party;sb
 gargantuesc;gargantuēsc;adj
 gargarisar;gargarisar;vb, reflex
 gargarismo;gargarismo;sb
@@ -19450,8 +19463,8 @@ gentilessa;gentilessa;sb
 gentilhomine;gentilhōmine;sb
 gentilismo;gentilismo;sb
 gentilitate;gentilitate;sb
-gentleman;gēntleman;sb
-gentlemen's agreement;gēntlemen's agreement;sb
+gentleman;djēntolman;sb
+gentlemen's agreement;djēntolmans agrīment;sb
 genu;genu;sb
 genuflecter;genuflecter;vb
 genuflexion;genuflexion;sb
@@ -19667,7 +19680,7 @@ gigolo;gigolō;sb
 gigot;gigot;sb
 gigue;gigue;sb
 gilet;gilet;sb
-gin;gin;sb
+gin;jin;sb
 gingibre;jinjībre;sb
 gingiva;gingiva;sb
 gingival;gingival;adj
@@ -19751,7 +19764,8 @@ glissatorio;glissatorio;sb
 global;global;adj
 globalisar;globalisar;vb
 globalisation;globalisation;sb
-globetrotter;glōbetrotter;sb
+globetrotter;glowbtrōter;sb
+globe-trotter;glowbtrōter;sb
 globiflor;globiflor;adj
 globigerina;globigerina;sb
 globigerma;globigerma;sb
@@ -19908,8 +19922,8 @@ gnostic;gnōstic;adj
 gnosticismo;gnosticismo;sb
 gnostico;gnōstico;sb
 gnu;gnu;sb
-goal;goal;sb
-goal-keeper;goal-keeper;sb
+goal;gol;sb
+goal-keeper;golkīper;sb
 gobelin;gobelin;sb
 gobio;gobio;sb
 gofrage;gofraje;sb
@@ -20233,13 +20247,13 @@ grisastre;grisastre;adj
 grisette;grisette;sb
 grisu;grisū;sb
 grisumetro;grisūmetro;sb
-grizzly;grizzly;sb
+grizzly;grīzli;sb
 groenlandese;groenlandese;adj
 groenlandese;groenlandese;sb
 Groenlandia;Groenlandia;sb npr
 grog;grog;sb
-groggy;groggy;adj 
-groom;groom;sb
+groggy;grogi;adj
+groom;grum;sb
 grossa;grossa;sb
 grosse;grosse;adj
 grosseria;grosserīa;sb
@@ -20358,7 +20372,11 @@ guisa;ghisa;sb
 guitarra;ghitarra;sb
 guitarrista;ghitarrista;sb
 gulash;gūlaśh;sb
-gulfstream;gūlfstream;sb
+gulfstream;galf strim;sb
+gulf-stream;galf strim;sb
+gulf stream;galf strim;sb
+gulf;galf;part
+stream;strim;part
 gumma;gumma;sb
 gummagutta;gummagutta;sb
 gummar;gummar;vb
@@ -20520,7 +20538,7 @@ halite;halite;sb
 halito;hālito;sb
 halitose;halitose;sb
 halitosis;halitōsis;sb
-hall;hall;sb
+hall;hol;sb
 hallebarda;hallebarda;sb
 hallebardero;hallebardero;sb
 hallelujah;hallelūya;sb
@@ -20583,7 +20601,9 @@ hamster;hāmster;sb
 hamulate;hamulate;adj
 hamulo;hamulo;sb
 hanca;hanca;sb
-handball;hāndball;sb
+handball;hāndbol;sb
+handballero;handbolero;sb
+handballista;handbolista;sb
 handicap;hāndicap;sb
 handicapar;handicapar;vb
 handicapato;handicapato;sb
@@ -21212,6 +21232,8 @@ hierophanta;hierophanta;sb
 hi-fi;hi-fi;adj 
 highlander;haylander;sb
 highlife;haylayf;sb
+high;hay;part
+life;layf;part
 hilar;hilar;adj
 hilarante;hilarante;adj
 hilare;hilare;adj
@@ -21420,9 +21442,11 @@ homaloide;homalōide;adj
 homarides;homarīdes;sb pl
 homaro;hōmaro;sb
 hombre;hombre;sb
-home;home;sb
-home referee;home referee;sb
-home rule;home rule;sb
+home;hom;sb
+home referee;hom referī;sb
+home rule;hom rul;sb
+home;hom;part
+rule;rul;part
 homeomere;homeomere;adj
 homeomorphe;homeomorphe;adj
 homeomorphismo;homeomorphismo;sb
@@ -22212,9 +22236,10 @@ ibis;ībis;sb
 icarian;icarian;adj
 icarie;icarie;adj
 icaro;īcaro;sb
-iceberg;īceberg;sb
-ice-cream;īce-cream;sb
-icefield;īcefield;sb
+iceberg;ays berg;sb
+ice-cream;ays crim;sb
+icecream;ays crim;sb
+icefield;ays fild;sb
 ichneumon;ichneumon;sb
 ichor;ichor;sb
 ichorose;ichorose;adj
@@ -24869,9 +24894,9 @@ interversion;interversion;sb
 intervertebral;intervertebral;adj
 interverter;interverter;vb
 intervider;intervider;vb
-interview;interview;sb
-interviewar;interviewar;vb
-interviewer;interviēwer;sb
+interview;īnterviw;sb
+interviewar;interviwar;vb
+interviewer;intervīwer;sb
 intervista;intervista;sb
 intervocalic;intervocālic;adj
 interzonal;interzonal;adj
@@ -25644,10 +25669,10 @@ javanese;javanese;sb
 javelina;javelina;sb
 javelotto;javelotto;sb
 jazz;djez;sb
-jazz-band;djez-band;sb
-jazzificar;djezificar;vb
-jazzista;djezista;adj
-jazzistic;djezīstic;adj
+jazz-band;djaz band;sb
+jazzificar;djazificar;vb
+jazzista;djazista;adj
+jazzistic;djazīstic;adj
 jeans;djīns;sb pl
 jectabile;jectābile;adj
 jectar;jectar;vb
@@ -25688,7 +25713,7 @@ job;job;sb
 Job;Job;sb npr
 jocar;jocar;vb
 jocator;jocator;sb
-jockey;jockey;sb
+jockey;djōkey;sb
 joco;joco;sb
 jocose;jocose;adj
 jocositate;jocositate;sb
@@ -25830,7 +25855,7 @@ jurisprudente;jurisprudente;adj
 jurisprudentia;jurisprudentia;sb
 jurisprudential;jurisprudential;adj
 jurista;jurista;sb
-jury;jury;sb npr
+jury;djūri;sb npr
 justa;justa;sb
 juste;juste;adj
 justessa;justessa;sb
@@ -25847,7 +25872,7 @@ justitia;justitia;sb
 Justitia;Justitia;sb npr
 justitiabile;justitiābile;adj
 justo;justo;adv
-jute;jute;sb
+jute;djut;sb
 jutlandese;jutlandese;adj
 Jutlandia;Jutlandia;sb npr
 juvar;juvar;vb
@@ -26015,7 +26040,9 @@ Komintern;Komintern;sb npr
 kopeka;kopeka;sb
 koran;koran;sb
 koranic;korānic;adj
-korfball;kōrfball;sb
+korfball;korfbol;sb
+korfballero;korfbolero;sb
+korfballista;korfbolista;sb
 kremlin;kremlin;sb
 kremlinologia;kremlinologīa;sb
 kremlinologic;kremlinolōgic;adj
@@ -26169,8 +26196,8 @@ ladano;lādano;sb
 ladanum;lādanum;sb
 ladin;ladin;adj
 ladino;ladino;sb
-Lady;Lady;sb
-ladyshave;lēydy-śheyv;sb
+Lady;Leydi;sb
+ladyshave;lēydy śhēyv;sb
 lagenaria;lagenaria;sb
 lageniforme;lageniforme;adj
 lagopede;lagōpede;sb
@@ -27183,7 +27210,8 @@ loch;loch;sb
 lochia;lochia;sb
 lockiano;lockiano;sb
 lockismo;lockismo;sb
-lock-out;lock-ōūt;sb
+lock-out;lokawt;sb
+lockout;lokawt;sb
 loco;loco;sb
 locomobile;locomōbile;adj
 locomobile;locomōbile;sb
@@ -27567,7 +27595,7 @@ ländler;lāndler;sb
 ma;ma;conj
 macabre;macabre;adj
 macaca;macaca;sb
-macadam;macadam;sb
+macadam;macādam;sb
 macadamisar;macadamisar;vb
 macadamisation;macadamisation;sb
 macaron;macaron;sb
@@ -27733,7 +27761,7 @@ mafioso;mafioso;sb
 maga;maga;sb
 magazin;magazin;sb
 magazinage;magazinaje;sb
-magazine;magazine;sb
+magazine;magazīn;sb
 magazinero;magazinero;sb
 Magdaleniano;Magdaleniano;sb
 Magdeburg;Magdeburg;sb npr
@@ -28533,7 +28561,7 @@ maxillar;maxillar;adj
 maxilliforme;maxilliforme;adj
 maxillofacial;maxillofacial;adj
 maxillolabial;maxillolabial;adj
-maxim;maxim;sb
+maxim;māxim;sb
 maxima;māxima;sb
 maximal;maximal;adj
 maximalismo;maximalismo;sb
@@ -28661,7 +28689,7 @@ medullitis;medullītis;sb
 medullose;medullose;adj
 medusa;medusa;sb
 Medusa;Medusa;sb npr
-meeting;mēēting;sb
+meeting;mītin;sb
 megabar;megabar;sb
 megabyte;megabyte;sb
 megacaloria;megacalorīa;sb
@@ -29049,7 +29077,7 @@ mesomorphe;mesomorphe;adj
 meson;meson;sb
 mesonic;mesōnic;adj
 mesopausa;mesopausa;sb
-mesophyllo;mesophyllo;sb
+mesophyllo;mesōphyllo;sb
 mesophyto;mesōphyto;sb
 mesoplancton;mesoplāncton;sb
 Mesopotamia;Mesopotamia;sb npr
@@ -29492,7 +29520,7 @@ Milan;Milan;sb npr
 milanese;milanese;adj
 milanese;milanese;sb
 milano;milano;sb
-mildew;mildew;sb
+mildew;mildīw;sb
 miliar;miliar;adj
 miliaria;miliaria;sb
 milieu;milieu;sb
@@ -29888,7 +29916,7 @@ modus vivendi;mōdus vivendi;sb
 mofeta;mofeta;sb
 moffetta;moffetta;sb
 Mogol;Mogol;sb npr
-mohair;mohair;sb
+mohair;moher;sb
 Mohammed;Mohāmmed;sb npr
 mohammedan;mohammedan;adj
 mohammedanismo;mohammedanismo;sb
@@ -32131,9 +32159,9 @@ nuptial;nuptial;adj
 nuptialitate;nuptialitate;sb
 nuptias;nūptias;sb pl
 Nuremberg;Nūremberg;sb npr
-nurse;nurse;sb
-nursery;nursery;sb
-nursing;nūrsing;sb
+nurse;nars;sb
+nursery;narserī;sb
+nursing;nārsin;sb
 nusquam;nūsquam;adv
 nutantiflor;nutantiflor;adj
 nutantifolie;nutantifolie;adj
@@ -32166,7 +32194,7 @@ nyctiphobia;nyctiphobīa;sb
 nyctitante;nyctitante;adj
 nyctitation;nyctitation;sb
 nycturia;nycturia;sb
-nylon;nȳlon;sb
+nylon;nāylon;sb
 nympha;nympha;sb
 nymphal;nymphal;adj
 nymphea;nymphēa;sb
@@ -33365,11 +33393,11 @@ ottoman;ottoman;adj
 Ottoman;Ottoman;sb npr
 ottomana;ottomana;sb
 ottomano;ottomano;sb
-out;out;adj 
-out;out;interj 
-outcast;ōūtcast;sb
-output;ōūtput;sb
-outsider;ōūtsider;sb
+out;awt;adj
+out;awt;interj
+outcast;awtcast;sb
+output;awtput;sb
+outsider;aw tsāyder;sb
 oval;oval;adj
 oval;oval;sb
 ovalbumina;ovalbumina;sb
@@ -33514,7 +33542,7 @@ pack;pack;sb
 package;packaje;sb
 pacotilia;pacotilia;sb
 pacto;pacto;sb
-paddock;paddock;sb
+paddock;pādok;sb
 Padua;Padua;sb npr
 paduan;paduan;adj
 paduano;paduano;sb
@@ -33613,7 +33641,7 @@ paleontologic;paleontolōgic;adj
 paleontologista;paleontologista;sb
 paleontologo;paleontōlogo;sb
 paleopathologia;paleopathologīa;sb
-paleophytologia;paleophytologīa;sb
+paleophytologia;paleōphyllologīa;sb
 paleose;paleose;adj
 paleotectonic;paleotectōnic;adj
 paleotectonica;paleotectōnica;sb
@@ -34709,7 +34737,7 @@ pediculosis;pediculōsis;sb
 pedicura;pedicura;sb
 pedicuro;pedicuro;sb
 pediforme;pediforme;adj
-pedigree;pēdigree;sb
+pedigree;pedigrī;sb
 pediluvio;pediluvio;sb
 pedimano;pedīmano;sb
 pedipalpo;pedipalpo;sb
@@ -34800,7 +34828,7 @@ pelvimetria;pelvimetrīa;sb
 pelvimetric;pelvimētric;adj
 pelvimetro;pelvīmetro;sb
 pelviperonitis;pelviperonītis;sb
-pemmican;pemmican;sb
+pemmican;pēmican;sb
 pemphigo;pēmphigo;sb
 PEN;PEN;sb npr
 pena;pena;sb
@@ -34863,7 +34891,9 @@ pennon;pennon;sb
 Pennsylvania;Pennsylvania;sb npr
 pennsylvanian;pennsylvanian;adj
 pennsylvaniano;pennsylvaniano;sb
-penny;penny;sb
+penny;pēni;sb
+pence;pēns;sb pl
+pennies;pēnis;sb pl
 penologia;penologīa;sb
 penologic;penolōgic;adj
 penose;penose;adj
@@ -35048,7 +35078,7 @@ perforate;perforate;adj
 perforation;perforation;sb
 perforator;perforator;adj
 perforator;perforator;sb
-performance;perfōrmance;sb
+performance;perfōrmans;sb
 perfumar;perfumar;vb
 perfumate;perfumate;adj
 perfumator;perfumator;sb
@@ -36044,9 +36074,9 @@ pice;pice;sb
 picea;pīcea;sb
 piciar;piciar;vb
 piciose;piciose;adj
-pickles;pīckles;sb
-pickpocket;pīckpocket;sb
-pick-up;pick-up;sb
+pickles;pīkols;sb
+pickpocket;pikpōket;sb
+pick-up;pikāp;sb
 picnic;pīcnic;sb
 picnicar;picnicar;vb
 pico;pico;sb
@@ -36165,6 +36195,7 @@ pinee;pinee;adj
 pineto;pineto;sb
 pinger;pinger;vb
 pingpong;pingpong;sb
+ping-pong;pingpong;sb
 pinguicula;pinguīcula;sb
 pinguifoliate;pinguifoliate;adj
 pinguifolie;pinguifolie;adj
@@ -36322,7 +36353,7 @@ plagioclase;plagioclase;sb
 plagiogeotropismo;plagiogeotropismo;sb
 plagiotropic;plagiotrōpic;adj
 plagiotropismo;plagiotropismo;sb
-plaid;plaid;sb
+plaid;plad;sb
 plaidar;plaidar;vb
 plaitar;plaitar;vb
 plan;plan;adj
@@ -36556,7 +36587,7 @@ plumbic;plūmbic;adj
 plumbifere;plumbīfere;adj
 plumbo;plumbo;sb
 plumose;plumose;adj
-plumpudding;plūmpudding;sb
+plumpudding;plampūdin;sb
 plumula;plūmula;sb
 plural;plural;adj
 plural;plural;sb
@@ -36714,7 +36745,7 @@ poikilothermia;poikilothermīa;sb
 poikilothermic;poikilothērmic;adj
 poilu;poilū;sb
 poinsettia;poinsettia;sb
-pointer;pōīnter;sb
+pointer;pōynter;sb
 pois;pōis;adv
 pois;pōis;conj
 poise;poise;sb
@@ -37058,7 +37089,7 @@ pontificato;pontificato;sb
 pontifice;pontīfice;sb
 ponton;ponton;sb
 pontonero;pontonero;sb
-pony;pony;sb
+pony;pōni;sb
 pop;pop;adj
 pop;pop;sb
 pop art;pop art;sb
@@ -38877,7 +38908,7 @@ puck;puck;sb
 puddelage;puddelaje;sb
 puddelar;puddelar;vb
 puddelation;puddelation;sb
-pudding;pūdding;sb
+pudding;pādin;sb
 pudel;pūdel;sb
 pudente;pudente;adj
 pudibunde;pudibunde;adj
@@ -38926,7 +38957,7 @@ pullero;pullero;sb
 pulletto;pulletto;sb
 pullicultor;pullicultor;sb
 pullicultura;pullicultura;sb
-pullman;pūllman;sb
+pullman;pūlman;sb
 pullo;pullo;sb
 pullover;pullōver;sb
 pullular;pullular;vb
@@ -38979,8 +39010,10 @@ pumpar;pumpar;vb
 pumpernickel;pūmpernickel;sb
 pumpero;pumpero;sb
 puna;puna;sb
-punch;ponśh;sb
-punchingball;pūnchingball;sb
+punch;panćh;sb
+punchingball;panćhinbol;sb
+punchingballero;panćhinbolero;sb
+punchingball;panćhinbolista;sb
 puncta;puncta;sb
 punctage;punctaje;sb
 punctar;punctar;vb
@@ -39346,8 +39379,8 @@ quadruplicitate;quadruplicitate;sb
 quadruplo;quādruplo;sb
 quagga;quagga;sb
 quai;quai;sb
-quaker;quaker;sb
-quakerismo;quakerismo;sb
+quaker;quēyker;sb
+quakerismo;queykerismo;sb
 qual;qual;pron
 qualcosa;qualcosa;pron
 qualcun;qualcun;pron
@@ -39781,13 +39814,13 @@ rafflesia;rafflesia;sb
 rage;raje;sb
 ragiar;rajar;vb
 ragiose;rajose;adj
-raglan;raglan;sb
-ragout;ragōūt;sb
-ragtime;rāgtime;sb
+raglan;rāglan;sb
+ragout;ragū;sb
+ragtime;ragtaym;sb
 raia;raia;sb
-raid;raid;sb
-rail;reyl;sb
-railway;reylwey;sb
+raid;reyd;sb
+rail;rēyl;sb
+railway;rēylwey;sb
 raja;raja;sb
 ralinga;ralinga;sb
 ralingar;ralingar;vb
@@ -39920,7 +39953,7 @@ ravelin;ravelin;sb
 ravigote;ravigote;sb
 ravina;ravina;sb
 ravioli;ravioli;sb
-rayon;rayōn;sb
+rayon;reyōn;sb
 razzia;razzia;sb
 razziar;razziar;vb
 razziator;razziator;sb
@@ -40103,7 +40136,7 @@ reciprocitate;reciprocitate;sb
 reciproco;recīproco;sb
 recirculator;recirculator;sb
 recitabile;recitābile;adj
-recital;recītal;sb
+recital;recital;sb
 recitalista;recitalista;sb
 recitar;recitar;vb
 recitation;recitation;sb
@@ -40801,7 +40834,7 @@ remilitarisar;remilitarisar;vb
 remilitarisation;remilitarisation;sb
 remineralisar;remineralisar;vb
 remineralisation;remineralisation;sb
-remington;rēmington;sb
+remington;rēminton;sb
 reminiscente;reminiscente;adj
 reminiscentia;reminiscentia;sb
 remissa;remissa;sb
@@ -41505,8 +41538,8 @@ revolutionar;revolutionar;vb
 revolutionari;revolutionari;adj
 revolutionario;revolutionario;sb
 revolutionarismo;revolutionarismo;sb
-revolver;revolver;sb
-revolver;revolver;vb
+revolver;revōlver;sb
+revolver;revōlver;vb
 revomitar;revomitar;vb
 revotar;revotar;vb
 revulsar;revulsar;vb
@@ -41793,7 +41826,9 @@ rixa;rixa;sb
 rixar;rixar;vb
 rixdale;rixdale;sb
 RNA;RNA;sb
-roastbeef;rōāstbeef;sb
+roastbeef;rowstbif;sb
+roast;rowst;part
+beef;bif;part
 roba;roba;sb
 robamento;robamento;sb
 robar;robar;vb
@@ -41940,7 +41975,7 @@ rotacee;rotacee;adj
 rotar;rotar;vb
 rotarian;rotarian;adj
 rotariano;rotariano;sb
-Rotary;Rotary;sb npr
+Rotary;Rōtary;sb npr
 rotation;rotation;sb
 rotational;rotational;adj
 rotative;rotative;adj
@@ -42058,7 +42093,7 @@ ruinose;ruinose;adj
 ruitar;ruitar;vb
 ruito;ruito;sb
 ruitose;ruitose;adj
-rum;rum;sb
+rum;ram;sb
 ruman;ruman;adj
 Rumania;Rumania;sb npr
 rumano;rumano;sb
@@ -42918,7 +42953,7 @@ scholastic;scholāstic;adj
 scholastica;scholāstica;sb
 scholasticismo;scholasticismo;sb
 scholastico;scholāstico;sb
-schooner;śhūnar;sb
+schooner;skūna;sb
 schottisch;schōttiśh;sb
 scialytico;scialȳtico;sb
 sciamachia;sciamachīa;sb
@@ -43034,9 +43069,9 @@ scotometro;scotōmetro;sb
 scotopia;scotopīa;sb
 scotopic;scotōpic;adj
 scotta;scotta;sb
-scout;scout;sb
-scouting;scouting;sb
-scoutismo;scoutismo;sb
+scout;skawt;sb
+scouting;skāwtin;sb
+scoutismo;skawtismo;sb
 scrabble;scrabble;sb
 scriba;scriba;sb
 scribano;scribano;sb
@@ -43798,7 +43833,7 @@ seton;seton;sb
 setose;setose;adj
 setositate;setositate;sb
 setpoint;setpoint;sb
-setter;setter;sb
+setter;sētter;sb
 sever;sever;adj
 severitate;severitate;sb
 Sevilla;Sevilla;sb npr
@@ -43863,7 +43898,7 @@ shako;śhako;sb
 shaman;śhaman;sb
 shamanismo;śhamanismo;sb
 shampoo;śhampu;sb
-shampooing;śhampuin;sb
+shampooing;śhampūin;sb
 shantung;śhantung;sb
 sharia;śharīa;sb
 sheik;śhēīk;sb
@@ -43888,11 +43923,11 @@ shophar;śhophar;sb
 shopping;śhōppin;sb
 shorts;śhōrts;sb pl
 show;śhow;sb
-show-business;śhow bīsiness;sb
+show-business;śhow bīsnes;sb
 showman;śhowman;sb
-shrapnel;śhrapnel;sb
-shunt;śhunt;sb
-shuntar;śhuntar;sb
+shrapnel;śhrāpnel;sb
+shunt;śhant;sb
+shuntar;śhantar;sb
 si;si;adv
 si;si;conj
 si;si;interj
@@ -43942,7 +43977,7 @@ siclo;siclo;sb
 sicut;sīcut;conj
 sicyo;sicyo;sb
 SIDA;SIDA;sb
-sidecar;sidecar;sb
+sidecar;saydcar;sb
 sideral;sideral;adj
 siderar;siderar;vb
 sideration;sideration;sb
@@ -44231,8 +44266,8 @@ skiffator;skiffator;sb
 skimmia;skimmia;sb
 skinhead;skīnhead;sb
 skipper;skīpper;sb
-skunk;skunk;sb
-skyeterrier;skȳēterrier;sb
+skunk;skank;sb
+skyeterrier;skayterrier;sb
 slalom;slalom;sb
 slalomar;slalomar;vb
 slalomator;slalomator;sb
@@ -44257,13 +44292,14 @@ slavophobia;slavophobīa;sb
 slavophobo;slavōphobo;sb
 slavophone;slavōphone;adj
 slavophono;slavōphono;sb
-sleepingcar;slēēpingcar;sb
+sleepingcar;slīpin car;sb
+sleeping-car;slīpin car;sb
 sling;sling;sb
 slip;slip;sb
 slitta;slitta;sb
 slivovitz;slivovitz;sb
 slogan;slōgan;sb
-sloop;sloop;sb
+sloop;slup;sb
 slovac;slovāc;adj
 Slovachia;Slovachia;sb npr
 slovaco;slovaco;sb
@@ -44289,7 +44325,7 @@ smerilion;smerilion;sb
 smerintho;smerintho;sb
 smilodon;smilodon;sb
 smog;smog;sb
-smoking;smōking;sb
+smoking;smōkin;sb
 smorzando;smorzando;adv
 Smyrna;Smyrna;sb npr
 smyrnese;smyrnese;adj
@@ -44298,7 +44334,7 @@ smyrniota;smyrniota;sb
 smörrebröd;smōrrebröd;sb
 snackbar;snāckbar;sb
 snif;snif;adv
-snob;snob;sb
+snob;snōb;sb
 snobic;snōbic;adj
 snobismo;snobismo;sb
 snobistic;snobīstic;adj
@@ -44382,7 +44418,9 @@ sodomita;sodomita;sb
 sodomitic;sodomītic;adj
 sofa;sofa;sb
 soffite;soffite;sb
-softball;sōftball;sb
+softball;softbol;sb
+softballero;softbolero;sb
+softballista;softbolista;sb
 softporno;sōftporno;sb
 software;sōftware;sb
 soirée;soirée;sb
@@ -44750,7 +44788,7 @@ speculator;speculator;sb
 speculo;spēculo;sb
 speech;spićh;sb
 speed;spid;sb
-speedboat;spīdboat;sb
+speedboat;spīdbowt;sb
 speedway;spīdwey;sb
 speleologia;speleologīa;sb
 speleologic;speleolōgic;adj
@@ -45004,7 +45042,7 @@ sportive;sportive;adj
 sportivitate;sportivitate;sb
 sportivo;sportivo;sb
 sportsman;spōrtsman;sb
-sportswoman;spōrtswoman;sb
+sportswoman;spōrtswuman;sb
 sportula;spōrtula;sb
 sporula;spōrula;sb
 sporular;sporular;vb
@@ -45192,7 +45230,7 @@ stauromedusa;stauromedusa;sb
 stauroscopio;stauroscopio;sb
 stayer;stāyer;sb
 steak;steak;sb
-steamer;stēāmer;sb
+steamer;stīmer;sb
 stear;stear;sb
 stearato;stearato;sb
 stearic;steāric;adj
@@ -45203,7 +45241,7 @@ steatoma;steatoma;sb
 steatopygia;steatopygīa;sb
 steatose;steatose;sb
 steatosis;steatōsis;sb
-steeple chase;stipelćheys;sb
+steeple chase;stīpol ćheys;sb
 steganographia;steganographīa;sb
 steganopode;steganōpode;sb
 stegomyia;stegomyīa;sb
@@ -45220,8 +45258,8 @@ stelliforme;stelliforme;adj
 stellionato;stellionato;sb
 stellite;stellite;sb
 stemma;stemma;sb
-stencil;stencil;sb
-stencilar;stencilar;vb
+stencil;stēnsil;sb
+stencilar;stensilar;vb
 stengun;stengun;sb
 stenocardia;stenocardīa;sb
 stenocardic;stenocārdic;adj
@@ -45339,8 +45377,8 @@ stethographo;stethōgrapho;sb
 stethoscopia;stethoscopia;sb
 stethoscopic;stethoscōpic;adj
 stethoscopio;stethoscopio;sb
-steward;steward;sb
-stewardessa;stewardessa;sb
+steward;stīward;sb
+stewardessa;stiwardessa;sb
 sthenia;sthenīa;sb
 sthenic;sthēnic;adj
 stibina;stibina;sb
@@ -45404,7 +45442,7 @@ stochasticitate;stochasticitate;sb
 stock;stock;sb
 stockage;stockaje;sb
 stockar;stockar;vb
-stock-car;stock-car;sb
+stock-car;stok car;sb
 stockista;stockista;sb
 stoffa;stoffa;sb
 stoic;stōic;adj
@@ -45433,7 +45471,7 @@ stomatoscopia;stomatoscopīa;sb
 stomatoscopic;stomatoscōpic;adj
 stomatoscopio;stomatoscopio;sb
 stone;stone;sb
-stop;stop;sb
+stop;stōp;sb
 stoppa;stoppa;sb
 stoppar;stoppar;vb
 stoppator;stoppator;sb
@@ -46151,7 +46189,7 @@ suffocative;suffocative;adj
 suffraganee;suffraganee;adj
 suffragante;suffragante;sb
 suffragar;suffragar;vb
-suffragette;suffrajette;sb
+suffragette;suffradjet;sb
 suffragio;suffragio;sb
 suffragista;suffragista;sb
 suffrente;suffrente;adj
@@ -46216,7 +46254,7 @@ sulfuric;sulfūric;adj
 sulfuriera;sulfuriera;sb
 sulfuro;sulfuro;sb
 sulfurose;sulfurose;adj
-sulky;sulky;sb
+sulky;salky;sb
 sulpician;sulpician;adj
 sulpiciano;sulpiciano;sb
 sultan;sultan;sb
@@ -46664,8 +46702,8 @@ swahili;swahili;sb
 swazi;swazi;adj
 swazi;swazi;sb
 Swaziland;Swāziland;sb npr
-sweater;swēāter;sb
-sweepstake;swēēpstake;sb
+sweater;swēter;sb
+sweepstake;swīpsteyk;sb
 swing;swing;sb
 swingar;swingar;sb
 sybarita;sybarita;sb
@@ -48126,7 +48164,7 @@ titulo;tītulo;sb
 tmese;tmese;sb
 tmesis;tmēsis;sb
 toalia;toalia;sb
-toast;tost;sb
+toast;tōwst;sb
 toastar;tostar;vb
 toboggan;tobōggan;sb
 tocca;tocca;sb
@@ -48139,7 +48177,7 @@ tocco;tocco;sb
 tocologia;tocologīa;sb
 tocopherol;tocopherol;sb
 tocophobia;tocophobīa;sb
-toddy;toddy;sb
+toddy;tōdi;sb
 toeclip;toeclip;sb
 tofu;tofu;sb
 toga;toga;sb
@@ -48164,7 +48202,7 @@ tolete;tolete;sb
 toluene;toluēne;sb
 toluidina;toluidina;sb
 toluol;toluol;sb
-tomahawk;tomahāwk;sb
+tomahawk;tomahōk;sb
 toman;toman;sb
 tomate;tomate;sb
 tomatiero;tomatiero;sb
@@ -48318,7 +48356,7 @@ torturar;torturar;vb
 torturator;torturator;sb
 torve;torve;adj
 torvitate;torvitate;sb
-tory;tory;sb
+tory;tōri;sb
 toscan;toscan;adj
 Toscana;Toscana;sb npr
 toscanisar;toscanisar;vb
@@ -48410,9 +48448,9 @@ tractor;tractor;sb
 tractorista;tractorista;sb
 trademark;trādemark;sb
 tradescantia;tradescantia;sb
-trade-union;trāde-union;sb
-trade-unionismo;trade-unionismo;sb
-trade-unionista;trade-unionista;sb
+trade-union;treyd ūnion;sb
+trade-unionismo;treyd unionismo;sb
+trade-unionista;treyd unionista;sb
 tradition;tradition;sb
 traditional;traditional;adj
 traditionalismo;traditionalismo;sb
@@ -48468,7 +48506,7 @@ trampolino;trampolino;sb
 tramvia;tramvīa;sb
 tramviari;tramviari;adj
 tramviero;tramviero;sb
-tramway;tramway;sb
+tramway;trāmwey;sb
 trance;trance;sb
 tranquille;tranquille;adj
 tranquillisante;tranquillisante;sb
@@ -49078,8 +49116,8 @@ troiano;troiano;sb
 troika;trōika;sb
 trokyl;trokyl;sb
 troll;troll;sb
-trolley;trolley;sb
-trolleybus;trolleybūs;sb
+trolley;trōli;sb
+trolleybus;trolibūs;sb
 trollio;trollio;sb
 tromba;tromba;sb
 trombidio;trombidio;sb
@@ -49155,7 +49193,7 @@ truncator;truncator;sb
 trunco;trunco;sb
 trunculate;trunculate;adj
 truppa;truppa;sb
-trust;trust;sb
+trust;trast;sb
 trypanosoma;trypanosoma;sb
 trypanosomiasis;trypanosomīasis;sb
 trypsina;trypsina;sb
@@ -49273,7 +49311,7 @@ Tunisia;Tunisia;sb npr
 tunisian;tunisian;adj
 tunisiano;tunisiano;sb
 tunnel;tūnnel;sb npr
-tupi;tupi;sb
+tupi;tupī;sb
 tupinamba;tupinambā;sb
 turba;turba;sb
 turbabile;turbābile;adj
@@ -49323,7 +49361,7 @@ turcophone;turcōphone;adj
 turcophono;turcōphono;sb
 turdides;tūrdides;sb
 turdo;turdo;sb
-turf;turf;sb
+turf;tarf;sb
 turfa;turfa;sb
 turgenialatifolie;turgenialatifolie;sb
 turger;turger;vb
@@ -51042,7 +51080,9 @@ volition;volition;sb
 volitional;volitional;adj
 volitive;volitive;adj
 volitivitate;volitivitate;sb
-volleyball;vōlleyball;sb
+volleyball;voleybol;sb
+volleyballero;voleybolero;sb
+volleyballista;voleybolista;sb
 volo;volo;sb
 volt;volt;sb
 volta;volta;sb
@@ -51191,9 +51231,9 @@ Wankel;Wankel;sb npr
 wapiti;wāpiti;sb
 warrant;wārrant;sb
 waterballast;waterballast;sb
-water-closet;water-closet;sb
+water-closet;wāter clōset;sb
 waterpolista;waterpolista;sb
-water-polo;water-polo;sb
+water-polo;wāter polo;sb
 waterproof;waterpruf;adj 
 watt;watt;sb
 watta;watta;sb
@@ -51204,7 +51244,7 @@ wattimetro;wattīmetro;sb
 watt-secunda;watt-secunda;sb
 wayang;wayang;sb
 weber;wēber;sb
-week-end;wīk-end;sb
+week-end;wīkend;sb
 welter;wēlter;sb
 west;west;sb
 western;wēstern;sb
@@ -51213,9 +51253,9 @@ westfalian;vestfalian;adj
 westfaliano;vestfaliano;sb
 westfalic;vestfālic;adj
 whig;wig;sb
-whisky;wisky;sb
-whist;wist;sb
-white spirit;wayt spīrit;sb
+whisky;wīsky;sb
+whist;wīst;sb
+white spirit;waytspīrit;sb
 wigwam;wīgwam;sb
 windsurf;wīndsurf;sb
 windsurfista;windsurfista;sb
@@ -51289,12 +51329,12 @@ xylophylle;xylophȳlle;adj
 xylose;xylose;sb
 xylosperme;xylosperme;adj
 xysto;xysto;sb
-yacht;yat;sb
+yacht;yaćh;sb
 yachting;yachting;sb
 Yahweh;Yahweh;sb npr
 yak;yak;sb
 yang;yang;sb
-yankee;yānkee;sb
+yankee;yankī;sb
 yard;yard;sb
 yatagan;yatagan;sb
 Yemen;Yēmen;sb npr
@@ -51539,7 +51579,7 @@ checoslovac;ćhecoslovāc;adj
 checoslovachia;ćhecoslovachia;sb npr
 checoslovaco;ćhecoslovaco;sb
 tsarevich;tsarēvićh;sb
-steeplechase;stipelćheys;sb
+steeplechase;stīpol ćheys;sb
 hachich;haśhīśh;sb
 Worms;vorms;sb npr
 Wilno;vilno;sb npr
@@ -51571,3 +51611,13 @@ w;duplevē;
 x;ēks;
 y;īpsilon;
 z;zēta;
+ale;ey l;
+bill;bil;
+hurrah;hurā;
+Maryland;Maryland;sb npr
+New York;niw york;sb npr
+New;niw;part
+York;york;part
+Rhode-Island;rowdāyland;sb npr
+Rhode;rowd;part
+Island;āyland;part

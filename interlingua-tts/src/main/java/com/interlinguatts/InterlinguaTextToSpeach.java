@@ -216,8 +216,10 @@ public class InterlinguaTextToSpeach implements TextToSpeach {
 
         String intermediateText = text.replaceAll("[.,;:?!“”\"'\\-–\\)]+ ", " ");  //special + space
         intermediateText = intermediateText.replaceAll("[.,;:?!“”\"'\\-–\\)]+$", " ");  //special + end
+        intermediateText = intermediateText.replaceAll("[.,;:?!“”\"'\\-–\\)]+\n", " \n");  //special + line end
         intermediateText = intermediateText.replaceAll(" [“”\"'\\-–\\(]+", " ");  //space + quotes
         intermediateText = intermediateText.replaceAll("^[“”\"'\\-–\\(]+", " ");  //start + quotes
+        intermediateText = intermediateText.replaceAll("\n[“”\"'\\-–\\(]+", "\n ");  //line start + quotes
 
         String[] words = intermediateText.split("[ &\n]");
         for(String word : words) {
