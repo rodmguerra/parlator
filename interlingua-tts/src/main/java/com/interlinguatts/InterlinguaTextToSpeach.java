@@ -1,5 +1,6 @@
 package com.interlinguatts;
 
+import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Sets;
 import com.ivona.services.tts.model.Voice;
 
@@ -133,14 +134,14 @@ public class InterlinguaTextToSpeach implements TextToSpeach {
 
     private static String replaceSymbols(String text) {
         text = text.replaceAll("(\\p{L}+)\\+(\\p{L}+)", "$1 plus $2");
-        text = text.replaceAll("\\+(\\p{L}+)", "plus $1");
-        text = text.replaceAll("(\\p{L}+)\\+", "$1 plus");
-        text = text.replaceAll("\\+", "plus");
+        text = text.replaceAll("\\+(\\p{L}+)", " plus $1");
+        text = text.replaceAll("(\\p{L}+)\\+", "$1 plus ");
+        text = text.replaceAll("\\+", " plus ");
 
         text = text.replaceAll("(\\p{L}+)=(\\p{L}+)", "$1 es $2");
-        text = text.replaceAll("=(\\p{L}+)", "es $1");
-        text = text.replaceAll("(\\p{L}+)=", "$1 es");
-        text = text.replaceAll("=", "es");
+        text = text.replaceAll("=(\\p{L}+)", " es $1");
+        text = text.replaceAll("(\\p{L}+)=", "$1 es ");
+        text = text.replaceAll("=", " es ");
 
         return text;
     }
@@ -189,8 +190,8 @@ public class InterlinguaTextToSpeach implements TextToSpeach {
         //eliminate commas and points
         input = input.replaceAll("([0-9])\\.([0-9])", "$1 puncto $2");
         input = input.replaceAll("([0-9]),([0-9])", "$1 comma $2");
-        input = input.replaceAll("\\.([0-9])", "puncto $1");
-        input = input.replaceAll(",([0-9])", "comma $1");
+        input = input.replaceAll("\\.([0-9])", " puncto $1");
+        input = input.replaceAll(",([0-9])", " comma $1");
 
         StringBuffer output = new StringBuffer();
         Pattern pattern = Pattern.compile("[0-9]*");
@@ -212,14 +213,14 @@ public class InterlinguaTextToSpeach implements TextToSpeach {
 
 
     public Map<String,String> graphemePhonemeMap(String text, Voice voice) {
-        Map<String, String> graphemePhonemeMap = new HashMap<String, String>();
+        TreeMap<String, String> graphemePhonemeMap = new TreeMap<String, String>();
 
-        String intermediateText = text.replaceAll("[.,;:?!“”\"'\\-–\\)]+ ", " ");  //special + space
-        intermediateText = intermediateText.replaceAll("[.,;:?!“”\"'\\-–\\)]+$", " ");  //special + end
-        intermediateText = intermediateText.replaceAll("[.,;:?!“”\"'\\-–\\)]+\n", " \n");  //special + line end
-        intermediateText = intermediateText.replaceAll(" [“”\"'\\-–\\(]+", " ");  //space + quotes
-        intermediateText = intermediateText.replaceAll("^[“”\"'\\-–\\(]+", " ");  //start + quotes
-        intermediateText = intermediateText.replaceAll("\n[“”\"'\\-–\\(]+", "\n ");  //line start + quotes
+        String intermediateText = text.replaceAll("[.,;:?!“”\"'\\-–\\)\\]\\}]+ ", " ");  //special + space
+        intermediateText = intermediateText.replaceAll("[.,;:?!“”\"'\\-–\\)\\]\\}]+$", " ");  //special + end
+        intermediateText = intermediateText.replaceAll("[.,;:?!“”\"'\\-–\\)\\]\\}]+\n", " \n");  //special + line end
+        intermediateText = intermediateText.replaceAll(" [“”\"'\\-–\\(\\[\\{]+", " ");  //space + quotes
+        intermediateText = intermediateText.replaceAll("^[“”\"'\\-–\\(\\[\\{]+", " ");  //start + quotes
+        intermediateText = intermediateText.replaceAll("\n[“”\"'\\-–\\(\\[\\{]+", "\n ");  //line start + quotes
 
         String[] words = intermediateText.split("[ &\n]");
         for(String word : words) {
@@ -229,10 +230,14 @@ public class InterlinguaTextToSpeach implements TextToSpeach {
 
             String bugFix = fixVoiceBugs(voice, word, words.length);
             String ipa = (bugFix==null)? provider.toIpa(word, words.length == 1) : bugFix;
-            System.out.println(padRight(word,30)  + padRight(ipa, 30));
             graphemePhonemeMap.put(word, ipa);
         }
-        return graphemePhonemeMap;
+        Map<String,String> descending = graphemePhonemeMap.descendingMap();
+        for (String word : descending.keySet()) {
+            String ipa = descending.get(word);
+            System.out.println("word=\"" + padRight(word + "\"",30)  + "ipa=\"" + padRight(ipa + "\"", 30));
+        }
+        return descending;
     }
 
     public void textToSpeech(String text, String speechFileName, Voice voice) {
@@ -246,10 +251,15 @@ public class InterlinguaTextToSpeach implements TextToSpeach {
 
     private String fixVoiceBugs(Voice voice, String word, int length) {
         if(voice.getName().equals("Carla") && length > 1) {
-            String [] bugWords = {"cata", "multo", "multo", "multe", "multes"};
-            for (String bugWord : bugWords) {
+            Map<String,String> bugWords = ImmutableMap.of(
+                    "cata","kata",
+                    "multo","multo",
+                    "multe","multe",
+                    "multes","multes"
+            );
+            for (String bugWord : bugWords.keySet()) {
                 if(word.equalsIgnoreCase(bugWord)) {
-                    return bugWord;
+                    return bugWords.get(bugWord);
                 }
             }
         }
@@ -267,6 +277,8 @@ public class InterlinguaTextToSpeach implements TextToSpeach {
             text = text.replaceAll("(?<!^)\\b[\\-–]+\\B", ", ");
             text = text.replaceAll("\\B[\\-–]+\\b", "");
             text = text.replaceAll("(?<!^)[ ]*\\(([^\\(]+)\\)", ", $1, ");
+            text = text.replaceAll("(?<!^)[ ]*\\[([^\\[]+)\\]", ", $1, ");
+            text = text.replaceAll("(?<!^)[ ]*\\{([^\\{]+)\\}", ", $1, ");
         }
 
         text = text.replaceAll("\\b@\\b", ", ad, ");
@@ -277,7 +289,7 @@ public class InterlinguaTextToSpeach implements TextToSpeach {
         text = replaceNumbers(text);
         text = replaceAbbreviations(text);
 
-        text = text.replaceAll("\\b\\.\\b", ", puncto, ");
+        //text = text.replaceAll("\\b\\.\\b", ", puncto, "); //good for emails, bad for U.S.A.
 
         Map<String, String> graphemePhonemeMap = graphemePhonemeMap(text, voice);
 

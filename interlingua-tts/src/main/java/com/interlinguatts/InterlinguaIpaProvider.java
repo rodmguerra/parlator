@@ -276,11 +276,8 @@ public class InterlinguaIpaProvider {
 
         //if stress rule above can not be applied
         if (!haveStress(word)) {
-            //more the one vowel  -> stress in first vowel
-            //if(word.matches(".*[aeiou].*[aeiou].*")) {
             word = word.replaceFirst("([aeiou])", "'$1");
             word = singleQuoteToSuperscore(word);
-            //}
         }
 
         //replace unstressed ia ie io iu => ya ye yo yu  => exception starting with "anti"
