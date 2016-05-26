@@ -44,7 +44,7 @@ public class InterlinguaIpaProvider {
             if (wordRespell == null) wordRespell = wordText;
         }
 
-        String phoneticInvariant = toPhoneticInvariant(wordRespell);
+        String phoneticInvariant = toPhoneticInvariant(wordRespell, singleWord);
         return phoneticInvariantToIPA(phoneticInvariant, singleWord);
     }
 
@@ -197,7 +197,7 @@ public class InterlinguaIpaProvider {
         return String.format("%1$-" + n + "s", s);
     }
 
-    private static String toPhoneticInvariant(String word) {
+    private static String toPhoneticInvariant(String word, boolean singleWord) {
 
         word = word.toLowerCase();
         word = superscoreToSingleQuoute(word);
@@ -208,10 +208,10 @@ public class InterlinguaIpaProvider {
         word = singleQuoteToSuperscore(word);
 
         //y before vowels => semivowel y (temporary using ÿ)
-        word = word.replaceAll("(y)([aeiouāēīōū])", "ÿ$2");
+        word = word.replaceAll("(y)([aeiouāēīōūǎěǐǒǔ])", "ÿ$2");
 
         //y after vowels => semivowel y (temporary using ÿ)
-        word = word.replaceAll("([aeiouāēīōū])(y)", "$1ÿ");
+        word = word.replaceAll("([aeiouāēīōūǎěǐǒǔ])(y)", "$1ÿ");
 
         //y as vowel => i
         word = word.replaceAll("y", "i");
@@ -220,13 +220,13 @@ public class InterlinguaIpaProvider {
         word = word.replaceAll("ÿ", "y");
 
         //s between vowels => z
-        word = word.replaceAll("([aeiouyāēīōūȳ])[s]([aeiouyāēīōūȳ])","$1z$2");
+        word = word.replaceAll("([aeiouyāēīōūȳǎěǐǒǔ])[s]([aeiouyāēīōūȳǎěǐǒǔ])","$1z$2");
 
         //double c => kc
         word = word.replaceAll("cc", "kc");
 
         //double consonant => single consonant
-        word = word.replaceAll("([^aeiouāēīōū])\\1", "$1");
+        word = word.replaceAll("([^aeiouāēīōūǎěǐǒǔ])\\1", "$1");
 
         //ch => k
         word = word.replaceAll("ch", "k");
@@ -251,7 +251,7 @@ public class InterlinguaIpaProvider {
         */
 
         //controversial => removing h after most consonants
-        word = word.replaceAll("([^aeiouyāēīōūȳ])h", "$1");
+        word = word.replaceAll("([^aeiouyāēīōūȳǎěǐǒǔ])h", "$1");
 
         // gu => gw
         word = word.replaceAll("gu([aeioy])", "gw$1");
@@ -260,10 +260,12 @@ public class InterlinguaIpaProvider {
         word = word.replaceAll("qu", "qw");
 
         // au eu ou => aw ew ow
-        word = word.replaceAll("([aeoāēō])[uw]", "$1w");
+        word = word.replaceAll("([aeoāēōǎěǒ])[uw]", "$1w");
+
+        if(singleWord) word = removeNonStressMarker(word);
 
         //vowel before last consonant (ignore last c and s as a consonant) => marking accent as '
-        if (!haveStress(word)) {
+        if (!haveStress(word) && !haveNonStressMarker(word)) {
             if(word.endsWith("ic")) {
                 word = word.replaceAll("([aeiou][^aeiou\\s]*ic\\b)", "'$1");
             } else if(word.endsWith("s")) {
@@ -275,10 +277,12 @@ public class InterlinguaIpaProvider {
         }
 
         //if stress rule above can not be applied
-        if (!haveStress(word)) {
+        if (!haveStress(word) && !haveNonStressMarker(word)) {
             word = word.replaceFirst("([aeiou])", "'$1");
             word = singleQuoteToSuperscore(word);
         }
+
+        word = removeNonStressMarker(word);
 
         //replace unstressed ia ie io iu => ya ye yo yu  => exception starting with "anti"
         word = word.replaceAll("(?<!^ant)i([aeou])", "y$1");
@@ -300,15 +304,38 @@ public class InterlinguaIpaProvider {
         return word;
     }
 
+    private static String removeNonStressMarker(String word) {
+        word = word.replaceAll("ǎ" , "a");
+        word = word.replaceAll("ě" , "e");
+        word = word.replaceAll("ǐ" , "i");
+        word = word.replaceAll("ǒ" , "o");
+        word = word.replaceAll("ǔ" , "u");
+        return word;
+    }
+
+    private static boolean haveNonStressMarker(String word) {
+        return word.matches(".*[ǎěǐǒǔ].*");
+    }
+
     private static String restoreValidAccentsFromAcute(String word) {
         word = word.replaceAll("´s", "ś");
         word = word.replaceAll("´c", "ć");
+        word = word.replaceAll(">a", "ǎ");
+        word = word.replaceAll(">e", "ě");
+        word = word.replaceAll(">i", "ǐ");
+        word = word.replaceAll(">o", "ǒ");
+        word = word.replaceAll(">u", "ǔ");
         return word;
     }
 
     private static String preserveValidAccentsAsAcute(String word) {
         word = word.replaceAll("ś", "´s");
         word = word.replaceAll("ć", "´c");
+        word = word.replaceAll("ǎ" , ">a");
+        word = word.replaceAll("ě" , ">e");
+        word = word.replaceAll("ǐ" , ">i");
+        word = word.replaceAll("ǒ" , ">o");
+        word = word.replaceAll("ǔ" , ">u");
         return word;
     }
 
@@ -381,17 +408,13 @@ public class InterlinguaIpaProvider {
 
         //soft transition vowels
         //word = word.replaceAll("([aeiou])([aeiou])", "$1‿$2");
-
+        /*
         if(!singleWord) {
             //only one vowel, no stress
             word = word.replaceAll("^([^aeiou]*)ˈ([aeiou])([^aeiou]*)$", "$1$2$3");
         }
+        */
 
-        //only one vowel (the first letter), no stress
-        //word = word.replaceAll("^ˈ([aeiou])([^aeiou]*)$", "$1$2");
-
-        //only one vowel (not the first letter), no stress
-        //word = word.replaceAll("^([^aeiou]+)ˈ([aeiou][^aeiou]*)$", "$1$2");
 
         //move accent to before preceding consonant
         word = word.replaceAll("([^aeioujw]*)([^aeiou])ˈ([aeiou])", "ˈ$1$2$3");
