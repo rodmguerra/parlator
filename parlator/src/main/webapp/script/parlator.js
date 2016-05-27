@@ -109,6 +109,8 @@ parlatorApp.controller('parlatorController', function ($scope, $sce, audio, $htt
         }, 0);
     };
 
+    audio.audioElement.onplaying = audio.audioElement.onloadeddata;
+
     $scope.initVoices = function () {
         $http.get("voices?recommended=true").success(function (data) {
             $scope.voices = data;
