@@ -14,6 +14,30 @@ parlatorApp.directive('ngEnter', function () {
     };
 });
 
+parlatorApp.directive('elastic', [
+    '$timeout',
+    function($timeout) {
+        return {
+            restrict: 'A',
+            link: function($scope, element) {
+                $scope.initialHeight = $scope.initialHeight || element[0].style.height;
+                var resize = function() {
+                    element[0].style.height = $scope.initialHeight;
+                    var newHeight = (element[0].scrollHeight);
+                    element[0].style.height = "" + (newHeight + 2) + "px";
+                    var decrease = document.body.scrollHeight - document.body.clientHeight;
+                    if(decrease > 0) {
+                        element[0].style.height = "" + (newHeight - decrease)  + "px";
+                    }
+                };
+                element.on("input change", resize);
+                document.body.onresize = resize;
+                $timeout(resize, 0);
+            }
+        };
+    }
+]);
+
 parlatorApp.factory('audio', function ($document, $http) {
     var audioElement = $document[0].createElement('audio'); // <-- Magic trick here
     return {
@@ -34,6 +58,7 @@ parlatorApp.factory('audio', function ($document, $http) {
 
 parlatorApp.controller('parlatorController', function ($scope, $sce, audio, $http, $timeout) {
     $scope.myError = false;
+    $scope.isTalk = false;
 
     $scope.showError = function (errorMessage) {
         $timeout(function(){
@@ -48,6 +73,14 @@ parlatorApp.controller('parlatorController', function ($scope, $sce, audio, $htt
         }, 0);
     };
 
+    $scope.clear = function () {
+        $scope.hideError();
+        $timeout(function(){
+            $scope.isTalk = false;
+            document.body.dispatchEvent(new Event('resize'));
+        }, 0);
+    };
+
     var talkParams = function (voiceName, voiceLanguage, text) {
         return "voiceName=" + voiceName + "&voiceLanguage=" + voiceLanguage + "&text=" + encodeURIComponent(text);
     };
@@ -55,8 +88,8 @@ parlatorApp.controller('parlatorController', function ($scope, $sce, audio, $htt
     $scope.talk = function () {
         if($scope.text != null && $scope.text !== "") {
             $scope.hideError();
-            var url = "parla?" + talkParams($scope.selectedVoice.name, $scope.selectedVoice.language, $scope.text);
-            audio.play(url);
+            $scope.talkUrl = "parla?" + talkParams($scope.selectedVoice.name, $scope.selectedVoice.language, $scope.text);
+            audio.play($scope.talkUrl);
         }
     };
 
@@ -68,6 +101,13 @@ parlatorApp.controller('parlatorController', function ($scope, $sce, audio, $htt
         });
     };
 
+    audio.audioElement.onloadeddata = function (e) {
+        $timeout(function(){
+            $scope.isTalk=true;
+            document.body.dispatchEvent(new Event('resize'));
+        }, 0);
+    };
+
     $scope.initVoices = function () {
         $http.get("voices?recommended=true").success(function (data) {
             $scope.voices = data;
@@ -75,4 +115,4 @@ parlatorApp.controller('parlatorController', function ($scope, $sce, audio, $htt
         });
     }
 });
-             
+         
