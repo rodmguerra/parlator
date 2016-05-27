@@ -298,9 +298,6 @@ public class InterlinguaIpaProvider {
         //stress vowel + i/y = diphtongs: ai ei oi ui => ay ey oy uy (temporary using ÿ)   (aī aȳ is not diphtong)
         word = word.replaceAll("([āēīōū])[iy]", "$1y");
 
-
-        //word = word.replaceAll("[^\\p{InIPA_EXTENSIONS}a-zA-Z]", "");
-
         return word;
     }
 
@@ -422,7 +419,9 @@ public class InterlinguaIpaProvider {
         //when word starts with vowel - add . to break syllabe
         word = word.replaceAll("^([ˈ]?[aeiou]+)", ".$1");
 
-        //word = word.replaceAll("kata", "ka.ta");
+
+        //word = word.replaceAll("[^\\p{InIPA_EXTENSIONS}a-zA-Z]", "");
+
         return word;
     }
 

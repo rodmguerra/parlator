@@ -143,13 +143,33 @@ public class InterlinguaTextToSpeach implements TextToSpeach {
         text = text.replaceAll("(\\p{L}+)=", "$1 es ");
         text = text.replaceAll("=", " es ");
 
+        text = text.replaceAll("(\\p{L}+)>(\\p{L}+)", "$1 major que $2");
+        text = text.replaceAll("<(\\p{L}+)", " major que $1");
+        text = text.replaceAll("(\\p{L}+)>", "$1 major que ");
+        text = text.replaceAll(">", " major que ");
+
+        text = text.replaceAll("(\\p{L}+)<(\\p{L}+)", "$1 minor que $2");
+        text = text.replaceAll("<(\\p{L}+)", " minor que $1");
+        text = text.replaceAll("(\\p{L}+)<", "$1 minor que ");
+        text = text.replaceAll("<", " minor que ");
+
+        text = text.replaceAll("(\\p{L}+)×(\\p{L}+)", "$1 vices $2");
+        text = text.replaceAll("×(\\p{L}+)", " vices $1");
+        text = text.replaceAll("(\\p{L}+)×", "$1 vices ");
+        text = text.replaceAll("×", " vices ");
+
+        text = text.replaceAll("(\\p{L}+)%(\\p{L}+)", "$1 per cento $2");
+        text = text.replaceAll("%(\\p{L}%)", " per cento $1");
+        text = text.replaceAll("(\\p{L}+)%", "$1 per cento ");
+        text = text.replaceAll("%", " per cento ");
+
         return text;
     }
 
     private String replaceNumbers(String text) {
-        text = text.replaceAll("(\\p{L})\\-[ ]*([0-9]+)", "$1 minus $2");
-        text = text.replaceAll("\\-[ ]*([0-9]+)", "minus $1");
-        text = text.replaceAll("([0-9]+[ ]*)\\-", "$1 minus");
+        text = text.replaceAll("(?s)(\\p{L})\\-\\s*([0-9]+)", "$1 minus $2");
+        text = text.replaceAll("(?s)\\-\\s*([0-9]+)", " minus $1");
+        text = text.replaceAll("(?s)([0-9]+\\s*)\\-", "$1 minus ");
         text = separatePrecedingLettersFromNumbers(text);
         text = replaceOrdinals(text);
         text = separateFollowingLettersFromNumbers(text);
@@ -268,17 +288,28 @@ public class InterlinguaTextToSpeach implements TextToSpeach {
 
     public void textToSpeech(String text, OutputStream outputStream, Voice voice) {
 
-        text = text.replaceAll("[ ]+[\\-–][ ]+", ", ");
+        text = text.replaceAll("(?s)(^|[^0-9\\s])(\\s+)[\\-–]+(\\s*)($|[^0-9\\s])", "$1,$2$3$4");
+                                                                      //parola - parola => parola, parola
+                                                                      //parola -parola => parola, parola
+                                                                      //keep: parola-parola => parola-parola
+                                                                      //keep: -1-1- - 1 - 1 -
+        text = text.replaceAll("(?s)(^|[^0-9\\s])(\\s*)[\\-–]+(\\s+)($|[^0-9\\s])", "$1,$2$3$4");
+                                                                      //parola - parola => parola, parola
+                                                                      //parola- parola => parola, parola
+                                                                      //keep: -1-1- - 1 - 1 -
+
+
+        text = text.replaceAll("(?s)^\\s*[\\-–]+\\s*([^0-9\\s])", "$1");   //-parola        //- parola
+        text = text.replaceAll("(?s)([^0-9\\s])\\s*[\\-–]+\\s*$", "$1");   //parola-        //parola -
+
         String lastText = "";
         while (!lastText.equals(text)) {
             lastText = text;
-            text = text.replaceAll("\\b[']\\B+", "");
-            text = text.replaceAll("\\B[']+\\b", "");
-            text = text.replaceAll("(?<!^)\\b[\\-–]+\\B", ", ");
-            text = text.replaceAll("\\B[\\-–]+\\b", "");
-            text = text.replaceAll("(?<!^)[ ]*\\(([^\\(]+)\\)", ", $1, ");
-            text = text.replaceAll("(?<!^)[ ]*\\[([^\\[]+)\\]", ", $1, ");
-            text = text.replaceAll("(?<!^)[ ]*\\{([^\\{]+)\\}", ", $1, ");
+            text = text.replaceAll("\\b[']\\B+", "");    //''''''parola => parola, keep parola'parola
+            text = text.replaceAll("\\B[']+\\b", "");    //parola'''''' => parola, keep parola'parola
+            text = text.replaceAll("(?s)(?<!^)\\s*\\(([^\\(]+)\\)", ", $1, ");
+            text = text.replaceAll("(?s)(?<!^)\\s*\\[([^\\[]+)\\]", ", $1, ");
+            text = text.replaceAll("(?s)(?<!^)\\s*\\{([^\\{]+)\\}", ", $1, ");
         }
 
         text = text.replaceAll("\\b@\\b", ", ad, ");
@@ -291,7 +322,10 @@ public class InterlinguaTextToSpeach implements TextToSpeach {
 
         //text = text.replaceAll("\\b\\.\\b", ", puncto, "); //good for emails, bad for U.S.A.
 
+        text = text.replaceAll("(?s)\\B[\\-–]+\\B", " minus ");
+
         Map<String, String> graphemePhonemeMap = graphemePhonemeMap(text, voice);
+
 
 
         textToSpeechSynchronizedPart(text, graphemePhonemeMap, voice, outputStream);
