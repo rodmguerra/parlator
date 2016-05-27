@@ -272,8 +272,8 @@ public class InterlinguaTextToSpeach implements TextToSpeach {
         String lastText = "";
         while (!lastText.equals(text)) {
             lastText = text;
-            text = text.replaceAll("\\b[']+", "");
-            text = text.replaceAll("[']+\\b", "");
+            text = text.replaceAll("\\b[']\\B+", "");
+            text = text.replaceAll("\\B[']+\\b", "");
             text = text.replaceAll("(?<!^)\\b[\\-–]+\\B", ", ");
             text = text.replaceAll("\\B[\\-–]+\\b", "");
             text = text.replaceAll("(?<!^)[ ]*\\(([^\\(]+)\\)", ", $1, ");

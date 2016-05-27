@@ -64,6 +64,7 @@ parlatorApp.controller('parlatorController', function ($scope, $sce, audio, $htt
         $timeout(function(){
             $scope.myError = true;
             $scope.errorMessage = errorMessage;
+            document.body.dispatchEvent(new Event('resize'));
         }, 0);
     }
 
