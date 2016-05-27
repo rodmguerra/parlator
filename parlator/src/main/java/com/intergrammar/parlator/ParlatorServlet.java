@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.text.Normalizer;
 
 public class ParlatorServlet extends HttpServlet {
 
@@ -55,7 +56,15 @@ public class ParlatorServlet extends HttpServlet {
         voice.setLanguage(voiceLanguage);
 
         String text = request.getParameter("text");
-        response.addHeader("Content-Disposition", "attachment; filename=" + "test.mp3");
+        String filename = text;
+        filename = Normalizer.normalize(filename, Normalizer.Form.NFD);
+        filename = filename.replaceAll("\\p{InCombiningDiacriticalMarks}+", "");
+        filename = filename.replaceAll("[^a-zA-Z0-9.-]", "_");
+        int maxFilenameSize = 50;
+        if(filename.length() > maxFilenameSize) {
+            filename = filename.substring(0,maxFilenameSize);
+        }
+        response.addHeader("Content-Disposition", "attachment; filename=" + filename + ".mp3");
         try {
             tts.textToSpeech(text, response.getOutputStream(), voice);
         } catch (Exception e) {
