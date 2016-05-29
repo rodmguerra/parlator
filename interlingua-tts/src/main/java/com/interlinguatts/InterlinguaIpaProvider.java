@@ -383,10 +383,12 @@ public class InterlinguaIpaProvider {
         word = word.replaceAll("ci", "t͡si");
         word = word.replaceAll("cˈi", "t͡sˈi");
         word = word.replaceAll("cj", "t͡sj");
-        word = word.replace("ts", "t͡s");
+        word = word.replaceAll("ts", "t͡s");
+
 
         word = word.replaceAll("c", "k");
         word = word.replaceAll("kk", "k"); //ecclesia
+        word = word.replaceAll("kt͡s", "kts"); //Sounds better
 
         word = word.replaceAll("ćh", "ć");
         word = word.replaceAll("ć", "t͡ʃ");
