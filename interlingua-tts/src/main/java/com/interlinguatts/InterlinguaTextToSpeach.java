@@ -144,7 +144,7 @@ public class InterlinguaTextToSpeach implements TextToSpeach {
         text = text.replaceAll("=", " es ");
 
         text = text.replaceAll("(\\p{L}+)>(\\p{L}+)", "$1 major que $2");
-        text = text.replaceAll("<(\\p{L}+)", " major que $1");
+        text = text.replaceAll(">(\\p{L}+)", " major que $1");
         text = text.replaceAll("(\\p{L}+)>", "$1 major que ");
         text = text.replaceAll(">", " major que ");
 
@@ -248,8 +248,9 @@ public class InterlinguaTextToSpeach implements TextToSpeach {
                 continue;
             }
 
-            String bugFix = fixVoiceBugs(voice, word, words.length);
+            String bugFix = fixVoiceBugsBefore(voice, word, words.length);
             String ipa = (bugFix==null)? provider.toIpa(word, words.length == 1) : bugFix;
+            ipa = fixVoiceBugsAfter(voice, ipa);
             graphemePhonemeMap.put(word, ipa);
         }
         Map<String,String> descending = graphemePhonemeMap.descendingMap();
@@ -269,7 +270,7 @@ public class InterlinguaTextToSpeach implements TextToSpeach {
         }
     }
 
-    private String fixVoiceBugs(Voice voice, String word, int length) {
+    private String fixVoiceBugsBefore(Voice voice, String word, int length) {
         if(voice.getName().equals("Carla") && length > 1) {
             Map<String,String> bugWords = ImmutableMap.of(
                     "cata","kata",
@@ -284,6 +285,22 @@ public class InterlinguaTextToSpeach implements TextToSpeach {
             }
         }
         return null;
+    }
+
+    private String fixVoiceBugsAfter(Voice voice, String ipa) {
+        if(voice.getName().equals("Carla")) {
+            //ipa = ipa.replaceAll("([^ˈ]*)([ˈ]?[^aeiou]*ʒa)", "$1 $2");  //...aja...
+            ipa = ipa.replaceAll("(ˈ[^aeiou]*)(d͡)?ʒa", "$1d͡ʒa"); //já => djá
+            ipa = ipa.replaceAll("(d͡)?ʒa([^aeiou]*)\\b", "d͡ʒa$2"); //___ja => _____dja, _____jax => ______djax
+            ipa = ipa.replaceAll("oˈ?ʒ", "od͡ʒ");    //oj => odj
+            return ipa;
+        } else if(voice.getName().equals("Giorgio")) {
+            ipa = ipa.replaceAll("(oˈ?)ʒ", "$1d͡ʒ");    //oj => odj
+            ipa = ipa.replaceAll("(ˈ?)(d͡)?ʒe\\B", "$1d͡ʒe");    //je => dje
+            ipa = ipa.replaceAll("ˈʒe", "ˈd͡ʒe");
+            return ipa;
+        }
+        return ipa;
     }
 
     public void textToSpeech(String text, OutputStream outputStream, Voice voice) {

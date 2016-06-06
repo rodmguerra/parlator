@@ -284,7 +284,13 @@ public class InterlinguaIpaProvider {
 
         word = removeNonStressMarker(word);
 
-        //replace unstressed ia ie io iu => ya ye yo yu  => exception starting with "anti"
+        //replace unstressed i in ia ie io iu => ya ye yo yu  => exception starting with "anti" and before stressed sylabe
+        /*
+        String copy = null;
+        while (copy != word) {
+            copy = word;
+            word = word.replaceAll("([āēīōūaeiou]+.*)i([aeou])", "$1y$2");
+        }*/
         word = word.replaceAll("(?<!^ant)i([aeou])", "y$1");
         word = word.replaceAll("(?<!^ant)i([āēōū])", "y$1");
 
