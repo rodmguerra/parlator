@@ -1,14 +1,10 @@
 package com.intergrammar.parlator;
 
-import com.interlinguatts.InterlinguaIpaProvider;
-import com.interlinguatts.InterlinguaNumberWriter;
-import com.interlinguatts.InterlinguaTextToSpeach;
-import com.interlinguatts.IvonaFacade;
-import com.interlinguatts.repository.MemoryWordRepository;
+import com.interlinguatts.*;
 import com.interlinguatts.domain.Word;
+import com.interlinguatts.repository.MemoryWordRepository;
 import com.interlinguatts.repository.Repository;
 import com.interlinguatts.repository.WordRepository;
-import com.ivona.services.tts.model.Voice;
 import org.apache.commons.dbcp.BasicDataSource;
 
 import javax.servlet.http.HttpServlet;
@@ -16,11 +12,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.lang.reflect.InvocationTargetException;
 import java.text.Normalizer;
 
 public class ParlatorServlet extends HttpServlet {
 
-    private InterlinguaTextToSpeach tts;
+    private TextToSpeach tts;
 
     public ParlatorServlet() {
         System.out.println("Starting parlator servlet!");
@@ -32,11 +29,32 @@ public class ParlatorServlet extends HttpServlet {
         dataSource.setDefaultAutoCommit(false);
         WordRepository wordRepository = new WordRepository(dataSource);
         Repository<Word> memoryWordRepository = new MemoryWordRepository(wordRepository.findAll());
-        IvonaFacade ivonaFacade = new IvonaFacade();
+
         InterlinguaNumberWriter numberWriter = new InterlinguaNumberWriter();
         InterlinguaIpaProvider provider = new InterlinguaIpaProvider(memoryWordRepository, numberWriter);
-        tts = new InterlinguaTextToSpeach(ivonaFacade, provider, numberWriter);
+        InterlinguaTTSPreProcessor preProcessor = new InterlinguaTTSPreProcessor(numberWriter);
+        tts = tts(provider, preProcessor);
+
         System.out.println("Parlator servlet loaded!");
+    }
+
+    private TextToSpeach tts(InterlinguaIpaProvider provider, InterlinguaTTSPreProcessor preProcessor) {
+        TextToSpeach tts = null;
+        try {
+            Class<TextToSpeach> ttsImplClass = (Class<TextToSpeach>) Class.forName("com.interlinguatts.ivona.IvonaLexiconInterlinguaTTS");
+            tts = ttsImplClass.getConstructor(InterlinguaIpaProvider.class, InterlinguaTTSPreProcessor.class).newInstance(provider, preProcessor);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException("Ivona TTS jar not found.", e);
+        } catch (InvocationTargetException e) {
+            throw new RuntimeException(e);
+        } catch (NoSuchMethodException e) {
+            throw new RuntimeException(e);
+        } catch (InstantiationException e) {
+            throw new RuntimeException(e);
+        } catch (IllegalAccessException e) {
+            throw new RuntimeException(e);
+        }
+        return tts;
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws javax.servlet.ServletException, java.io.IOException {

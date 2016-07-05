@@ -11,5 +11,6 @@
     <modules>
         <module>interlingua-tts</module>
         <module>parlator</module>
+        <module>ivona-interlingua-tts</module>
     </modules>
 </project>

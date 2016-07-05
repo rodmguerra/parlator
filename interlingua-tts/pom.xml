@@ -10,11 +10,6 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.ivona</groupId>
-            <artifactId>ivona-speechcloud-sdk-java</artifactId>
-            <version>1.0.0</version>
-        </dependency>
-        <dependency>
             <groupId>commons-dbutils</groupId>
             <artifactId>commons-dbutils</artifactId>
             <version>1.6</version>

@@ -1,7 +1,8 @@
 package com.interlinguatts;
 
-import com.ivona.services.tts.model.Voice;
+import java.io.OutputStream;
 
 public interface TextToSpeach {
     void textToSpeech(String text, String speechFile, Voice voice);
+    void textToSpeech(String text, OutputStream outputStream, Voice voice);
 }
