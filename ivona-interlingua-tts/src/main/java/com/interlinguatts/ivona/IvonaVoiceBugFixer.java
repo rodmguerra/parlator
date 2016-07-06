@@ -10,7 +10,7 @@ public class IvonaVoiceBugFixer implements VoiceBugFixer {
     public IvonaVoiceBugFixer() {
     }
 
-    public String fixVoiceBugsBefore(Voice voice, String word, int length) {
+    public String getForcingIpaFix(Voice voice, String word, int length) {
         if (voice.getName().equals("Carla") && length > 1) {
             Map<String, String> bugWords = ImmutableMap.of(
                     "cata", "kata",
@@ -27,7 +27,8 @@ public class IvonaVoiceBugFixer implements VoiceBugFixer {
         return null;
     }
 
-    String fixVoiceBugsAfter(Voice voice, String ipa) {
+    @Override
+    public String getChangingIpaFix(Voice voice, String ipa) {
         if (voice.getName().equals("Carla")) {
             //ipa = ipa.replaceAll("([^ˈ]*)([ˈ]?[^aeiou]*ʒa)", "$1 $2");  //...aja...
             ipa = ipa.replaceAll("(ˈ[^aeiou]*)(d͡)?ʒa", "$1d͡ʒa"); //já => djá

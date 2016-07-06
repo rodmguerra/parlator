@@ -1,72 +1,38 @@
 package com.intergrammar.parlator;
 
 import com.interlinguatts.*;
-import com.interlinguatts.domain.Word;
-import com.interlinguatts.repository.MemoryWordRepository;
-import com.interlinguatts.repository.Repository;
-import com.interlinguatts.repository.WordRepository;
-import org.apache.commons.dbcp.BasicDataSource;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.PrintWriter;
 import java.io.StringWriter;
-import java.lang.reflect.InvocationTargetException;
 import java.text.Normalizer;
 
 public class ParlatorServlet extends HttpServlet {
 
-    private TextToSpeach tts;
+    private TextToSpeech tts;
+    private VoiceGenerator voiceGenerator;
 
     public ParlatorServlet() {
         System.out.println("Starting parlator servlet!");
-        BasicDataSource dataSource = new BasicDataSource();
-        dataSource.setDriverClassName("org.postgresql.Driver");
-        dataSource.setUrl("jdbc:postgresql://pellefant.db.elephantsql.com:5432/xoyaewgn");
-        dataSource.setUsername("xoyaewgn");
-        dataSource.setPassword("t9Y27piepSw8YbhM5WzRT19f747J7uNU");
-        dataSource.setDefaultAutoCommit(false);
-        WordRepository wordRepository = new WordRepository(dataSource);
-        Repository<Word> memoryWordRepository = new MemoryWordRepository(wordRepository.findAll());
-
-        InterlinguaNumberWriter numberWriter = new InterlinguaNumberWriter();
-        InterlinguaIpaProvider provider = new InterlinguaIpaProvider(memoryWordRepository, numberWriter);
-        InterlinguaTTSPreProcessor preProcessor = new InterlinguaTTSPreProcessor(numberWriter);
-        tts = tts(provider, preProcessor);
-
+        ApplicationContext context = ApplicationContext.getInstance();
+        tts = context.tts();
+        voiceGenerator =  context.voiceGenerator();
         System.out.println("Parlator servlet loaded!");
-    }
-
-    private TextToSpeach tts(InterlinguaIpaProvider provider, InterlinguaTTSPreProcessor preProcessor) {
-        TextToSpeach tts = null;
-        try {
-            Class<TextToSpeach> ttsImplClass = (Class<TextToSpeach>) Class.forName("com.interlinguatts.ivona.IvonaLexiconInterlinguaTTS");
-            tts = ttsImplClass.getConstructor(InterlinguaIpaProvider.class, InterlinguaTTSPreProcessor.class).newInstance(provider, preProcessor);
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException("Ivona TTS jar not found.", e);
-        } catch (InvocationTargetException e) {
-            throw new RuntimeException(e);
-        } catch (NoSuchMethodException e) {
-            throw new RuntimeException(e);
-        } catch (InstantiationException e) {
-            throw new RuntimeException(e);
-        } catch (IllegalAccessException e) {
-            throw new RuntimeException(e);
-        }
-        return tts;
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws javax.servlet.ServletException, java.io.IOException {
         response.setContentType("audio/mpeg");
+        Voice defaultVoice = voiceGenerator.getDefaultVoice();
         String voiceName = request.getParameter("voiceName");
         if (voiceName == null || voiceName.isEmpty()) {
-            voiceName = "Carla";
+            voiceName = defaultVoice.getName();
         }
 
         String voiceLanguage = request.getParameter("voiceLanguage");
         if (voiceLanguage == null || voiceLanguage.isEmpty()) {
-            voiceLanguage = "it-IT";
+            voiceLanguage = defaultVoice.getLanguage();
         }
 
         Voice voice = new Voice();
@@ -84,7 +50,7 @@ public class ParlatorServlet extends HttpServlet {
         }
         response.addHeader("Content-Disposition", "attachment; filename=" + filename + ".mp3");
         try {
-            tts.textToSpeech(text, response.getOutputStream(), voice);
+            tts.textToSpeech(response.getOutputStream(), voice, text);
         } catch (Exception e) {
             StringWriter sw = new StringWriter();
             PrintWriter pw = new PrintWriter(sw);
