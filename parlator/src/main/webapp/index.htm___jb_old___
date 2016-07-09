@@ -48,7 +48,7 @@
     <div id="footer">
         <div id="innerfooter">
             <p class="text-muted">Esque alicun parola es parlate incorrectemente? Ha iste sito alicun defecto? Vole vos commentar o dar suggestiones? Per favor, invia un e-posta a <b><a href="mailto:parlator.interlingua@gmail.com">parlator.interlingua@gmail.com</a></b>.</p>
-            <p class="text-muted">Pro le generation del audio, vostre datos es inviate a IBM, que pote usar los conforme a <a href="http://www-03.ibm.com/software/sla/sladb.nsf/pdf/6947-03/$file/i126-6947-03_06-2016_en_US.pdf">IBM Text to Speech Service Description</a>.</p>
+            <p class="text-muted">Pro le generation del audio, vostre datos es inviate a IBM, que pote usar los conforme a<b><a href="http://www-03.ibm.com/software/sla/sladb.nsf/pdf/6947-03/$file/i126-6947-03_06-2016_en_US.pdf">IBM Text to Speech Service Description</a></b>.</p>
         </div>
     </div>
 </body>

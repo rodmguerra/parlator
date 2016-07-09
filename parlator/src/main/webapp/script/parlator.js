@@ -82,21 +82,21 @@ parlatorApp.controller('parlatorController', function ($scope, $sce, audio, $htt
         }, 0);
     };
 
-    var talkParams = function (voiceName, voiceLanguage, text) {
-        return "voiceName=" + voiceName + "&voiceLanguage=" + voiceLanguage + "&text=" + encodeURIComponent(text);
+    var talkParams = function (voice, text) {
+        return "voice=" + encodeURIComponent(JSON.stringify(voice)) + "&text=" + encodeURIComponent(text);
     };
 
     $scope.talk = function () {
         if($scope.text != null && $scope.text !== "") {
             $scope.hideError();
-            $scope.talkUrl = "parla?" + talkParams($scope.selectedVoice.name, $scope.selectedVoice.language, $scope.text);
+            $scope.talkUrl = "parla?" + talkParams($scope.selectedVoice, $scope.text);
             audio.play($scope.talkUrl);
         }
     };
 
     audio.audioElement.onerror = function (e) {
         var input = document.getElementById("text");
-        var url = "errorMessage?" + talkParams($scope.selectedVoice.name, $scope.selectedVoice.language, $scope.text);
+        var url = "errorMessage?" + talkParams($scope.selectedVoice, $scope.text);
         $http.get(url).success(function (data) {
             $scope.showError(data);
         });

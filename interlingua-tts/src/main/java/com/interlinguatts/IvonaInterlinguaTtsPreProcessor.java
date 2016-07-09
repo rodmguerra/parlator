@@ -5,10 +5,10 @@ import java.math.BigInteger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class InterlinguaTtsPreProcessor {
+public class IvonaInterlinguaTtsPreProcessor {
     final InterlinguaNumberWriter numberWriter;
 
-    public InterlinguaTtsPreProcessor(InterlinguaNumberWriter numberWriter) {
+    public IvonaInterlinguaTtsPreProcessor(InterlinguaNumberWriter numberWriter) {
         this.numberWriter = numberWriter;
     }
 
@@ -221,8 +221,6 @@ public class InterlinguaTtsPreProcessor {
             text = text.replaceAll("(?s)(?<!^)\\s*\\{([^\\{]+)\\}", ", $1, ");
         }
 
-        text = text.replaceAll("[“”‘’\"]", " ");
-
         text = text.replaceAll("\\b@\\b", ", ad, ");
         text = text.replaceAll("\\b@\\B", ", ad");
         text = text.replaceAll("\\B@\\b", "ad, ");
@@ -234,23 +232,12 @@ public class InterlinguaTtsPreProcessor {
         //text = text.replaceAll("\\b\\.\\b", ", puncto, "); //good for emails, bad for U.S.A.
 
         text = text.replaceAll("(?s)\\B[\\-–]+\\B", " minus ");
-
-        String special = "[.,;:?!]+";
-        text = text.replaceAll("(" +special + "[ ]*)([ ]*)[,]+", "$1");  //special,
-        text = text.replaceAll("[,]+([ ]*" +special + ")", "$1");  //,special
-        text = text.replaceAll("[ ]*,", ",");
-        text = text.replaceAll(",[ ]*", ", ");
-        System.out.println(text);
         return text;
     }
 
     String replaceAbbreviations(String text) {
         text = text.replaceAll("sr\\.", "senior");
         text = text.replaceAll("sra\\.", "seniora");
-        text = text.replaceAll("Dr\\.", "doctor");
-        text = text.replaceAll("Dra\\.", "doctora");
-        text = text.replaceAll("dr\\.", "doctor");
-        text = text.replaceAll("dra\\.", "doctora");
         text = text.replaceAll("Sr\\.", "senior");
         text = text.replaceAll("Sra\\.", "seniora");
         text = text.replaceAll("etc\\.", "etcetera");
@@ -259,7 +246,7 @@ public class InterlinguaTtsPreProcessor {
     }
 
     public static void main(String[] args) {
-        InterlinguaTtsPreProcessor preProcessor = new InterlinguaTtsPreProcessor(new InterlinguaNumberWriter());
+        IvonaInterlinguaTtsPreProcessor preProcessor = new IvonaInterlinguaTtsPreProcessor(new InterlinguaNumberWriter());
         //String text = "2.500me, le 10000me ha apportate depost de9.999nesj. Ille ha2.456,777 annos. Su telephone es45646546545646565465";
 
         //String text = "Entre parênteses (=), palavras=grudadas, grudada= palavra, palavra =grudada. Solto = Solto";

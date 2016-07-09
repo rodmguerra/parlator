@@ -1,6 +1,6 @@
 package com.interlinguatts;
 
-import java.io.OutputStream;
+import java.io.InputStream;
 
 public class LexiconTextToSpeech extends BaseTextToSpeech implements TextToSpeech {
     private final VoiceGenerator voiceGenerator;
@@ -12,8 +12,8 @@ public class LexiconTextToSpeech extends BaseTextToSpeech implements TextToSpeec
     }
 
     @Override
-    public void textToSpeech(OutputStream outputStream, Voice voice, String text) {
+    public InputStream textToSpeech(Voice voice, String text) {
         TextAndLexicon textAndLexicon = textToPhonetics.textAndLexicon(text, voice);
-        voiceGenerator.textAndLexiconToAudio(outputStream, voice, text, textAndLexicon.getLexicon());
+        return voiceGenerator.textAndLexiconToAudio(voice, text, textAndLexicon.getLexicon());
     }
 }

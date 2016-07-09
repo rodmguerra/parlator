@@ -1,20 +1,22 @@
 package com.interlinguatts;
 
-import java.io.OutputStream;
+import java.io.InputStream;
 
 public class SsmlTextToSpeech extends BaseTextToSpeech implements TextToSpeech {
     private final VoiceGenerator voiceGenerator;
     private final TextToPhonetics textToPhoneticsConverter;
+    private final PhoneticAlphabet alphabet;
 
-    public SsmlTextToSpeech(VoiceGenerator voiceGenerator, TextToPhonetics textToTextAndLexicon) {
+    public SsmlTextToSpeech(VoiceGenerator voiceGenerator, TextToPhonetics textToTextAndLexicon, PhoneticAlphabet alphabet) {
         this.voiceGenerator = voiceGenerator;
         this.textToPhoneticsConverter = textToTextAndLexicon;
+        this.alphabet = alphabet;
     }
 
     @Override
-    public void textToSpeech(OutputStream outputStream, Voice voice, String text) {
-        String ssml = textToPhoneticsConverter.textToSsml(text, voice);
+    public InputStream textToSpeech(Voice voice, String text) {
+        String ssml = textToPhoneticsConverter.textToSsml(text, voice, alphabet);
         System.out.println(ssml);
-        voiceGenerator.ssmlToAudio(ssml, outputStream, voice);
+        return voiceGenerator.ssmlToAudio(voice, ssml);
     }
 }

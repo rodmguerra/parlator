@@ -7,12 +7,12 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.text.Normalizer;
 
-public class InterlinguaIpaProvider {
+public class WordToPhonetics {
 
     private final Repository<Word> wordRepository;
     private final InterlinguaNumberWriter numberWriter;
 
-    public InterlinguaIpaProvider(Repository<Word> wordRepository, InterlinguaNumberWriter numberWriter) {
+    public WordToPhonetics(Repository<Word> wordRepository, InterlinguaNumberWriter numberWriter) {
         this.wordRepository = wordRepository;
         this.numberWriter = numberWriter;
     }
@@ -45,7 +45,7 @@ public class InterlinguaIpaProvider {
         }
 
         String phoneticInvariant = toPhoneticInvariant(wordRespell, singleWord);
-        return phoneticInvariantToIPA(phoneticInvariant, singleWord);
+        return phoneticInvariantToIpa(phoneticInvariant, singleWord);
     }
 
     private String treatNumbers(String wordText) {
@@ -360,7 +360,7 @@ public class InterlinguaIpaProvider {
         return s;
     }
 
-    private static String phoneticInvariantToIPA(String word, boolean singleWord) {
+    private static String phoneticInvariantToIpa(String word, boolean singleWord) {
         word = superscoreToSingleQuoute(word);
         word = word.replaceAll("'y", "'i");
 
@@ -412,11 +412,11 @@ public class InterlinguaIpaProvider {
 
 
         //soft transition vowels
-        //word = word.replaceAll("([aeiou])([aeiou])", "$1‿$2");
+        //word = word.replaceAll("([aeiou])([aeiou])", "$1?$2");
         /*
         if(!singleWord) {
             //only one vowel, no stress
-            word = word.replaceAll("^([^aeiou]*)ˈ([aeiou])([^aeiou]*)$", "$1$2$3");
+            word = word.replaceAll("^([^aeiou]*)?([aeiou])([^aeiou]*)$", "$1$2$3");
         }
         */
 
@@ -425,13 +425,16 @@ public class InterlinguaIpaProvider {
         word = word.replaceAll("([^aeioujw]*)([^aeiou])ˈ([aeiou])", "ˈ$1$2$3");
 
         //when word starts with vowel - add . to break syllabe
-        word = word.replaceAll("^([ˈ]?[aeiou]+)", ".$1");
+        //word = word.replaceAll("^([ˈ]?[aeiou]+)", ".$1");
 
 
         //word = word.replaceAll("[^\\p{InIPA_EXTENSIONS}a-zA-Z]", "");
 
         return word;
     }
+
+
+
 
 
     private static String superscoreToSingleQuoute(String word) {

@@ -2,13 +2,12 @@ package com.interlinguatts.ivona;
 
 import com.amazonaws.auth.ClasspathPropertiesFileCredentialsProvider;
 import com.google.common.collect.Sets;
-import com.interlinguatts.*;
+import com.interlinguatts.LexiconXmlBuilder;
+import com.interlinguatts.VoiceGenerator;
 import com.ivona.services.tts.IvonaSpeechCloudClient;
 import com.ivona.services.tts.model.*;
-import com.ivona.services.tts.model.Voice;
 
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -55,10 +54,9 @@ public class IvonaVoiceGenerator implements VoiceGenerator {
         return goodVoices;
     }
 
-    private void textAndLexiconToAudio(OutputStream outputStream, com.interlinguatts.Voice voice, String text, List<String> lexiconNames) {
+    private InputStream textAndLexiconToAudio(com.interlinguatts.Voice voice, String text, List<String> lexiconNames) {
         CreateSpeechRequest request = new CreateSpeechRequest();
         Input input = new Input();
-
         OutputFormat format = new OutputFormat();
         format.setCodec("MP3");
         input.setData(text);
@@ -70,40 +68,8 @@ public class IvonaVoiceGenerator implements VoiceGenerator {
         Parameters parameters = new Parameters();
         parameters.setRate("slow");
         request.setParameters(parameters);
-
-        InputStream in = null;
-        try {
-
-            CreateSpeechResult createSpeechResult = speechCloud.createSpeech(request);
-            in = createSpeechResult.getBody();
-            //
-            byte[] buffer = new byte[2 * 1024];
-            int readBytes;
-
-            while ((readBytes = in.read(buffer)) > 0) {
-                outputStream.write(buffer, 0, readBytes);
-            }
-
-            //System.out.println("\nFile saved: " + outputFileName);
-        } catch (Exception e) {
-            throw new RuntimeException("TTS fail", e);
-        } finally {
-            try {
-                if (in != null) {
-                    in.close();
-                }
-            } catch (Exception e) {
-                throw new RuntimeException("Close input fail", e);
-            }
-
-            try {
-                if (outputStream != null) {
-                    outputStream.close();
-                }
-            } catch (Exception e) {
-                throw new RuntimeException("Close output fail", e);
-            }
-        }
+        CreateSpeechResult createSpeechResult = speechCloud.createSpeech(request);
+        return createSpeechResult.getBody();
     }
 
     public void deleteLexicon(String lexiconName) {
@@ -128,10 +94,9 @@ public class IvonaVoiceGenerator implements VoiceGenerator {
     }
 
     @Override
-    public void ssmlToAudio(String text, OutputStream outputStream, com.interlinguatts.Voice voice) {
+    public InputStream ssmlToAudio(com.interlinguatts.Voice voice, String text) {
         CreateSpeechRequest request = new CreateSpeechRequest();
         Input input = new Input();
-
         OutputFormat format = new OutputFormat();
         format.setCodec("MP3");
         input.setData(text);
@@ -139,51 +104,17 @@ public class IvonaVoiceGenerator implements VoiceGenerator {
         request.setInput(input);
         request.setVoice(toIvonaVoice(voice));
         request.setOutputFormat(format);
-
         Parameters parameters = new Parameters();
         parameters.setRate("slow");
         request.setParameters(parameters);
-
-        InputStream in = null;
-        try {
-
-            CreateSpeechResult createSpeechResult = speechCloud.createSpeech(request);
-            in = createSpeechResult.getBody();
-            //
-            byte[] buffer = new byte[2 * 1024];
-            int readBytes;
-
-            while ((readBytes = in.read(buffer)) > 0) {
-                outputStream.write(buffer, 0, readBytes);
-            }
-
-            //System.out.println("\nFile saved: " + outputFileName);
-        } catch (Exception e) {
-            throw new RuntimeException("TTS fail", e);
-        } finally {
-            try {
-                if (in != null) {
-                    in.close();
-                }
-            } catch (Exception e) {
-                throw new RuntimeException("Close input fail", e);
-            }
-
-            try {
-                if (outputStream != null) {
-                    outputStream.close();
-                }
-            } catch (Exception e) {
-                throw new RuntimeException("Close output fail", e);
-            }
-        }
+        CreateSpeechResult createSpeechResult = speechCloud.createSpeech(request);
+        return createSpeechResult.getBody();
     }
 
     @Override
-    public synchronized void textAndLexiconToAudio(OutputStream stream, com.interlinguatts.Voice voice, String text, Map<String, String> lexemes) {
+    public synchronized InputStream textAndLexiconToAudio(com.interlinguatts.Voice voice, String text, Map<String, String> lexemes) {
         List<String> lexiconNames = putLexiconSafe(lexemes, voice.getLanguage());
-        System.out.println(stream);
-        textAndLexiconToAudio(stream, voice, text, lexiconNames);
+        return textAndLexiconToAudio(voice, text, lexiconNames);
     }
 
     @Override

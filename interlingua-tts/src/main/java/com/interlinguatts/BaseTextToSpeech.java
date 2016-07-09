@@ -1,18 +1,50 @@
 package com.interlinguatts;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.Map;
 
 public abstract class BaseTextToSpeech implements TextToSpeech {
     @Override
-    public void textToSpeech(String speechFileName, Voice voice, String text) {
+    public void textToSpeech(String fileName, Voice voice, String text) {
+        InputStream inputStream = null;
+        OutputStream outputStream = null;
+        Map<String, String> errorMessageMap = null;
         try {
-            OutputStream outputStream = new FileOutputStream(new File(speechFileName));
-            textToSpeech(outputStream, voice, text);
-        } catch (FileNotFoundException e) {
+            inputStream = textToSpeech(voice, text);
+            //
+            byte[] buffer = new byte[2 * 1024];
+            int readBytes;
+            outputStream = new FileOutputStream(new File(fileName));
+
+            while ((readBytes = inputStream.read(buffer)) > 0) {
+                outputStream.write(buffer, 0, readBytes);
+            }
+
+            //System.out.println("\nFile saved: " + outputFileName);
+        } catch (Exception e) {
             throw new RuntimeException(e);
+        } finally {
+
+            //close inputstream
+            try {
+                if (inputStream != null) {
+                    inputStream.close();
+                }
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+
+            //close outputsteam
+            try {
+                if (outputStream != null) {
+                    outputStream.close();
+                }
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 }

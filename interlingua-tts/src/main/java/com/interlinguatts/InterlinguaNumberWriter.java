@@ -13,7 +13,7 @@ import java.util.List;
 public class InterlinguaNumberWriter {
     private static final BigInteger THOUSAND = BigInteger.valueOf(1000);
     //http://members.optus.net/~ado_hall/interlingua/gi/parts/num.html
-    private String[] unitNames = {"zero", "un", "duo", "tres", "quatro", "cinque", "sex", "septe", "octo", "nove"};
+    private String[] unitNames = {"zero", "un", "duo", "tres", "quatro", "cinque", "sex", "septe", "octo", "novem"};
     private String[] ordinalUnitNames = {"zeresime", "prime", "secunde", "tertie", "quarte", "quinte", "sexte", "septime", "octave", "none"};
     private String[] tenNames = {"", "dece", "vinti", "trenta", "quaranta", "cinquanta", "sexanta", "septanta", "octanta", "novanta"};
 

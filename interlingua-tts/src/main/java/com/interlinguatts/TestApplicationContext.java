@@ -30,7 +30,7 @@ public class TestApplicationContext {
             Repository<Word> memoryWordRepository = new MemoryWordRepository(wordRepository.findAll());
 
             InterlinguaNumberWriter numberWriter = new InterlinguaNumberWriter();
-            InterlinguaIpaProvider interlinguaIpaProvider = new InterlinguaIpaProvider(memoryWordRepository, numberWriter);
+            WordToPhonetics wordToPhonetics = new WordToPhonetics(memoryWordRepository, numberWriter);
             InterlinguaTtsPreProcessor preProcessor = new InterlinguaTtsPreProcessor(numberWriter);
 
             VoiceGenerator voiceGenerator = voiceGenerator();
@@ -46,9 +46,9 @@ public class TestApplicationContext {
                 throw new RuntimeException(e);
             }
 
-            TextToPhonetics textToPhonetics = new TextToPhonetics(interlinguaIpaProvider, ivonaVoiceBugFixer, preProcessor);
+            TextToPhonetics textToPhonetics = new TextToPhonetics(wordToPhonetics, ivonaVoiceBugFixer, preProcessor);
             //tts = new LexiconTextToSpeech(voiceGenerator, textToPhonetics);
-            tts = new SsmlTextToSpeech(voiceGenerator, textToPhonetics);
+            tts = new SsmlTextToSpeech(voiceGenerator, textToPhonetics, PhoneticAlphabet.XSAMPA);
         }
 
         return tts;
