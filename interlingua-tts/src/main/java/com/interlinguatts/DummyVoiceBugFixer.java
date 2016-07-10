@@ -7,7 +7,7 @@ public class DummyVoiceBugFixer implements VoiceBugFixer {
     }
 
     @Override
-    public String getChangingIpaFix(Voice voice, String ipa) {
+    public String getChangingIpaFix(Voice voice, String ipa, int length) {
         return ipa;
     }
 }

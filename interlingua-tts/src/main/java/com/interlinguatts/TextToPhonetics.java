@@ -6,7 +6,7 @@ import java.util.Map;
 import java.util.TreeMap;
 
 public class TextToPhonetics {
-    public static final String VALID_IPA = "a-zˈ͡ʃʒʎβɾcgh";
+    public static final String VALID_IPA = "a-zˈ͡ʃʒʎβɾcghʝ";
     private final WordToPhonetics provider;
     private final VoiceBugFixer voiceBugFixer;
     private final InterlinguaTtsPreProcessor preProcessor;
@@ -30,7 +30,7 @@ public class TextToPhonetics {
             }
             String bugFix = voiceBugFixer.getForcingIpaFix(voice, word, words.length);
             String ipa = (bugFix == null) ? provider.toIpa(word, words.length == 1) : bugFix;
-            ipa = voiceBugFixer.getChangingIpaFix(voice, ipa);
+            ipa = voiceBugFixer.getChangingIpaFix(voice, ipa, words.length);
             graphemePhonemeMap.put(word, ipa);
         }
 

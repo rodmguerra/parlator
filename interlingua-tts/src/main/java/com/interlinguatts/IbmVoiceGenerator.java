@@ -22,7 +22,7 @@ public class IbmVoiceGenerator implements VoiceGenerator {
             .put("en-US", ImmutableMap.of("male", "americano", "female", "americana"))
             .put("es-ES", ImmutableMap.of("male", "espaniol", "female", "espaniola"))
             .put("fr-FR", ImmutableMap.of("male", "francese", "female", "francesa"))
-            .put("es-US", ImmutableMap.of("male", "hispanoamericano", "female", "hispanoamericana"))
+            .put("es-US", ImmutableMap.of("male", "hispano-americano", "female", "hispano-americana"))
             .put("en-GB", ImmutableMap.of("male", "britannico", "female", "britannica"))
             .put("pt-BR", ImmutableMap.of("male", "brasiliano", "female", "brasiliana"))
             .build();
@@ -36,7 +36,8 @@ public class IbmVoiceGenerator implements VoiceGenerator {
     }
 
     public IbmVoiceGenerator () {
-        this("f4176739-83a4-41cb-94b6-2ea8e1ee5261","ZzpcCdTFwaVF");
+        //this("f4176739-83a4-41cb-94b6-2ea8e1ee5261","ZzpcCdTFwaVF");
+        this("d369d71d-c536-4eb7-b1b5-8bc8fe6daf69","7Gw2M5FL6Rvu");
     }
 
     @Override
@@ -95,12 +96,12 @@ public class IbmVoiceGenerator implements VoiceGenerator {
         */
 
         List<Voice> goodVoices = new ArrayList<Voice>();
-        goodVoices.add(apiVoice(com.ibm.watson.developer_cloud.text_to_speech.v1.model.Voice.IT_FRANCESCA));
+        goodVoices.add(apiVoice(com.ibm.watson.developer_cloud.text_to_speech.v1.model.Voice.ES_SOFIA));
         goodVoices.add(apiVoice(com.ibm.watson.developer_cloud.text_to_speech.v1.model.Voice.ES_ENRIQUE));
         goodVoices.add(apiVoice(com.ibm.watson.developer_cloud.text_to_speech.v1.model.Voice.ES_LAURA));
-        goodVoices.add(apiVoice(com.ibm.watson.developer_cloud.text_to_speech.v1.model.Voice.FR_RENEE));
-        goodVoices.add(apiVoice(com.ibm.watson.developer_cloud.text_to_speech.v1.model.Voice.ES_SOFIA));
-        goodVoices.add(apiVoice(com.ibm.watson.developer_cloud.text_to_speech.v1.model.Voice.DE_DIETER));
+        goodVoices.add(apiVoice(com.ibm.watson.developer_cloud.text_to_speech.v1.model.Voice.IT_FRANCESCA));
+        //goodVoices.add(apiVoice(com.ibm.watson.developer_cloud.text_to_speech.v1.model.Voice.FR_RENEE));
+        //goodVoices.add(apiVoice(com.ibm.watson.developer_cloud.text_to_speech.v1.model.Voice.DE_DIETER));
 
         return goodVoices;
     }
