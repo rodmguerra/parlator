@@ -10,7 +10,7 @@ public class IbmVoiceBugFixer implements VoiceBugFixer {
     @Override
     public String getChangingIpaFix(Voice voice, String ipa, int length) {
         if(IT_FRANCESCA.getName().equals(voice.getName())){
-            return ipa.replaceAll("(d͡)?ʒ","dʒ").replace("h","x");
+            return ipa.replaceAll("(d͡)?ʒ","dʒ");
         } else if(ES_ENRIQUE.getName().equals(voice.getName())){
             ipa = ipa.replaceAll("(t͡)?ʃ", "tʃ").replaceAll("(d͡)?ʒ", "d͡z").replaceAll("v","β").replaceAll("r","ɾ").replace("h","x");
         } else if(ES_LAURA.getName().equals(voice.getName())) {
