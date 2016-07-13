@@ -16,7 +16,7 @@ public class ParlatorServlet extends HttpServlet {
     private TextToSpeech tts;
     private VoiceGenerator voiceGenerator;
     private SessionHandler sessionHandler;
-
+    private final ObjectMapper objectMapper = new ObjectMapper();
     public ParlatorServlet() {
         System.out.println("Starting parlator servlet!");
         ApplicationContext context = ApplicationContext.getInstance();
@@ -41,16 +41,24 @@ public class ParlatorServlet extends HttpServlet {
             queryString = request.getQueryString();
             String text = request.getParameter("text");
 
+            MediaType mediaType;
+            String mediaTypeJson = request.getParameter("mediaType");
+            if(mediaTypeJson == null) {
+                mediaType = tts.getDefaultMediaType();
+            } else {
+                mediaType = objectMapper.readValue(mediaTypeJson, MediaType.class);
+            }
+
             if(audioMap.containsKey(queryString)) {
                 inputStream = new ByteArrayInputStream(audioMap.get(queryString));
             } else {
                 String voiceJson = request.getParameter("voice");
-                Voice voice = voiceJson == null? voiceGenerator.getDefaultVoice() : new ObjectMapper().readValue(voiceJson, Voice.class);
-                inputStream = tts.textToSpeech(voice, text);
+                Voice voice = voiceJson == null? voiceGenerator.getDefaultVoice() : objectMapper.readValue(voiceJson, Voice.class);
+                inputStream = tts.textToSpeech(voice, text, mediaType);
             }
 
-            response.setContentType("audio/ogg; codecs=opus");
-            response.addHeader("Content-Disposition", "attachment; filename=" + fileName(text) + ".ogg");
+            response.setContentType(mediaType.getContentType());
+            response.addHeader("Content-Disposition", "attachment; filename=" + fileName(text) + "." + mediaType.getExtension());
 
             byte[] buffer = new byte[2 * 1024];
             int readBytes;

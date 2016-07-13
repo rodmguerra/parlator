@@ -8,12 +8,12 @@ import java.util.Map;
 
 public abstract class BaseTextToSpeech implements TextToSpeech {
     @Override
-    public void textToSpeech(String fileName, Voice voice, String text) {
+    public void textToSpeech(String fileName, Voice voice, String text, MediaType mediaType) {
         InputStream inputStream = null;
         OutputStream outputStream = null;
         Map<String, String> errorMessageMap = null;
         try {
-            inputStream = textToSpeech(voice, text);
+            inputStream = textToSpeech(voice, text, mediaType);
             //
             byte[] buffer = new byte[2 * 1024];
             int readBytes;
@@ -46,5 +46,15 @@ public abstract class BaseTextToSpeech implements TextToSpeech {
                 throw new RuntimeException(e);
             }
         }
+    }
+
+    @Override
+    public void textToSpeech(String speechFile, Voice voice, String text) {
+        textToSpeech(speechFile, voice, text, getDefaultMediaType());
+    }
+
+    @Override
+    public InputStream textToSpeech(Voice voice, String text) {
+        return textToSpeech(voice, text, getDefaultMediaType());
     }
 }

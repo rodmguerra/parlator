@@ -59,6 +59,12 @@ parlatorApp.factory('audio', function ($document, $http) {
 parlatorApp.controller('parlatorController', function ($scope, $sce, audio, $http, $timeout) {
     $scope.myError = false;
     $scope.isTalk = false;
+    var ogg = {contentType: "audio/ogg; codecs=opus", extension: "ogg"};
+    var flac = {contentType: "audio/flac", extension: "flac"};
+    $scope.mediaType = ogg;
+    if(!audio.audioElement.canPlayType(ogg.contentType)) {
+        $scope.mediaType = flac;
+    }
 
     $scope.showError = function (errorMessage) {
         $timeout(function(){
@@ -82,21 +88,21 @@ parlatorApp.controller('parlatorController', function ($scope, $sce, audio, $htt
         }, 0);
     };
 
-    var talkParams = function (voice, text) {
-        return "voice=" + encodeURIComponent(JSON.stringify(voice)) + "&text=" + encodeURIComponent(text);
+    var talkParams = function (voice, text, mediaType) {
+        return "voice=" + encodeURIComponent(JSON.stringify(voice)) + "&text=" + encodeURIComponent(text) + "&mediaType=" + encodeURIComponent(JSON.stringify(mediaType));
     };
 
     $scope.talk = function () {
         if($scope.text != null && $scope.text !== "") {
             $scope.hideError();
-            $scope.talkUrl = "parla?" + talkParams($scope.selectedVoice, $scope.text);
+            $scope.talkUrl = "parla?" + talkParams($scope.selectedVoice, $scope.text, $scope.mediaType);
             audio.play($scope.talkUrl);
         }
     };
 
     audio.audioElement.onerror = function (e) {
         var input = document.getElementById("text");
-        var url = "errorMessage?" + talkParams($scope.selectedVoice, $scope.text);
+        var url = "errorMessage?" + talkParams($scope.selectedVoice, $scope.text, $scope.mediaType);
         $http.get(url).success(function (data) {
             $scope.showError(data);
         });

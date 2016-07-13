@@ -1,20 +1,28 @@
 package com.interlinguatts;
 
 
+import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.ibm.watson.developer_cloud.http.HttpMediaType;
 
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import static com.ibm.watson.developer_cloud.text_to_speech.v1.model.Voice.*;
+
+import static com.ibm.watson.developer_cloud.text_to_speech.v1.model.Voice.ES_LAURA;
 
 public class IbmVoiceGenerator implements VoiceGenerator {
 
     private final String userName;
     private final String password;
+
+    private List<MediaType> mediaTypes = ImmutableList.<MediaType>of(
+            new MediaType(HttpMediaType.AUDIO_OGG, "ogg"),
+            new MediaType(HttpMediaType.AUDIO_FLAC, "flac"),
+            new MediaType(HttpMediaType.AUDIO_WAV, "wav")
+    );
+
     private final com.ibm.watson.developer_cloud.text_to_speech.v1.TextToSpeech ibmTts;
     private static final ImmutableMap<String, Map<String,String>> NATIONALITATES = ImmutableMap.<String, Map<String,String>>builder()
             .put("it-IT", ImmutableMap.of("male", "italiano", "female", "italiana"))
@@ -111,8 +119,13 @@ public class IbmVoiceGenerator implements VoiceGenerator {
     }
 
     @Override
-    public InputStream ssmlToAudio(Voice voice, String text) {
-        return ibmTts.synthesize(text, toIbmVoice(voice), HttpMediaType.AUDIO_OGG);
+    public InputStream ssmlToAudio(Voice voice, String text, MediaType mediaType) {
+        return ibmTts.synthesize(text, toIbmVoice(voice), mediaType.getContentType());
+    }
+
+    @Override
+    public List<MediaType> getAvailableMediaTypes() {
+        return mediaTypes;
     }
 
     private com.ibm.watson.developer_cloud.text_to_speech.v1.model.Voice toIbmVoice(Voice voice) {
@@ -120,7 +133,7 @@ public class IbmVoiceGenerator implements VoiceGenerator {
     }
 
     @Override
-    public InputStream textAndLexiconToAudio(Voice voice, String text, Map<String, String> graphemePhonemeMap) {
+    public InputStream textAndLexiconToAudio(Voice voice, String text, Map<String, String> graphemePhonemeMap, MediaType mediaType) {
         throw new RuntimeException();
     }
 

@@ -1,8 +1,10 @@
 package com.interlinguatts.ivona;
 
 import com.amazonaws.auth.ClasspathPropertiesFileCredentialsProvider;
+import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Sets;
 import com.interlinguatts.LexiconXmlBuilder;
+import com.interlinguatts.MediaType;
 import com.interlinguatts.VoiceGenerator;
 import com.ivona.services.tts.IvonaSpeechCloudClient;
 import com.ivona.services.tts.model.*;
@@ -13,6 +15,7 @@ import java.util.*;
 
 public class IvonaVoiceGenerator implements VoiceGenerator {
     private IvonaSpeechCloudClient speechCloud;
+    private final List<MediaType> mediaTypes = ImmutableList.<MediaType>of(new MediaType("audio/mpeg", "mp3"));
     public static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyyMMddHHmmssSSS");
 
     public IvonaVoiceGenerator() {
@@ -54,7 +57,7 @@ public class IvonaVoiceGenerator implements VoiceGenerator {
         return goodVoices;
     }
 
-    private InputStream textAndLexiconToAudio(com.interlinguatts.Voice voice, String text, List<String> lexiconNames) {
+    private InputStream textAndLexiconToAudio(com.interlinguatts.Voice voice, String text, List<String> lexiconNames, MediaType mediaType) {
         CreateSpeechRequest request = new CreateSpeechRequest();
         Input input = new Input();
         OutputFormat format = new OutputFormat();
@@ -94,7 +97,7 @@ public class IvonaVoiceGenerator implements VoiceGenerator {
     }
 
     @Override
-    public InputStream ssmlToAudio(com.interlinguatts.Voice voice, String text) {
+    public InputStream ssmlToAudio(com.interlinguatts.Voice voice, String text, MediaType mediaType) {
         CreateSpeechRequest request = new CreateSpeechRequest();
         Input input = new Input();
         OutputFormat format = new OutputFormat();
@@ -112,9 +115,14 @@ public class IvonaVoiceGenerator implements VoiceGenerator {
     }
 
     @Override
-    public synchronized InputStream textAndLexiconToAudio(com.interlinguatts.Voice voice, String text, Map<String, String> lexemes) {
+    public List<MediaType> getAvailableMediaTypes() {
+        return mediaTypes;
+    }
+
+    @Override
+    public synchronized InputStream textAndLexiconToAudio(com.interlinguatts.Voice voice, String text, Map<String, String> lexemes, MediaType mediaType) {
         List<String> lexiconNames = putLexiconSafe(lexemes, voice.getLanguage());
-        return textAndLexiconToAudio(voice, text, lexiconNames);
+        return textAndLexiconToAudio(voice, text, lexiconNames, mediaType);
     }
 
     @Override
