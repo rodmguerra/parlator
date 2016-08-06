@@ -1,4 +1,33 @@
-var parlatorApp = angular.module('parlatorApp', []);
+var toMp3Blob = function(channels, sampleRate, samples) {
+    var buffer = [];
+    var mp3enc = new lamejs.Mp3Encoder(channels, sampleRate, 128);
+    var remaining = samples.length;
+    var maxSamples = 1152;
+    for (var i = 0; remaining >= maxSamples; i += maxSamples) {
+        var mono = samples.subarray(i, i + maxSamples);
+        var mp3buf = mp3enc.encodeBuffer(mono);
+        if (mp3buf.length > 0) {
+            buffer.push(new Int8Array(mp3buf));
+        }
+        remaining -= maxSamples;
+    }
+    var d = mp3enc.flush();
+    if(d.length > 0){
+        buffer.push(new Int8Array(d));
+    }
+    console.log('done encoding, size=', buffer.length);
+    return new Blob(buffer, {type: 'audio/mp3'});
+}
+
+
+var parlatorApp = angular.module('parlatorApp', []).config( [
+    '$compileProvider',
+    function( $compileProvider )
+    {
+        $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|blob):/);
+        // Angular before v1.2 uses $compileProvider.urlSanitizationWhitelist(...)
+    }
+]);
 
 parlatorApp.directive('ngEnter', function () {
     return function (scope, element, attrs) {
@@ -23,8 +52,8 @@ parlatorApp.directive('elastic', [
                 $scope.initialHeight = $scope.initialHeight || element[0].style.height;
                 var resize = function() {
                     element[0].style.height = $scope.initialHeight;
-                    var newHeight = (element[0].scrollHeight);
-                    element[0].style.height = "" + (newHeight + 2) + "px";
+                    var newHeight = (element[0].scrollHeight + 2);
+                    element[0].style.height = "" + newHeight + "px";
                     var decrease = document.body.scrollHeight - document.body.clientHeight;
                     if(decrease > 0) {
                         element[0].style.height = "" + (newHeight - decrease)  + "px";
@@ -59,17 +88,15 @@ parlatorApp.factory('audio', function ($document, $http) {
 parlatorApp.controller('parlatorController', function ($scope, $sce, audio, $http, $timeout) {
     $scope.myError = false;
     $scope.isTalk = false;
+    $scope.downloadUrls = {};
     var ogg = {contentType: "audio/ogg; codecs=opus", extension: "ogg"};
     var flac = {contentType: "audio/flac", extension: "flac"};
-    $scope.mediaType = ogg;
-    if(!audio.audioElement.canPlayType(ogg.contentType)) {
-        $scope.mediaType = flac;
-    }
 
-    $scope.showError = function (errorMessage) {
+    $scope.showError = function (errorMessage, errorDetail) {
         $timeout(function(){
             $scope.myError = true;
             $scope.errorMessage = errorMessage;
+            $scope.errorDetail = errorDetail;
             document.body.dispatchEvent(new Event('resize'));
         }, 0);
     }
@@ -77,6 +104,8 @@ parlatorApp.controller('parlatorController', function ($scope, $sce, audio, $htt
     $scope.hideError = function () {
         $timeout(function(){
             $scope.myError = false;
+            $scope.errorMessage = "";
+            $scope.errorDetail = "";
         }, 0);
     };
 
@@ -92,19 +121,99 @@ parlatorApp.controller('parlatorController', function ($scope, $sce, audio, $htt
         return "voice=" + encodeURIComponent(JSON.stringify(voice)) + "&text=" + encodeURIComponent(text) + "&mediaType=" + encodeURIComponent(JSON.stringify(mediaType));
     };
 
+    $scope.parla = function(voice, text, mediaType) {
+        var url = "parla?" + talkParams($scope.selectedVoice, $scope.text, mediaType);
+        $http({
+            method: 'GET',
+            url : url,
+            responseType: "arraybuffer"
+        }).then(
+            function (response) {
+
+
+                //alert(mediaType.contentType);
+
+                var blob = new Blob([response.data], {type: mediaType.contentType});
+
+                /*
+                 var wav = lamejs.WavHeader.readHeader(new DataView(response.data));
+                 var samples = new Int16Array(response.data, 0, Math.floor(response.data.byteLength / 2));
+                 var blob = toMp3Blob(wav.channels, wav.sampleRate, samples);
+                 $scope.mediaTypes[$scope.mediaTypeIndex] = {extension: "mp3", contentType:"audio/mpeg"};
+                 */
+
+                var urlCreator = window.URL || window.webkitURL;
+                if(!urlCreator) {
+                    $scope.showError("Parlator non functiona in tu browser.");
+                    return;
+                }
+                $scope.talkUrl = urlCreator.createObjectURL(blob);
+
+                //replace server download url for local download url (blob url)
+                $scope.downloadOptions[mediaType.extension].url = $scope.talkUrl;
+
+
+                var filename = response.headers("Content-Disposition").replace(/(.*)(filename=)(.*)/g, "$3");
+                $scope.downloadOptions[mediaType.extension].filename = filename;
+
+                audio.play($scope.talkUrl);
+            },
+
+            function (response) {
+                var data = response.statusText; //String.fromCharCode.apply(null, new Uint8Array(response.data));
+                $scope.showError(data);
+            }
+        );
+    }
+
     $scope.talk = function () {
+        $scope.downloadOptions = {};
         if($scope.text != null && $scope.text !== "") {
-            $scope.hideError();
-            $scope.talkUrl = "parla?" + talkParams($scope.selectedVoice, $scope.text, $scope.mediaType);
-            audio.play($scope.talkUrl);
+            for (i = 0; i < $scope.mediaTypes.length; i++) {
+                var mediaType = $scope.mediaTypes[i];
+                $scope.downloadOptions[mediaType.extension] = {
+                    url: "parla?" + talkParams($scope.selectedVoice, $scope.text, mediaType),
+                    filename: ""
+                };
+            }
+            $scope.parla($scope.selectedVoice, $scope.text, $scope.mediaTypes[$scope.mediaTypeIndex]);
         }
     };
 
     audio.audioElement.onerror = function (e) {
+        /*
         var input = document.getElementById("text");
         var url = "errorMessage?" + talkParams($scope.selectedVoice, $scope.text, $scope.mediaType);
         $http.get(url).success(function (data) {
             $scope.showError(data);
+        });
+        */
+        var error = e.currentTarget.error;
+        var errorDetail = error.code + ".";
+        var prop;
+        for (prop in error) {
+            if("" + error.code == "" + error[prop]) {
+                if(prop != "code") {
+                    errorDetail += prop + " ";
+                }
+            }
+        }
+        var errorMessage = "";
+        if(error.code == 4) {
+            if($scope.mediaTypeIndex < $scope.mediaTypes.length-1) {
+                $scope.mediaTypeIndex ++;
+                $scope.parla($scope.selectedVoice, $scope.text, $scope.mediaTypes[$scope.mediaTypeIndex]);
+                return;
+            } else {
+                errorMessage += "Tu browser non succedeva in sonar necun ex le formatos disponibile. Ma tu pote discargar lo.";
+            }
+        }
+
+        $scope.showError(errorMessage, errorDetail);
+
+        $timeout(function(){
+            $scope.isTalk = true;
+            document.body.dispatchEvent(new Event('resize'));
         });
     };
 
@@ -122,6 +231,29 @@ parlatorApp.controller('parlatorController', function ($scope, $sce, audio, $htt
             $scope.voices = data;
             $scope.selectedVoice = $scope.voices[0];
         });
+    }
+
+    $scope.initMediaTypes = function () {
+        $http.get("mediaTypes").success(function (data) {
+            $scope.mediaTypes = data;
+            $scope.mediaTypeIndex = 0;
+            /*
+            for (i = 0; i < $scope.mediaTypes.length; i++) {
+                var currentMediaType = $scope.mediaTypes[i];
+                if(audio.audioElement.canPlayType(currentMediaType.contentType)) {
+                    $scope.mediaType = currentMediaType;
+                    alert(currentMediaType.contentType);
+                    break;
+                }
+            }
+
+            if(!$scope.mediaType) {
+                $scope.showError("Tu browser non pote sonar necun typo de audio utilisate per parlator.");
+            }
+            */
+
+        });
+
     }
 });
          

@@ -3,7 +3,7 @@
         "http://java.sun.com/dtd/web-app_2_3.dtd" >
 
 <web-app>
-    <display-name>Archetype Created Web Application</display-name>
+    <display-name>Parlator de Interlingua</display-name>
 
     <servlet>
         <servlet-name>ParlatorServlet</servlet-name>
@@ -28,13 +28,14 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>ErrorMessageServlet</servlet-name>
-        <servlet-class>com.intergrammar.parlator.ErrorMessageServlet</servlet-class>
+        <servlet-name>MediaTypesServlet</servlet-name>
+        <servlet-class>com.intergrammar.parlator.MediaTypesServlet</servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>ErrorMessageServlet</servlet-name>
-        <url-pattern>/errorMessage</url-pattern>
+        <servlet-name>MediaTypesServlet</servlet-name>
+        <url-pattern>/mediaTypes</url-pattern>
     </servlet-mapping>
+
 </web-app>

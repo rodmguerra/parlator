@@ -2,6 +2,7 @@
 <html ng-app="parlatorApp" ng-csp>
 <head>
     <title>Parlator de Interlingua</title>
+    <script src="script/lame.min.js"></script>
     <script src="script/angular.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta charset="UTF-8">
@@ -18,19 +19,19 @@
         ga('send', 'pageview');
     </script>
 </head>
-<body  ng-controller="parlatorController" ng-init="initVoices()">
+<body  ng-controller="parlatorController" ng-init="initVoices(); initMediaTypes();">
     <div id="wrap">
     <div class="container" id="main">
         <h1>Parlator de textos in interlingua <small>(Interlingua text&#8209;to&#8209;speech)</small></h1>
             <form>
                 <div class="form-group" ng-if="myError">
                     <div class="alert alert-warning">
-                        <strong>Attention!</strong> {{errorMessage}}
+                        <strong>Error!</strong> {{errorMessage}} {{errorDetail}}
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="text">Texto</label>
-                    <textarea elastic id="text" rows="1" ng-enter="talk()" class="form-control" ng-change="clear()" ng-model="text" required autofocus placeholder="Per favor, scribe hic un parola o qualque phrases in interlingua"></textarea>
+                    <textarea elastic id="text" rows="1" style="height: 1em" ng-enter="talk()" class="form-control" ng-change="clear()" ng-model="text" required autofocus placeholder="Scribe hic in interlingua."></textarea>
                 </div>
                 <div class="form-group">
                     <label for="voiceSelect">Voce</label>
@@ -40,16 +41,20 @@
                 <div class="form-group">
                     <input class="btn btn-default" name="talk" type="submit" value="Parla!" ng-click="talk()">
                 </div>
-                <div class="form-group">
-                    <a ng-if="isTalk" ng-href="{{talkUrl}}">Discarga le audio</a>
+                <div ng-if="isTalk">
+                    <label for="downloadButtons">Discarga le audio</label>  <br />
+                    <div class="btn-group" ng-repat role="group" id="downloadButtons" name="downloadButtons" aria-label="Discarga le audio" ng-repeat="(extension, option) in downloadOptions">
+                        <a ng-href="{{option.url}}" download="{{option.filename}}" class="btn btn-default">{{extension}}</a>
+                    </div>
+                    <p> </p>
                 </div>
             </form>
         </div>
     </div>
     <div id="footer">
         <div id="innerfooter">
-            <p class="text-muted">Esque alicun parola es parlate incorrectemente? Ha iste sito alicun defecto? Vole vos commentar o dar suggestiones? Per favor, invia un e-posta a <b><a href="mailto:parlator.interlingua@gmail.com">parlator.interlingua@gmail.com</a></b>.</p>
-            <p class="text-muted">Pro le generation del audio, vostre datos es inviate a IBM, que pote usar los conforme a <a href="http://www-03.ibm.com/software/sla/sladb.nsf/pdf/6947-03/$file/i126-6947-03_06-2016_en_US.pdf">IBM Text to Speech Service Description</a>.</p>
+            <p class="text-muted">Defectos, commentos e/o suggestiones: <b><a href="mailto:parlator.interlingua@gmail.com">parlator.interlingua@gmail.com</a></b>.</p>
+            <p class="text-muted">Pro le generation del audio, vostre datos es inviate a IBM, que pote usar los conforme a <a href="http://www-03.ibm.com/software/sla/sladb.nsf/pdf/6947-03/$file/i126-6947-03_06-2016_en_US.pdf">IBM TTS Description</a>.</p>
         </div>
     </div>
 </body>

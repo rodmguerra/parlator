@@ -26,6 +26,7 @@
     <orderEntry type="library" name="Maven: com.google.code.gson:gson:2.5" level="project" />
     <orderEntry type="library" name="Maven: org.apache.commons:commons-lang3:3.4" level="project" />
     <orderEntry type="library" name="Maven: com.neovisionaries:nv-websocket-client:1.21" level="project" />
+    <orderEntry type="library" name="Maven: jump3r:jump3r:1.0.3" level="project" />
     <orderEntry type="library" name="Maven: com.ivona:ivona-speechcloud-sdk-java:1.0.0" level="project" />
     <orderEntry type="library" name="Maven: com.amazonaws:aws-java-sdk:1.10.4" level="project" />
     <orderEntry type="library" name="Maven: com.amazonaws:aws-java-sdk-support:1.10.4" level="project" />

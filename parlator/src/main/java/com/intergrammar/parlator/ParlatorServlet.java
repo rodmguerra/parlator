@@ -1,7 +1,10 @@
 package com.intergrammar.parlator;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.interlinguatts.*;
+import com.interlinguatts.MediaType;
+import com.interlinguatts.TextToSpeech;
+import com.interlinguatts.Voice;
+import com.interlinguatts.VoiceGenerator;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -23,20 +26,27 @@ public class ParlatorServlet extends HttpServlet {
         tts = context.tts();
         voiceGenerator =  context.voiceGenerator();
         sessionHandler = context.sessionHandler();
-        System.out.println("Parlator servlet loaded!");
+        System.out.println("Parlator servlet 2 loaded!");
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws javax.servlet.ServletException, java.io.IOException {
+        try {
+            processRequest(request, response);
+        } catch (Throwable e) {
+            String stackTrace = stackTrace(e);
+            System.out.println(stackTrace);
+            response.sendError(500, stackTrace);
+        }
+    }
+
+    private void processRequest(HttpServletRequest request, HttpServletResponse response) {
         InputStream inputStream = null;
         String queryString = null;
-        String errorMessage = "";
         OutputStream responseOutputStream = null;
-        Map<String,String> errorMessageMap = null;
         Map<String,byte[]> audioMap = null;
         try {
             HttpSession session = request.getSession();
             audioMap = sessionHandler.getAudioMap(session);
-            errorMessageMap = sessionHandler.getErrorMessageMap(session);
 
             queryString = request.getQueryString();
             String text = request.getParameter("text");
@@ -74,38 +84,17 @@ public class ParlatorServlet extends HttpServlet {
 
             //System.out.println("\nFile saved: " + outputFileName);
         } catch (Exception e) {
-            errorMessage += stackTrace(e);
+            throw new RuntimeException(e);
         } finally {
-
             //close inputstream
             try {
                 if (inputStream != null) {
                     inputStream.close();
                 }
             } catch (Exception e) {
-                errorMessage += stackTrace(e);
-                storeAndLogErrorMessageIfAny(queryString, errorMessage, errorMessageMap);
+                //exception on finally
+                System.out.println("excepton on finally: " + stackTrace(e));
             }
-
-            //close outputsteam
-            try {
-                if (responseOutputStream != null) {
-                    responseOutputStream.close();
-                }
-            } catch (Exception e) {
-                errorMessage += stackTrace(e);
-                storeAndLogErrorMessageIfAny(queryString, errorMessage, errorMessageMap);
-            }
-
-            //log error
-            storeAndLogErrorMessageIfAny(queryString, errorMessage, errorMessageMap);
-        }
-    }
-
-    private void storeAndLogErrorMessageIfAny(String queryString, String errorMessage, Map<String, String> errorMessageMap) {
-        if(errorMessage != null || errorMessage != "") {
-            System.out.println(errorMessage);
-            errorMessageMap.put(queryString, errorMessage);
         }
     }
 
