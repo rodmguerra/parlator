@@ -9,8 +9,12 @@ public class IbmVoiceBugFixer implements VoiceBugFixer {
 
     @Override
     public String getChangingIpaFix(Voice voice, String ipa, int length) {
+
+        ipa = ipa.replaceAll("ʁ","r");
+
+
         if(IT_FRANCESCA.getName().equals(voice.getName())){
-            return ipa.replaceAll("(d͡)?ʒ","dʒ");
+            ipa = ipa.replaceAll("(d͡)?ʒ","dʒ").replace("h","");;
         } else if(ES_ENRIQUE.getName().equals(voice.getName())){
             ipa = ipa.replaceAll("(t͡)?ʃ", "tʃ").replaceAll("(d͡)?ʒ", "d͡z").replaceAll("v","β").replaceAll("r","ɾ").replace("h","x");
         } else if(ES_LAURA.getName().equals(voice.getName())) {
@@ -23,7 +27,11 @@ public class IbmVoiceBugFixer implements VoiceBugFixer {
             }
         } else if(FR_RENEE.getName().equals(voice.getName())){
             ipa = ipa.replaceAll("r","ɾ").replace("h","r");
+        } else if("pt-BR".equalsIgnoreCase(voice.getLanguage())) {
+            ipa = ipa.replaceAll("r","ɾ");
         }
+
+        ipa = ipa.replaceAll("͡","");
 
         return ipa;
     }

@@ -1,24 +1,3 @@
-var toMp3Blob = function(channels, sampleRate, samples) {
-    var buffer = [];
-    var mp3enc = new lamejs.Mp3Encoder(channels, sampleRate, 128);
-    var remaining = samples.length;
-    var maxSamples = 1152;
-    for (var i = 0; remaining >= maxSamples; i += maxSamples) {
-        var mono = samples.subarray(i, i + maxSamples);
-        var mp3buf = mp3enc.encodeBuffer(mono);
-        if (mp3buf.length > 0) {
-            buffer.push(new Int8Array(mp3buf));
-        }
-        remaining -= maxSamples;
-    }
-    var d = mp3enc.flush();
-    if(d.length > 0){
-        buffer.push(new Int8Array(d));
-    }
-    console.log('done encoding, size=', buffer.length);
-    return new Blob(buffer, {type: 'audio/mp3'});
-}
-
 
 var parlatorApp = angular.module('parlatorApp', []).config( [
     '$compileProvider',
@@ -130,17 +109,7 @@ parlatorApp.controller('parlatorController', function ($scope, $sce, audio, $htt
         }).then(
             function (response) {
 
-
-                //alert(mediaType.contentType);
-
                 var blob = new Blob([response.data], {type: mediaType.contentType});
-
-                /*
-                 var wav = lamejs.WavHeader.readHeader(new DataView(response.data));
-                 var samples = new Int16Array(response.data, 0, Math.floor(response.data.byteLength / 2));
-                 var blob = toMp3Blob(wav.channels, wav.sampleRate, samples);
-                 $scope.mediaTypes[$scope.mediaTypeIndex] = {extension: "mp3", contentType:"audio/mpeg"};
-                 */
 
                 var urlCreator = window.URL || window.webkitURL;
                 if(!urlCreator) {

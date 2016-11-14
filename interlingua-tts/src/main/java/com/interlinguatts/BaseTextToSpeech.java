@@ -17,7 +17,9 @@ public abstract class BaseTextToSpeech implements TextToSpeech {
             //
             byte[] buffer = new byte[2 * 1024];
             int readBytes;
-            outputStream = new FileOutputStream(new File(fileName));
+            File file = new File(fileName);
+            file.getParentFile().mkdirs();
+            outputStream = new FileOutputStream(file);
 
             while ((readBytes = inputStream.read(buffer)) > 0) {
                 outputStream.write(buffer, 0, readBytes);
