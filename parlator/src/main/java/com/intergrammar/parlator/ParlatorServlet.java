@@ -26,7 +26,7 @@ public class ParlatorServlet extends HttpServlet {
         tts = context.tts();
         voiceGenerator =  context.voiceGenerator();
         sessionHandler = context.sessionHandler();
-        System.out.println("Parlator servlet 2 loaded!");
+        System.out.println("Parlator servlet loaded!");
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws javax.servlet.ServletException, java.io.IOException {

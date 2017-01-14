@@ -57,8 +57,11 @@ parlatorApp.factory('audio', function ($document, $http) {
                 audioElement.play();
             } else {
                 audioElement.src = filename;
+                //audioElement.type = "audio/mpeg";
+                audioElement.load();
                 audioElement.play();
                 this.lastUrl = filename;
+
             }
         }
     }
@@ -68,8 +71,6 @@ parlatorApp.controller('parlatorController', function ($scope, $sce, audio, $htt
     $scope.myError = false;
     $scope.isTalk = false;
     $scope.downloadUrls = {};
-    var ogg = {contentType: "audio/ogg; codecs=opus", extension: "ogg"};
-    var flac = {contentType: "audio/flac", extension: "flac"};
 
     $scope.showError = function (errorMessage, errorDetail) {
         $timeout(function(){

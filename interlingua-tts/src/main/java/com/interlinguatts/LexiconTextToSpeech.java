@@ -14,7 +14,7 @@ public class LexiconTextToSpeech extends BaseTextToSpeech implements TextToSpeec
     @Override
     public InputStream textToSpeech(Voice voice, String text, MediaType mediaType) {
         TextAndLexicon textAndLexicon = textToPhonetics.textAndLexicon(text, voice);
-        return voiceGenerator.textAndLexiconToAudio(voice, text, textAndLexicon.getLexicon(), mediaType);
+        return voiceGenerator.textAndLexiconToAudio(voice, textAndLexicon.getText(), textAndLexicon.getLexicon(), mediaType);
     }
 
     @Override

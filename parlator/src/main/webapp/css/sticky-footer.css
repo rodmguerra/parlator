@@ -3,11 +3,11 @@ html, body {height: 100%;}
 #wrap {min-height: 100%;}
 
 #main {overflow:auto;
-    padding-bottom: 105px;}  /* must be same height as the footer */
+    padding-bottom: 90px;}  /* must be same height as the footer */
 
 #footer {position: relative;
-    margin-top: -105px; /* negative value of footer height */
-    height: 105px;
+    margin-top: -90px; /* negative value of footer height */
+    height: 90px;
     clear:both;
     text-align: center;
     padding-top: 3px;

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="parlatorApp" ng-csp>
+<html ng-app="parlatorApp" ng-csp lang="ia">
 <head>
     <title>Parlator de Interlingua</title>
     <script src="script/lame.min.js"></script>
@@ -9,6 +9,7 @@
     <script src="script/parlator.js"></script>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/sticky-footer.css">
+    <link rel="shortcut icon" type="image/png" href="images/favicon.png"/>
     <script>
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
             (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -20,9 +21,19 @@
     </script>
 </head>
 <body  ng-controller="parlatorController" ng-init="initVoices(); initMediaTypes();">
-    <div id="wrap">
-    <div class="container" id="main">
-        <h1>Parlator de textos in interlingua <small>(Interlingua text&#8209;to&#8209;speech)</small></h1>
+        <div id="wrap">
+            <div class="container" id="main" style=" margin-top: 8px">
+            <nav class="navbar navbar-default" style="height: 64px;">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <div class="navbar-brand">
+                            <div>
+                                <span><img src="images/favicon.png" style="margin-right: 8px; margin-top: -8px; margin-left: -8px; vertical-align: -75%;" /></span><span style="font-size: x-large;"><strong>Parlator&nbsp;de&nbsp;Interlingua</strong></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </nav>
             <form>
                 <div class="form-group" ng-if="myError">
                     <div class="alert alert-warning">
@@ -53,10 +64,10 @@
     </div>
     <div id="footer">
         <div id="innerfooter">
-            <p class="text-muted">Defectos, commentos e/o suggestiones: <b><a href="mailto:parlator.interlingua@gmail.com">parlator.interlingua@gmail.com</a></b>.</p>
-            <p class="text-muted">Pro le generation del audio, vostre datos es inviate a IBM, que pote usar los conforme a <a href="http://www-03.ibm.com/software/sla/sladb.nsf/pdf/6947-03/$file/i126-6947-03_06-2016_en_US.pdf">IBM TTS Description</a>.</p>
+            <!--<p class="text-muted">Defectos, commentos e/o suggestiones: <b><a href="mailto:parlator.interlingua@gmail.com">parlator.interlingua@gmail.com</a></b>.</p>-->
+            <p class="text-muted">Software create per Rodrigo Mallmann Guerra.</p>
+            <!--<p class="text-muted">Pro le generation del audio, vostre datos es inviate a IBM, que pote usar los conforme a <a href="http://www-03.ibm.com/software/sla/sladb.nsf/pdf/6947-03/$file/i126-6947-03_06-2016_en_US.pdf">IBM TTS Description</a>.</p>-->
         </div>
     </div>
 </body>
-
 </html>
