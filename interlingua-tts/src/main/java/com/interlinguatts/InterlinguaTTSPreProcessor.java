@@ -240,6 +240,11 @@ public class InterlinguaTtsPreProcessor {
         text = text.replaceAll("[,]+([ ]*" +special + ")", "$1");  //,special
         text = text.replaceAll("[ ]*,", ",");
         text = text.replaceAll(",[ ]*", ", ");
+        //text = text.replaceAll("([^.,;:?!“”‘’\"'\\-–\\)\\]\\}\n])(\n\n)+", "$1.\n\n");  //not special + linebreaks = "."
+        //text = text.replaceAll("([^.,;:?!“”‘’\"'\\-–\\)\\]\\}\n])(\n)", "$1,\n");  //not special + linebreak = ","
+        text = text.replaceAll("\\b[ ]*\n\n+", ".\n\n");
+        text = text.replaceAll("\\b[ ]*\n+", ",\n");
+
         System.out.println(text);
         return text;
     }
@@ -255,6 +260,8 @@ public class InterlinguaTtsPreProcessor {
         text = text.replaceAll("Sra\\.", "seniora");
         text = text.replaceAll("etc\\.", "etcetera");
         text = text.replaceAll("Etc\\.", "Etcetera");
+
+
         return text;
     }
 

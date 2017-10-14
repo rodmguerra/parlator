@@ -87,9 +87,9 @@ public class WordToPhonetics {
 
     private String respellDerivateWord(String wordText, String wordRespell) {
         //tempores
-        if (wordRespell == null && wordText.endsWith("va")) wordRespell = respellChangingSuffix(wordText, "r", "va");
-        if (wordRespell == null && wordText.endsWith("ra")) wordRespell = respellChangingSuffix(wordText, "r", "rā");
-        if (wordRespell == null && wordText.endsWith("rea")) wordRespell = respellChangingSuffix(wordText, "r", "rēa");
+        if (wordRespell == null && endsWithOneOf(wordText, "ava", "eva", "iva")) wordRespell = respellChangingSuffix(wordText, "r", "va");
+        if (wordRespell == null && endsWithOneOf(wordText, "ara", "era", "ira")) wordRespell = respellChangingSuffix(wordText, "r", "rā");
+        if (wordRespell == null && endsWithOneOf(wordText, "area", "erea", "irea")) wordRespell = respellChangingSuffix(wordText, "r", "rēa");
 
         //participio
         if (wordRespell == null && wordText.endsWith("ate")) wordRespell = respellChangingSuffix(wordText, "ar", "ate");
@@ -165,6 +165,15 @@ public class WordToPhonetics {
         return wordRespell;
     }
 
+    private boolean endsWithOneOf(String wordText, String... endings) {
+        for (String ending : endings) {
+            if(wordText.endsWith(ending)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     private String respellChangingSuffix(String word, String storedSuffix, String wordSuffix) {
         Word base = wordRepository.findByWord(word.substring(0, word.length() - wordSuffix.length()) + storedSuffix);
         if (base == null) {
@@ -227,6 +236,7 @@ public class WordToPhonetics {
 
         //double consonant => single consonant
         word = word.replaceAll("([^aeiouāēīōūǎěǐǒǔ])\\1", "$1");
+        //word = word.replaceAll("ss", "s");
 
         //ch => k
         word = word.replaceAll("ch", "k");

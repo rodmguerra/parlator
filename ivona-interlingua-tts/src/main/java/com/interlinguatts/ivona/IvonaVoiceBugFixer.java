@@ -36,9 +36,9 @@ public class IvonaVoiceBugFixer implements VoiceBugFixer {
             ipa = ipa.replaceAll("(oˈ?)ʒ", "$1d͡ʒ");    //oj => odj
             return ipa;
         } else if (voice.getName().equals("Giorgio")) {
-            ipa = ipa.replaceAll("(oˈ?)ʒ", "$1d͡ʒ");    //oj => odj
-            ipa = ipa.replaceAll("(ˈ?)(d͡)?ʒe\\B", "$1d͡ʒe");    //je => dje
-            ipa = ipa.replaceAll("ˈʒe", "ˈd͡ʒe");
+            ipa = ipa.replaceAll("(d͡)?ʒe\\B", "d͡ʒe");  //cambia je a dje in le medio del parola
+            ipa = ipa.replaceAll("([^aiun])(d͡)?ʒe\\b", "$1d͡ʒe"); //cambia je a dje in le medio del parola excepto in aje, ije, uje, nje
+            ipa = ipa.replaceAll("([aiun])ʒe\\b", "$1ʒee"); //adde un e additional a aje, ije, uje, nje
             return ipa;
         }
         return ipa;

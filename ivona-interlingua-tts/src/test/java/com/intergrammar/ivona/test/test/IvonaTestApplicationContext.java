@@ -1,24 +1,23 @@
-package com.interlinguatts;
+package com.intergrammar.ivona.test.test;
 
+import com.interlinguatts.*;
 import com.interlinguatts.domain.Word;
 import com.interlinguatts.repository.MemoryWordRepository;
 import com.interlinguatts.repository.Repository;
 import com.interlinguatts.repository.WordRepository;
 import org.apache.commons.dbcp.BasicDataSource;
 
-public class TestApplicationContext {
+public class IvonaTestApplicationContext {
 
-    private static TestApplicationContext instance;
-
-    public static TestApplicationContext getInstance() {
+    private static IvonaTestApplicationContext instance;
+    public static IvonaTestApplicationContext getInstance() {
         if(instance == null) {
-            instance = new TestApplicationContext();
+            instance = new IvonaTestApplicationContext();
         }
         return instance;
     }
 
     private TextToSpeech tts;
-
 
     //Ivona
     public TextToSpeech tts() {
@@ -36,22 +35,11 @@ public class TestApplicationContext {
             WordToPhonetics wordToPhonetics = new WordToPhonetics(memoryWordRepository, numberWriter);
             InterlinguaTtsPreProcessor preProcessor = new InterlinguaTtsPreProcessor(numberWriter);
 
-            VoiceGenerator voiceGenerator = voiceGenerator();
-            VoiceBugFixer ivonaVoiceBugFixer;
-            try {
-                Class voiceBugFixerClass = Class.forName("com.interlinguatts.ivona.IvonaVoiceBugFixer");
-                ivonaVoiceBugFixer = (VoiceBugFixer) voiceBugFixerClass.newInstance();
-            } catch (ClassNotFoundException e) {
-                throw new RuntimeException("Ivona TTS jar not found.", e);
-            } catch (InstantiationException e) {
-                throw new RuntimeException(e);
-            } catch (IllegalAccessException e) {
-                throw new RuntimeException(e);
-            }
+            VoiceBugFixer voiceBugFixer = instance("com.interlinguatts.ivona.IvonaVoiceBugFixer", VoiceBugFixer.class);
 
-            TextToPhonetics textToPhonetics = new TextToPhonetics(wordToPhonetics, ivonaVoiceBugFixer, preProcessor);
-            tts = new LexiconTextToSpeech(voiceGenerator, textToPhonetics);
-            //tts = new SsmlTextToSpeech(voiceGenerator, textToPhonetics, PhoneticAlphabet.IPA);
+            TextToPhonetics textToPhonetics = new TextToPhonetics(wordToPhonetics, voiceBugFixer, preProcessor);
+            tts = new LexiconTextToSpeech(voiceGenerator(), textToPhonetics);
+            //tts = new SsmlTextToSpeech(voiceGenerator(), textToPhonetics, PhoneticAlphabet.IPA);
         }
 
         return tts;
@@ -76,10 +64,9 @@ public class TestApplicationContext {
 
             VoiceGenerator voiceGenerator = voiceGenerator();
             VoiceBugFixer voiceBugFixer = new IbmVoiceBugFixer();
-
             TextToPhonetics textToPhonetics = new TextToPhonetics(wordToPhonetics, voiceBugFixer, preProcessor);
-            //tts = new LexiconTextToSpeech(voiceGenerator, textToPhonetics);
-            tts = new SsmlTextToSpeech(voiceGenerator, textToPhonetics, PhoneticAlphabet.IPA);
+            tts = new LexiconTextToSpeech(voiceGenerator, textToPhonetics);
+            //tts = new SsmlTextToSpeech(voiceGenerator, textToPhonetics, PhoneticAlphabet.IPA);
         }
 
         return tts;
@@ -90,22 +77,30 @@ public class TestApplicationContext {
 
     //ivona
     public VoiceGenerator voiceGenerator() {
+        System.out.println("voice generator instance");
         if(voiceGenerator == null) {
-            try {
-                Class voiceGeneratorClass = Class.forName("com.interlinguatts.ivona.IvonaVoiceGenerator");
-                voiceGenerator = (VoiceGenerator) voiceGeneratorClass.newInstance();
-            } catch (ClassNotFoundException e) {
-                throw new RuntimeException("Ivona TTS jar not found.", e);
-            } catch (InstantiationException e) {
-                throw new RuntimeException(e);
-            } catch (IllegalAccessException e) {
-                throw new RuntimeException(e);
-            }
+            voiceGenerator = instance("com.interlinguatts.ivona.IvonaVoiceGenerator", VoiceGenerator.class);
+            System.out.println("voice generator instance created");
         }
+
         return voiceGenerator;
     }
 
+    private <T> T instance(String className, Class<T> interfaz) {
+        try {
+            Class clazz = Class.forName(className);
+            return (T) clazz.newInstance();
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException("Ivona TTS jar not found.", e);
+        } catch (InstantiationException e) {
+            throw new RuntimeException(e);
+        } catch (IllegalAccessException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     /*
+    //ibm
     public VoiceGenerator voiceGenerator() {
         if(voiceGenerator == null) {
             voiceGenerator = new IbmVoiceGenerator();
@@ -113,5 +108,4 @@ public class TestApplicationContext {
         return voiceGenerator;
     }
     */
-
 }

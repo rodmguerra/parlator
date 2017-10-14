@@ -10,7 +10,6 @@ import org.apache.commons.dbcp.BasicDataSource;
 public class ApplicationContext {
 
     private static ApplicationContext instance;
-
     public static ApplicationContext getInstance() {
         if(instance == null) {
             instance = new ApplicationContext();
@@ -38,10 +37,9 @@ public class ApplicationContext {
 
             VoiceBugFixer voiceBugFixer = instance("com.interlinguatts.ivona.IvonaVoiceBugFixer", VoiceBugFixer.class);
 
-
             TextToPhonetics textToPhonetics = new TextToPhonetics(wordToPhonetics, voiceBugFixer, preProcessor);
-            tts = new LexiconTextToSpeech(voiceGenerator, textToPhonetics);
-            //tts = new SsmlTextToSpeech(voiceGenerator, textToPhonetics, PhoneticAlphabet.IPA);
+            tts = new LexiconTextToSpeech(voiceGenerator(), textToPhonetics);
+            //tts = new SsmlTextToSpeech(voiceGenerator(), textToPhonetics, PhoneticAlphabet.IPA);
         }
 
         return tts;
@@ -79,23 +77,13 @@ public class ApplicationContext {
 
     //ivona
     public VoiceGenerator voiceGenerator() {
+        System.out.println("voice generator instance");
         if(voiceGenerator == null) {
-            voiceGenerator = (VoiceGenerator) instance("com.interlinguatts.ivona.IvonaVoiceGenerator");
+            voiceGenerator = instance("com.interlinguatts.ivona.IvonaVoiceGenerator", VoiceGenerator.class);
+            System.out.println("voice generator instance created");
         }
-        return voiceGenerator;
-    }
 
-    private Object instance(String className) {
-        try {
-            Class voiceGeneratorClass = Class.forName(className);
-            return voiceGeneratorClass.newInstance();
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException("Ivona TTS jar not found.", e);
-        } catch (InstantiationException e) {
-            throw new RuntimeException(e);
-        } catch (IllegalAccessException e) {
-            throw new RuntimeException(e);
-        }
+        return voiceGenerator;
     }
 
     private <T> T instance(String className, Class<T> interfaz) {

@@ -16,9 +16,11 @@
         </dependency>
         <dependency>
             <groupId>com.amazonaws</groupId>
-            <artifactId>aws-java-sdk</artifactId>
+            <artifactId>aws-java-sdk-polly</artifactId>
             <version>1.11.78</version>
         </dependency>
+
     </dependencies>
+
 
 </project>

@@ -23,9 +23,9 @@ public class ParlatorServlet extends HttpServlet {
     public ParlatorServlet() {
         System.out.println("Starting parlator servlet!");
         ApplicationContext context = ApplicationContext.getInstance();
-        tts = context.tts();
         voiceGenerator =  context.voiceGenerator();
         sessionHandler = context.sessionHandler();
+        tts = context.tts();
         System.out.println("Parlator servlet loaded!");
     }
 

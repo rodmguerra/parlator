@@ -80,10 +80,16 @@ public class IvonaVoiceGenerator implements VoiceGenerator {
         SynthesizeSpeechRequest request = new SynthesizeSpeechRequest();
         OutputFormat format = outputFormatFromMediaType(mediaType.getExtension());
         request.setLexiconNames(lexiconNames);
+        if("Giorgio".equals(voice.getName())) {
+            String rate = "slow";
+            text = "<speak><prosody rate=\"" + rate + "\">" + text + "</prosody></speak>";
+        } else {
+            text = "<speak>"+ text + "</speak>";
+        }
         request.setText(text);
         request.setVoiceId(toVoiceId(voice));
         request.setOutputFormat(format);
-        request.setTextType(TextType.Text);
+        request.setTextType(TextType.Ssml);
 
     /*
         Parameters parameters = new Parameters();
@@ -133,7 +139,7 @@ public class IvonaVoiceGenerator implements VoiceGenerator {
 
     private OutputFormat outputFormatFromMediaType(String extension) {
         OutputFormat format = extension.equals("mp3")? OutputFormat.Mp3 : extension.equals("ogg")? OutputFormat.Ogg_vorbis: null;
-        if(format == null) throw new IllegalArgumentException("Extension " + extension + "not supported.");
+        if(format == null) throw new IllegalArgumentException("Extension " + extension + " not supported.");
         return format;
     }
 
