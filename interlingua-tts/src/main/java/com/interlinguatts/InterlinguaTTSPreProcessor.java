@@ -5,10 +5,10 @@ import java.math.BigInteger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class InterlinguaTtsPreProcessor {
+public class InterlinguaTTSPreProcessor {
     final InterlinguaNumberWriter numberWriter;
 
-    public InterlinguaTtsPreProcessor(InterlinguaNumberWriter numberWriter) {
+    public InterlinguaTTSPreProcessor(InterlinguaNumberWriter numberWriter) {
         this.numberWriter = numberWriter;
     }
 
@@ -266,7 +266,7 @@ public class InterlinguaTtsPreProcessor {
     }
 
     public static void main(String[] args) {
-        InterlinguaTtsPreProcessor preProcessor = new InterlinguaTtsPreProcessor(new InterlinguaNumberWriter());
+        InterlinguaTTSPreProcessor preProcessor = new InterlinguaTTSPreProcessor(new InterlinguaNumberWriter());
         //String text = "2.500me, le 10000me ha apportate depost de9.999nesj. Ille ha2.456,777 annos. Su telephone es45646546545646565465";
 
         //String text = "Entre parênteses (=), palavras=grudadas, grudada= palavra, palavra =grudada. Solto = Solto";

@@ -9,10 +9,10 @@ public class TextToPhonetics {
     public static final String VALID_IPA = "a-zˈ͡ʃʒʎβɾcghʝ";
     private final WordToPhonetics provider;
     private final VoiceBugFixer voiceBugFixer;
-    private final InterlinguaTtsPreProcessor preProcessor;
+    private final InterlinguaTTSPreProcessor preProcessor;
 
 
-    public TextToPhonetics(WordToPhonetics provider, VoiceBugFixer voiceBugFixer, InterlinguaTtsPreProcessor preProcessor) {
+    public TextToPhonetics(WordToPhonetics provider, VoiceBugFixer voiceBugFixer, InterlinguaTTSPreProcessor preProcessor) {
         this.provider = provider;
         this.voiceBugFixer = voiceBugFixer;
         this.preProcessor = preProcessor;

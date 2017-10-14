@@ -34,7 +34,7 @@ public class TestApplicationContext {
 
             InterlinguaNumberWriter numberWriter = new InterlinguaNumberWriter();
             WordToPhonetics wordToPhonetics = new WordToPhonetics(memoryWordRepository, numberWriter);
-            InterlinguaTtsPreProcessor preProcessor = new InterlinguaTtsPreProcessor(numberWriter);
+            InterlinguaTTSPreProcessor preProcessor = new InterlinguaTTSPreProcessor(numberWriter);
 
             VoiceGenerator voiceGenerator = voiceGenerator();
             VoiceBugFixer ivonaVoiceBugFixer;

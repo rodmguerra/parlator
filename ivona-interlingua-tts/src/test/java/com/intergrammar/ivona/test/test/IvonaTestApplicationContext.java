@@ -33,7 +33,7 @@ public class IvonaTestApplicationContext {
 
             InterlinguaNumberWriter numberWriter = new InterlinguaNumberWriter();
             WordToPhonetics wordToPhonetics = new WordToPhonetics(memoryWordRepository, numberWriter);
-            InterlinguaTtsPreProcessor preProcessor = new InterlinguaTtsPreProcessor(numberWriter);
+            InterlinguaTTSPreProcessor preProcessor = new InterlinguaTTSPreProcessor(numberWriter);
 
             VoiceBugFixer voiceBugFixer = instance("com.interlinguatts.ivona.IvonaVoiceBugFixer", VoiceBugFixer.class);
 
