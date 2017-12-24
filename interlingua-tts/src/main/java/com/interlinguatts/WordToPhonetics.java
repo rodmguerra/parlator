@@ -252,6 +252,7 @@ public class WordToPhonetics {
 
         //gh => g
         word = word.replaceAll("gh", "g");
+		
 
         //suffix age => authomatic detection
         /*
