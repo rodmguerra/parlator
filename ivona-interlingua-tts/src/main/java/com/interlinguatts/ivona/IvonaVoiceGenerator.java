@@ -26,7 +26,7 @@ public class IvonaVoiceGenerator implements VoiceGenerator {
         /*speechCloud = new AmazonPollyClient(
                 new ClasspathPropertiesFileCredentialsProvider("polly.properties"));
         speechCloud.setEndpoint("https://tts.us-east-1.ivonacloud.com");         */
-        speechCloud = new AmazonPollyClient(new BasicAWSCredentials("AKIAILAQJROYB33ULO5A", "Yizw3VbR5FTETkemppeOeHiQyeZ1Mzq+IREIzkvp"));
+        speechCloud = new AmazonPollyClient(new BasicAWSCredentials("AKIAJSG6IZIFY2NQV33A", "JbjTEWPJXssG3pW71zHfM/JgcP1mDbzjOZxVJgcW"));
         speechCloud.setEndpoint("polly.us-west-2.amazonaws.com");
     }
 
