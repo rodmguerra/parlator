@@ -7,6 +7,12 @@ import com.interlinguatts.repository.Repository;
 import com.interlinguatts.repository.WordRepository;
 import org.apache.commons.dbcp.BasicDataSource;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+import java.util.Properties;
+
 public class ApplicationContext {
 
     private static ApplicationContext instance;
@@ -77,12 +83,18 @@ public class ApplicationContext {
 
     //ivona
     public VoiceGenerator voiceGenerator() {
-        System.out.println("voice generator instance");
         if(voiceGenerator == null) {
-            voiceGenerator = instance("com.interlinguatts.ivona.IvonaVoiceGenerator", VoiceGenerator.class);
+            System.out.println("voice generator instance");
+            Properties properties = properties("parlator.properties");
+            String user = properties.getProperty("parlator.amazon.user");
+            String password = properties.getProperty("parlator.amazon.password");
+            String endpoint = properties.getProperty("parlator.amazon.endpoint");
+            voiceGenerator = instance("com.interlinguatts.ivona.AmazonVoiceGenerator",
+                    VoiceGenerator.class,
+                    new Credentials(user, password, endpoint)
+            );
             System.out.println("voice generator instance created");
         }
-
         return voiceGenerator;
     }
 
@@ -99,6 +111,29 @@ public class ApplicationContext {
         }
     }
 
+    private <T> T instance(String className, Class<T> interfaz, Object... params) {
+        try {
+            Class clazz = Class.forName(className);
+            Class<?>[] paramTypes = new Class[params.length];
+            for (int i = 0; i < params.length; i++) {
+                paramTypes[i] = params[i].getClass();
+            }
+            Constructor constructor = clazz.getConstructor(paramTypes);
+            return (T) constructor.newInstance(params);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException("Ivona TTS jar not found.", e);
+        } catch (InstantiationException e) {
+            throw new RuntimeException(e);
+        } catch (IllegalAccessException e) {
+            throw new RuntimeException(e);
+        } catch (NoSuchMethodException e) {
+            throw new RuntimeException(e);
+        } catch (InvocationTargetException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
     /*
     //ibm
     public VoiceGenerator voiceGenerator() {
@@ -111,4 +146,16 @@ public class ApplicationContext {
     public SessionHandler sessionHandler() {
         return new SessionHandler();
     }
+
+    public Properties properties(String resource) {
+
+        try {
+            Properties properties = new Properties();
+            properties.load(this.getClass().getClassLoader().getResourceAsStream(resource));
+            return properties;
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 }

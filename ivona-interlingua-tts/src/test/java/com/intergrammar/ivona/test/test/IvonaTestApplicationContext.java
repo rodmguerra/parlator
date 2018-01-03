@@ -79,7 +79,7 @@ public class IvonaTestApplicationContext {
     public VoiceGenerator voiceGenerator() {
         System.out.println("voice generator instance");
         if(voiceGenerator == null) {
-            voiceGenerator = instance("com.interlinguatts.ivona.IvonaVoiceGenerator", VoiceGenerator.class);
+            voiceGenerator = instance("com.interlinguatts.ivona.AmazonVoiceGenerator", VoiceGenerator.class);
             System.out.println("voice generator instance created");
         }
 

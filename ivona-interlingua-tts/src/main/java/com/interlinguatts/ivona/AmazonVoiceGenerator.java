@@ -1,43 +1,43 @@
 package com.interlinguatts.ivona;
 
 import com.amazonaws.auth.BasicAWSCredentials;
-import com.amazonaws.auth.ClasspathPropertiesFileCredentialsProvider;
 import com.amazonaws.services.polly.AmazonPollyClient;
 import com.amazonaws.services.polly.model.*;
-import com.amazonaws.services.polly.model.Voice;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
-import com.interlinguatts.*;
+import com.interlinguatts.Credentials;
+import com.interlinguatts.LexiconXmlBuilder;
+import com.interlinguatts.MediaType;
+import com.interlinguatts.VoiceGenerator;
 
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-public class IvonaVoiceGenerator implements VoiceGenerator {
-    private AmazonPollyClient speechCloud;
+public class AmazonVoiceGenerator implements VoiceGenerator {
+    private AmazonPollyClient delegate;
     private final List<MediaType> mediaTypes = ImmutableList.<MediaType>of(
             new MediaType("audio/mpeg", "mp3"),
             new MediaType("audio/ogg".toString(), "ogg")
     );
     public static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyyMMddHHmmssSSS");
 
-    public IvonaVoiceGenerator() {
-        /*speechCloud = new AmazonPollyClient(
-                new ClasspathPropertiesFileCredentialsProvider("polly.properties"));
-        speechCloud.setEndpoint("https://tts.us-east-1.ivonacloud.com");         */
-        speechCloud = new AmazonPollyClient(new BasicAWSCredentials("AKIAJSG6IZIFY2NQV33A", "JbjTEWPJXssG3pW71zHfM/JgcP1mDbzjOZxVJgcW"));
-        speechCloud.setEndpoint("polly.us-west-2.amazonaws.com");
+    public AmazonVoiceGenerator(Credentials credentials) {
+        delegate = new AmazonPollyClient(new BasicAWSCredentials(credentials.getUser(),credentials.getPassword()));
+        if(credentials.getEndpoint() != null) {
+            delegate.setEndpoint(credentials.getEndpoint());
+        }
     }
 
     public void putLexicon(String name, String contents) {
         PutLexiconRequest putLexiconRequest = new PutLexiconRequest().withName(name).withContent(contents);
-        speechCloud.putLexicon(putLexiconRequest);
+        delegate.putLexicon(putLexiconRequest);
     }
 
     public List<LexiconDescription> getLexiconDescriptions() {
         ListLexiconsRequest listLexiconsRequest = new ListLexiconsRequest();
-        ListLexiconsResult result = speechCloud.listLexicons(listLexiconsRequest);
+        ListLexiconsResult result = delegate.listLexicons(listLexiconsRequest);
         return result.getLexicons();
     }
 
@@ -53,7 +53,7 @@ public class IvonaVoiceGenerator implements VoiceGenerator {
 
     public List<com.interlinguatts.Voice> getVoices() {
         DescribeVoicesRequest listVoicesRequest = new DescribeVoicesRequest();
-        DescribeVoicesResult result = speechCloud.describeVoices(listVoicesRequest);
+        DescribeVoicesResult result = delegate.describeVoices(listVoicesRequest);
         List<com.interlinguatts.Voice> apiVoices = new ArrayList<com.interlinguatts.Voice>();
         for (Voice voice : result.getVoices()) {
            apiVoices.add(toApiVoice(voice));
@@ -96,13 +96,13 @@ public class IvonaVoiceGenerator implements VoiceGenerator {
         parameters.setRate("slow");
         request.setParameters(parameters);
       */
-        SynthesizeSpeechResult createSpeechResult = speechCloud.synthesizeSpeech(request);
+        SynthesizeSpeechResult createSpeechResult = delegate.synthesizeSpeech(request);
         return createSpeechResult.getAudioStream();
     }
 
     public void deleteLexicon(String lexiconName) {
         DeleteLexiconRequest request = new DeleteLexiconRequest().withName(lexiconName);
-        speechCloud.deleteLexicon(request);
+        delegate.deleteLexicon(request);
     }
 
     private com.interlinguatts.Voice toApiVoice(Voice ivonaVoice) {
@@ -133,7 +133,7 @@ public class IvonaVoiceGenerator implements VoiceGenerator {
         parameters.setRate("slow");
         request.setParameters(parameters);
         */
-        SynthesizeSpeechResult createSpeechResult = speechCloud.synthesizeSpeech(request);
+        SynthesizeSpeechResult createSpeechResult = delegate.synthesizeSpeech(request);
         return createSpeechResult.getAudioStream();
     }
 
